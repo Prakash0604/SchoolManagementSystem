@@ -38,6 +38,9 @@ function getData() {
                 data: "name",
             },
             {
+                data: "username",
+            },
+            {
                 data: "role",
             },
             {
@@ -280,5 +283,95 @@ $(document)
                     },
                 });
             }
+        });
+    });
+
+$(".toggle-password").on("click", function () {
+    const input = $(this).siblings("input");
+    const type = input.attr("type") === "password" ? "text" : "password";
+    input.attr("type", type);
+
+    $(this).html(
+        type === "password"
+            ? '<i class="fa-regular fa-eye"></i>'
+            : '<i class="fa-regular fa-eye-slash"></i>'
+    );
+});
+$(document)
+    .off("click", ".resetPasswordBtn")
+    .on("click", ".resetPasswordBtn", function () {
+        // $("password").val("");
+        clear();
+        let dataId = $(this).attr("data-id");
+        $("#reset_id").val(dataId);
+        // $("#new_password").val("");
+        // $("#confirm_password").val("");
+        $("#resetModal").modal("show");
+        $(".resetForm").attr("id", "resetPassword");
+        $("#resetPassword")[0].reset();
+    });
+
+$(document)
+    .off("submit", "#resetPassword")
+    .on("submit", "#resetPassword", function (e) {
+        e.preventDefault();
+        // const new_password=$("#new_password").val();
+        // const confirm_password=$("#confirm_password").val();
+        // console.log(new_password,confirm_password);
+        let formdata=new FormData(this);
+        let dataId = $("#reset_id").val();
+        let dataUrl = "/admin/employee/reset-password/" + dataId;
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr(
+                    "content"
+                ),
+            },
+            type: "post",
+            url: dataUrl,
+            data: formdata,
+            //  {
+            //     "new_password":new_password,
+            //     "confirm_password":confirm_password,
+            // },
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.status == true) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Reset",
+                        text: "Password reset successfully!",
+                        showConfirmButton: false,
+                        timer: 1000,
+                    });
+                    $("#resetModal").modal("hide");
+                    $("#get-employee-data").DataTable().destroy().clear();
+                    getData();
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Warning",
+                        text: "Something went wrong!",
+                    });
+                    $("#resetModal").modal("hide");
+                }
+            },
+            error: function (xhr) {
+                if (xhr.status == 422) {
+                    let errors = xhr.responseJSON.errors;
+                    $.each(errors, function (data, message) {
+                        $("#" + data + "-error").text(message[0]);
+                    });
+                }else{
+                    Swal.fire({
+                        icon: "error",
+                        title: "Warning",
+                        text: "Something went wrong!",
+                    });
+                    $("#resetModal").modal("hide");
+
+                }
+            },
         });
     });

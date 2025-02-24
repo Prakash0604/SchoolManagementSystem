@@ -25,4 +25,5 @@ Route::prefix('admin')->group(function () {
 
     // Employee
     Route::resource('employee',EmployeeController::class);
+    Route::post('employee/reset-password/{id}',[EmployeeController::class,'resetPassword']);
 });

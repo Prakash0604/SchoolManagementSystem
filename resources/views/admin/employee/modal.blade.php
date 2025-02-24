@@ -20,7 +20,8 @@
                                 <!-- Row start -->
                                 <div class="row">
 
-                                    <h3 class="text-center m-t-20 w-100" id="employeeHeading" style="line-height:20px;">Add Employee
+                                    <h3 class="text-center m-t-20 w-100" id="employeeHeading" style="line-height:20px;">
+                                        Add Employee
                                         <br>
                                         <div class="bg-gradient-blue"
                                             style="width:20px;height:7px;border-radius:10px;display:inline-block;">
@@ -83,7 +84,8 @@
 
                                         <div class="m-div">
                                             <label class="m-label bg-gradient-blue m-white">Date of Joining*</label>
-                                            <input type="date" class="form-control m-field" id="join_date" name="join_date">
+                                            <input type="date" class="form-control m-field" id="join_date"
+                                                name="join_date">
                                         </div>
                                         <span id="join_date-error" class="text-danger error-message"></span>
 
@@ -102,7 +104,8 @@
                                         <div class="m-div">
                                             <label class="m-label bg-gradient-blue m-white">Monthly Salary*</label>
                                             <input type="number" class="form-control m-field"
-                                                placeholder="Monthly Salary" name="monthly_salary" id="monthly_salary">
+                                                placeholder="Monthly Salary" name="monthly_salary"
+                                                id="monthly_salary">
                                         </div>
                                         <span id="monthly_salary-error" class="text-danger error-message"></span>
 
@@ -125,21 +128,24 @@
                                             <label class="m-label bg-gradient-gray m-white">Father / Husband
                                                 Name</label>
                                             <input type="text" class="form-control m-field"
-                                                placeholder="Father / Husband Name" value="" name="guardains" id="guardains">
+                                                placeholder="Father / Husband Name" value="" name="guardains"
+                                                id="guardains">
                                         </div>
                                         <span id="guardains-error" class="text-danger error-message"></span>
 
                                         <div class="m-div ">
                                             <label class="m-label bg-gradient-gray m-white">National ID</label>
                                             <input type="text" class="form-control m-field"
-                                                placeholder="National ID" value="" name="national_id" id="national_id">
+                                                placeholder="National ID" value="" name="national_id"
+                                                id="national_id">
                                         </div>
                                         <span id="national_id-error" class="text-danger error-message"></span>
 
                                         <div class="m-div ">
                                             <label class="m-label bg-gradient-gray m-white">Education</label>
                                             <input type="text" class="form-control m-field"
-                                                placeholder="Education" value="" name="education" id="education">
+                                                placeholder="Education" value="" name="education"
+                                                id="education">
                                         </div>
                                         <span id="education-error" class="text-danger error-message"></span>
 
@@ -170,7 +176,8 @@
 
                                         <div class="m-div ">
                                             <label class="m-label bg-gradient-gray m-white">Blood Group</label>
-                                            <select name="blood_group_id" id="blood_group_id" class="form-control m-field">
+                                            <select name="blood_group_id" id="blood_group_id"
+                                                class="form-control m-field">
                                                 <option value="">Select</option>
                                                 @foreach ($bloodgroups as $blood)
                                                     <option value="{{ $blood->id }}">{{ $blood->title }}</option>
@@ -184,21 +191,23 @@
                                         <div class="m-div ">
                                             <label class="m-label bg-gradient-gray m-white">Experience</label>
                                             <input type="text" class="form-control m-field"
-                                                placeholder="Experience" value="" name="experience" id="experience">
+                                                placeholder="Experience" value="" name="experience"
+                                                id="experience">
                                         </div>
                                         <span id="experience-error" class="text-danger error-message"></span>
 
                                         <div class="m-div ">
                                             <label class="m-label bg-gradient-gray m-white">Email Address</label>
                                             <input type="email" class="form-control m-field"
-                                                placeholder="Email Address" value="" name="email" id="email">
+                                                placeholder="Email Address" value="" name="email"
+                                                id="email">
                                         </div>
                                         <span id="email-error" class="text-danger error-message"></span>
 
                                         <div class="m-div ">
                                             <label class="m-label bg-gradient-blue m-white">Date of Birth</label>
-                                            <input class="form-control m-field" type="date" name="dob" id="dob"
-                                                value="">
+                                            <input class="form-control m-field" type="date" name="dob"
+                                                id="dob" value="">
                                         </div>
                                         <span id="dob-error" class="text-danger error-message"></span>
 
@@ -207,7 +216,8 @@
                                         <div class="m-div ">
                                             <label class="m-label bg-gradient-gray m-white">Home Address</label>
                                             <input type="text" placeholder="Home Address"
-                                                class="form-control m-field" value="" name="home_address" id="home_address">
+                                                class="form-control m-field" value="" name="home_address"
+                                                id="home_address">
                                         </div>
                                         <span id="home_address-error" class="text-danger error-message"></span>
 
@@ -228,6 +238,65 @@
 
                     <button type="submit" class="btn btn-warning"
                         style="width:100px;padding:10px;border-radius:20px" id="updateBtn">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="resetModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="addForm" class="resetForm">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Reset Password</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="page-wrapper">
+
+                            {{-- <div class="m-div">
+                                <label class="m-label bg-gradient-blue m-white">Monthly Salary*</label>
+                                <input type="password" class="form-control m-field"
+                                    placeholder="Monthly Salary" name="monthly_salary" id="monthly_salary">
+                            </div>
+                            <span id="monthly_salary-error" class="text-danger error-message"></span> --}}
+
+                            <input type="hidden" name="reset_id" id="reset_id">
+
+                            <div class="m-div mb-4 mt-4" style="border-top:none;border-right:none;margin-top:0px;">
+                                <label class="m-label bg-gradient-blue m-white"
+                                    style="padding-left:3px;padding-right:3px;"><i class="fas fa-lock"></i></label>
+                                <span class="toggle-password m-label" id="toggle-p140518"
+                                    style="margin-left:350px;border:none;font-size:14px;font-weight:900;color:#000;margin-top:-16px;cursor:pointer;">
+                                    <i class="fa-sharp-duotone fa-solid fa-eye"></i>
+                                </span>
+                                <input type="password" id="new_password" placeholder="Password" name="new_password"
+                                    class="m-field form-control">
+                                </div>
+                                <span id="new_password-error" class="text-danger error-message"></span>
+
+                            <div class="m-div mt-4 mb-4" style="border-top:none;border-right:none;margin-top:0px;">
+                                <label class="m-label bg-gradient-blue m-white"
+                                    style="padding-left:3px;padding-right:3px;"><i class="fas fa-lock"></i></label>
+                                <span class="toggle-password m-label" id="toggle-p140518"
+                                    style="margin-left:350px;border:none;font-size:14px;font-weight:900;color:#000;margin-top:-16px;cursor:pointer;">
+                                    <i class="fa-sharp-duotone fa-solid fa-eye"></i>
+                                </span>
+                                <input type="password" id="confirm_password"  placeholder="Confirm Password"  name="confirm_password"
+                                    class="m-field form-control">
+                            </div>
+                            <span id="confirm_password-error" class="text-danger error-message "></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        style="width:100px;padding:10px;border-radius:20px" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger"
+                        style="width:160px;padding:10px;border-radius:20px" id="resetBtn">Reset Password</button>
                 </div>
             </form>
         </div>

@@ -242,19 +242,13 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" " id="allemployees">
-                        <a href="allemployees.php">
+                        <a href="{{ route('employee.index') }}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">All Employees</span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert"> Employees</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
-                    <li class=" " id="addnewteacher">
-                        <a href="addnewteacher.php">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Add New</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
+
                     <li class=" " id="eidcard">
                         <a href="#" data-toggle="tooltip"
                             title="This option is available in Desktop Version only.">
@@ -268,13 +262,6 @@
                         <a href="empregal.php">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Job Letter</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                    <li class=" " id="elogin">
-                        <a href="staffLogin.php">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Manage Login</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>

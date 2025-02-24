@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ResetPasswordRequest;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -31,7 +32,12 @@ class EmployeeController extends Controller
                 })
                 ->addColumn('action', function ($action) {
                     $route = route('employee.show', $action->id);
-                    return view('admin.button.button', compact('action', 'route'));
+                    $isedit = "Y";
+                    $isView = "Y";
+                    $isDelete = "Y";
+                    $isreset = "Y";
+
+                    return view('admin.button.button', compact('action', 'route','isView', 'isedit', 'isDelete', 'isreset'));
                 })
                 ->addColumn('role', function ($role) {
                     return $role->role->title;
@@ -112,8 +118,8 @@ class EmployeeController extends Controller
 
         $employee = User::with('role', 'blood_group', 'religion')->find($id);
         // dd($employee);
-        $title="Detail -" . $employee->name;
-        return view('admin.employee.employeeDetail', compact('employee','title'));
+        $title = "Detail -" . $employee->name;
+        return view('admin.employee.employeeDetail', compact('employee', 'title'));
     }
 
     /**
@@ -158,15 +164,27 @@ class EmployeeController extends Controller
      */
     public function destroy(string $id)
     {
-        try{
-            $user=User::find($id);
-            if(!empty($user->image)){
+        try {
+            $user = User::find($id);
+            if (!empty($user->image)) {
                 Storage::disk('public')->delete($user->image);
             }
             $user->delete();
-            return response()->json(['status'=>true,'message'=>'User Deleted Successfully!']);
+            return response()->json(['status' => true, 'message' => 'User Deleted Successfully!']);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+    public function resetPassword(ResetPasswordRequest $request,$id){
+        try{
+            $user=User::find($id);
+            $user->update([
+                'password'=>$request->confirm_password
+            ]);
+            return response()->json(['status' => true, 'message' => 'Password Updated Successfully!']);
         }catch(\Exception $e){
-            return response()->json(['status'=>false,'message'=>$e->getMessage()]);
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
         }
     }
 }
