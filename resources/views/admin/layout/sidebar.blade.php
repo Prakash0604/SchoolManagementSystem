@@ -374,9 +374,9 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" " id="submitsalary">
-                        <a href="submitsalary.php">
+                        <a href="{{ route('salary.index') }}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Pay Salary</span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Salary</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>

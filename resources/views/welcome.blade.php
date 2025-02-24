@@ -31,175 +31,44 @@
 
           <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
-      <!-- Required Fremwork -->
-      <link rel="stylesheet" type="text/css" href="assets/css/bootstrap/css/bootstrap.min.css">
-      <!-- themify-icons line icon -->
-      <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css">
-	  <link rel="stylesheet" type="text/css" href="assets/icon/font-awesome/css/font-awesome.min.css">
-      <!-- ico font -->
-      <link rel="stylesheet" type="text/css" href="assets/icon/icofont/css/icofont.css">
-      <!-- Style.css -->
-      <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-      <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
-	  <link rel="stylesheet" type="text/css" href="assets/calendar/javascript-calendar.css">
-	  <style>
-	      .hide_field{
-	          display:none;
-	      }
-	      .gradient-blue{
-
-              -webkit-background-clip: text;
-              -webkit-text-fill-color: transparent;
-              background-image: -webkit-gradient(linear, left top, right top, from(#501e9c), color-stop(30%, #8169f1), color-stop(30%, #8169f1), color-stop(73%, #a44cee), to(#ff847f));
-              background-image: -o-linear-gradient(left, #501e9c 0%, #8169f1 30%, #8169f1 30%, #a44cee 73%, #ff847f 100%);
-              background-image: linear-gradient(to right, #501e9c 0%, #8169f1 30%, #8169f1 30%, #a44cee 73%, #ff847f 100%);
-	      }
-	      .text-blue{
-	          color:#3144de;
-	      }
-	      .hidepi{
-    		display:none;
-    	}
-        .titlecell{
-            color:#999;
-            font-size:12px;
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap/css/bootstrap.min.css">
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="assets/icon/font-awesome/css/font-awesome.min.css">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="assets/icon/icofont/css/icofont.css">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
+    <style>
+        .m-div{
+            padding:5px;
+            border-radius:25px !important;
+            margin-top:20px;
         }
-        .datacell{
-            font-weight:bold;
-            padding-left:20px;
-            font-size:13px;
-            color:#777;
+        .m-field{
+            border-radius:25px !important;
         }
-        #pi{
-            display:none;
+        .m-label{
+            margin-top:-14px;
+            border:1px solid #999;
+            border-radius:12px;
+            font-size:10px;
+            padding-left:10px;
+            padding-right:10px;
+            margin-left:10px;
         }
-        canvas {
-        width: 100% !important;
-        height: auto !important;
-
-        text-align:center !important;
+        .text-blue{
+            color:#3144de;
+    		text-align:left;
+    		margin:0px;
+    		border:none;
+    		box-shadow:none;
+    		padding:0px;
+    		background:none;
         }
-
-        .block1 , .block2 {
-        	position: relative;
-        	display: flex;
-        	align-items: center;
-        	justify-content: center;
-        	width: 110px;
-        	height: 110px;
-        	border-radius: 50%;
-        	padding:0px;
-        	margin:0px;
-        }
-
-        .box1 , .box2 {
-        	position: relative;
-        	display: flex;
-        	align-items: center;
-        	justify-content: center;
-        	flex-direction: column;
-        	width: calc(100% - 50px);
-        	height: calc(100% - 50px);
-        	border-radius: 50%;
-        	/*background-color: #292929;*/
-        	box-shadow: 0 0 2px 2px #9698d6;
-
-        }
-
-        .box1::before , .box2::before {
-        	position: absolute;
-        	content: '';
-        	width: calc(100% + 18px);
-        	height: calc(100% + 18px);
-        	border-radius: 50%;
-        	border: 1px solid silver;
-        }
-
-        .box1 .number1 span , .box2 .number2 span {
-        	color: #e9e9e9;
-        	line-height:12px;
-        }
-
-        .box1 .number1 .num1 , .box2 .number2 .num2 {
-        	font-size: 20px;
-        	font-weight: bold;
-        	line-height:12px;
-        }
-
-        .box1 .number1 .sub1 , .box2 .number2 .sub2 {
-        	font-size: 14px;
-        	line-height:12px;
-        }
-
-        .box1 .title1 , .box2 .title2{
-        	font-size: 10px;
-        	color: #fff;
-        	line-height:12px;
-        }
-
-        .dots1 , .dots2 {
-        	display: block;
-        	position: absolute;
-        	z-index: 2;
-        	width: 100%;
-        	height: 100%;
-        	border-radius: 50%;
-        	transition: 2s transform, 2s opacity ease;
-        }
-
-        .dots1::after {
-        	position: absolute;
-        	content: '';
-        	width: 10px;
-        	height: 10px;
-        	top: 11px;
-        	left: 50%;
-        	border-radius: 50%;
-        	background-color: #ff808b;
-        	box-shadow: 0 0 3px 2px #9698d6;
-        	transform: translateX(-50%);
-        }
-        .dots2::after {
-        	position: absolute;
-        	content: '';
-        	width: 10px;
-        	height: 10px;
-        	top: 11px;
-        	left: 50%;
-        	border-radius: 50%;
-        	background-color: #ff808b;
-        	box-shadow: 0 0 3px 2px #9698d6;
-        	transform: translateX(-50%);
-        }
-        .svg1 , .svg2 {
-        	position: absolute;
-        	width: 100%;
-        	height: 100%;
-        	fill: none;
-        	transform: rotate(-90deg);
-        }
-
-        .circle1 {
-        	stroke: url(#gradientStyle);
-        	stroke-width: 5px;
-        	stroke-dasharray: 245;
-        	stroke-dashoffset: 245;
-        	animation-duration: 2s;
-        	animation-timing-function: linear;
-        	animation-fill-mode: forwards;
-        	transition: 2s stroke-dashoffset;
-        }
-        .circle2 {
-        	stroke: url(#gradientStyle2);
-        	stroke-width: 5px;
-        	stroke-dasharray: 245;
-        	stroke-dashoffset: 245;
-        	animation-duration: 2s;
-        	animation-timing-function: linear;
-        	animation-fill-mode: forwards;
-        	transition: 2s stroke-dashoffset;
-        }
-	  </style>
+    </style>
 </head>
 
 <body>
@@ -1280,281 +1149,89 @@
 
                                     <!-- Page-body start -->
                                     <div class="page-body">
-                                        <div class="row">
-                                            <div class="col-12 p-10 f-14" style="border-radius:10px;background:#fff;"><strong style="border-right:1px solid #777;padding-right:10px;margin-right:10px;">Employees</strong>
-										    <i class="ti-home"></i> - Employee Report
-										    										    <button class="btn btn-sm f-right p-t-5 p-b-5 bg-gradient-blue m-white" style="border-radius:15px;" data-toggle="tooltip" title="This option is available in the Desktop version only." disabled><i class="ti-file"></i> Get PDF</button>
-										    										    </div>
-                                        </div>
                                         <!-- Row start -->
-                                        <div class="canvas_div_pdf">
-										<div class="row m-round m-t-20" style="" >
-										        											   <div class="col-lg-3 col-md-12 text-center m-round m-b-20" style="background:#fff;">
-												 <div style="padding-top:25px;">
-												 <img src="uploads/employees/no-image.png" class="img-circle" style="width:140px; height:140px;border:6px solid #f6f7fb;box-shadow:0px 0px 3px 8px #f6f7fb;padding:1px;">
-												 </div>
-												 <div style="padding-top:15px;">
-												 <h4 style="margin:0px;line-height:25px;" class="gradient-blue f-24">Ramita kc</h4>
-
-												 </div>
-												 <div style="padding:15px;background:#f6f7fb;" class="m-round text-left m-t-10">
-												     <div style="position:relative;line-height:15px;min-height:30px;">
-												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
-												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Registration No</span><br>
-												     <strong class="f-12 m-l-20 text-blue">140518</strong>
-												     </div>
-												     <div style="position:relative;line-height:15px;min-height:30px;">
-												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
-												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Employee Role</span><br>
-												     <strong class="f-12 m-l-20 text-blue">Teacher</strong>
-												     </div>
-												     <div style="position:relative;line-height:15px;min-height:30px;">
-												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
-												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Monthly Salary</span><br>
-												     <strong class="f-12 m-l-20 text-blue"><span class="m-gray" id="symbol">$</span> 2,000</strong>
-												     </div>
-												     <div style="position:relative;line-height:15px;min-height:30px;">
-												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
-												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Username</span><br>
-												     <strong class="f-12 m-l-20 text-blue">102125iSDiE1</strong>
-												     </div>
-												     <div style="position:relative;line-height:15px;min-height:30px;">
-												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
-												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Password</span><br>
-												     <strong class="f-12 m-l-20 text-blue">102125iSDiE1</strong>
-												     </div>
-												 </div>
-												 <div style="padding:10px;" class="text-left m-gray">
-												     <div style="position:relative;line-height:15px;min-height:30px;" class="">
-												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
-												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Father / Husband Name</span><br>
-												     <strong class="f-12 m-l-20 text-blue"></strong>
-												     </div>
-												     <div style="position:relative;line-height:15px;min-height:30px;">
-												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
-												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Mobile No</span><br>
-												     <strong class="f-12 m-l-20 text-blue">9800000000</strong>
-												     </div>
-												     <div style="position:relative;line-height:15px;min-height:30px;" class="">
-												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
-												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Email Address</span><br>
-												     <strong class="f-12 m-l-20 text-blue"></strong>
-												     </div>
-												     <div style="position:relative;line-height:15px;min-height:30px;" class="">
-												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
-												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Home Address</span><br>
-												     <strong class="f-12 m-l-20 text-blue"></strong>
-												     </div>
-
-												 </div>
-												 <div style="padding:15px;background:#f6f7fb;" class="m-round text-left">
-												     <div style="position:relative;line-height:15px;min-height:30px;" class="">
-												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
-												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">National ID</span><br>
-												     <strong class="f-12 m-l-20 text-blue"></strong>
-												     </div>
-												     <div style="position:relative;line-height:15px;min-height:30px;" class="">
-												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
-												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Education</span><br>
-												     <strong class="f-12 m-l-20 text-blue"></strong>
-												     </div>
-												 </div>
-												 <div style="padding:10px;" class="text-left m-gray">
-												     <div style="position:relative;line-height:15px;min-height:30px;" class="">
-												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
-												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Gender</span><br>
-												     <strong class="f-12 m-l-20 text-blue"></strong>
-												     </div>
-												     <div style="position:relative;line-height:15px;min-height:30px;" class="">
-												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
-												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Religion</span><br>
-												     <strong class="f-12 m-l-20 text-blue"></strong>
-												     </div>
-												     <div style="position:relative;line-height:15px;min-height:30px;" class="">
-												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
-												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Blood Group</span><br>
-												     <strong class="f-12 m-l-20 text-blue"></strong>
-												     </div>
-												     <div style="position:relative;line-height:15px;min-height:30px;" class="">
-												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
-												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Date of Birth</span><br>
-												     <strong class="f-12 m-l-20 text-blue"></strong>
-												     </div>
-												     <div style="position:relative;line-height:15px;min-height:30px;">
-												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
-												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Date of Joining</span><br>
-												     <strong class="f-12 m-l-20 text-blue">07 January, 2025</strong>
-												     </div>
-												     <div style="position:relative;line-height:15px;min-height:30px;" class="">
-												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
-												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Experience</span><br>
-												     <strong class="f-12 m-l-20 text-blue"></strong>
-												     </div>
-
-												 </div>
-											   </div>
-											   <div class="col-lg-9">
-											       <div class="row p-10 p-t-0">
-											           <div class="col-lg-12">
-											               <h6 class="w-100"><div class="bg-gradient-blue m-white" style="width:20px;height:20px;border-radius:10px;display:inline-block;padding-top:3px;padding-left:7px;">1</div> <strong class="gradient-blue f-16">Attendance Report </strong><span style="font-size:12px;" class="f-right"></span></h6>
-											               <div class="row p-b-20 p-t-20" style="border-radius:5px;padding-bottom:20px;padding-left:4px;padding-right:0px;background:#FFF;border:1px solid white;border-top-left-radius: 15px;border-bottom-right-radius:25px;">
-
-                										    <div class="col-5 p-0 text-center" style="padding:0px !important;color:#fff;"><canvas id="pieChart" width="100%" height="100%" style="max-height:170px;max-width:170px;"></canvas></div>
-                										    <div class="col-3 p-0 text-center">
-                										        <div class="block1">
-                                                        		<div class="box1" style="background:#ff808b;">
-                                                        			<p class="number1 p-0 m-0">
-                                                        				<span class="num1">0</span>
-                                                        				<span class="sub1">%</span>
-                                                        			</p>
-                                                        			<p class="title1 p-0 m-0">Overall</p>
-                                                        		</div>
-                                                        		<span class="dots1"></span>
-                                                        		<svg class="svg1">
-                                                        			<defs>
-                                                        				<linearGradient id="gradientStyle">
-                                                        					<stop offset="0%" stop-color="#ff808b" />
-                                                        					<stop offset="100%" stop-color="#9698d6" />
-                                                        				</linearGradient>
-                                                        			</defs>
-                                                        			<circle class="circle1" cx="55" cy="55" r="39" />
-                                                        		</svg>
-                                                        	    </div>
-                                                        	                        											  <button class="btn btn-sm" style="border:1px solid #999;border-radius:15px;width:100%;text-align:center;padding:3px;font-size:10px;position:relative;padding-top:5px;background:#FFFFF7;">
-                    											  <font style="font-size:10px;font-weight:bold;" class="m-gray">NOT MARKED</font>
-                    											  <span class="m-gray" style="position:absolute;top:-7px;left:5px;background:#fff;font-size:9px;padding:none;padding-left:4px; padding-right:4px;border-radius:10px;line-height:12px;border:1px solid #999;"><span class="bg-m-gray badge" style="padding:3px;"></span> Today</span>
-                    											  </button>
-
-                										    </div>
-                										    <div class="col-3 p-0" style="">
-                										        <div class="block2">
-                                                        		<div class="box2" style="background:#ff808b;">
-                                                        			<p class="number2 p-0 m-0">
-                                                        				<span class="num2">0</span>
-                                                        				<span class="sub2">%</span>
-                                                        			</p>
-                                                        			<p class="title2 p-0 m-0">Feb 2025</p>
-                                                        		</div>
-                                                        		<span class="dots2"></span>
-                                                        		<svg class="svg2">
-                                                        			<defs>
-                                                        				<linearGradient id="gradientStyle2">
-                                                        					<stop offset="0%" stop-color="#ff808b" />
-                                                        					<stop offset="100%" stop-color="#9698d6" />
-                                                        				</linearGradient>
-                                                        			</defs>
-                                                        			<circle class="circle2" cx="55" cy="55" r="39" />
-                                                        		</svg>
-                                                        	    </div>
-                                                        	                        											  <button class="btn btn-sm m-l-10" style="border:1px solid #999;border-radius:15px;width:100%;text-align:center;padding:3px;font-size:10px;position:relative;padding-top:5px;background:#FFFFF7;">
-                    											  <font style="font-size:10px;font-weight:bold;" class="m-gray">NOT MARKED</font>
-                    											  <span class="m-gray" style="position:absolute;top:-7px;left:5px;background:#fff;font-size:9px;padding:none;padding-left:4px; padding-right:4px;border-radius:10px;line-height:12px;border:1px solid #999;"><span class="bg-m-gray badge" style="padding:3px;"></span> Yesterday</span>
-                    											  </button>
-                    											                  										    </div>
-                										    <div class="col-12 " style="margin-top:8px;margin-bottom:10px;">
-                										        <div class="row p-l-15 p-r-15">
-                										            <div class="col-4" style="padding:4px;">
-                                                                        <div class="bg-m-blue1" style="border-radius:6px;">
-                                                                            <div class="m-white" style="padding:8px;padding-left:10px;padding-right:10px;">
-                                                                                <h6 class="f-12"style="margin-bottom:0px;">PRESENTS</h6>
-                                                                                <h3 class="f-16 m-t-0 m-b-0" style="line-height:12px;">
-                                                                                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
-                                                                                <lord-icon
-                                                                                    src="https://cdn.lordicon.com/zmkotitn.json"
-                                                                                    trigger="loop"
-                                                                                    delay="2000"
-                                                                                    colors="primary:#ffffff"
-                                                                                    style="width:20px;height:20px;display:inline-block;">
-                                                                                </lord-icon>
-                                                                                <span  style="display:inline-block;float:right;">0</span></h3>
-                                                                                <p class="m-b-0 m-t-0" style="font-size:9px;">This Month<span class="f-right">0</span></p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                        <div class="col-4" style="padding:4px;">
-                                                                        <div class="bg-m-gray" style="border-radius:6px;">
-                                                                            <div class="m-white" style="padding:8px;padding-left:10px;padding-right:10px;">
-                                                                                <h6 class="f-12"style="margin-bottom:0px;">LEAVES</h6>
-                                                                                <h3 class="f-16 m-t-0 m-b-0" style="line-height:12px;">
-                                                                                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
-                                                                                <lord-icon
-                                                                                    src="https://cdn.lordicon.com/zmkotitn.json"
-                                                                                    trigger="loop"
-                                                                                    delay="2100"
-                                                                                    colors="primary:#ffffff"
-                                                                                    style="width:20px;height:20px;display:inline-block;">
-                                                                                </lord-icon>
-                                                                                <span  style="display:inline-block;float:right;">0</span></h3>
-                                                                                <p class="m-b-0 m-t-0" style="font-size:9px;">This Month<span class="f-right">0</span></p>
-                                                                            </div>
-                                                                        </div>
-                                                                        </div>
-                                                                        <div class="col-4" style="padding:4px;">
-                                                                        <div class="bg-m-orange" style="border-radius:6px;">
-                                                                            <div class="m-white" style="padding:8px;padding-left:10px;padding-right:10px;">
-                                                                                <h6 class="f-12"style="margin-bottom:0px;">ABSENTS</h6>
-                                                                                <h3 class="f-16 m-t-0 m-b-0" style="line-height:12px;">
-                                                                                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
-                                                                                <lord-icon
-                                                                                    src="https://cdn.lordicon.com/zmkotitn.json"
-                                                                                    trigger="loop"
-                                                                                    delay="2200"
-                                                                                    colors="primary:#ffffff"
-                                                                                    style="width:20px;height:20px;display:inline-block;">
-                                                                                </lord-icon>
-                                                                                <span  style="display:inline-block;float:right;">0</span></h3>
-                                                                                <p class="m-b-0 m-t-0" style="font-size:9px;">This Month<span class="f-right">0</span></p>
-                                                                            </div>
-                                                                        </div>
-                                                                        </div>
-                                                                    </div>
-                										        </div>
-                										    </div>
-											           </div>
-											           <div class="col-lg-12 m-t-20">
-											               <h6 class="w-100"><div class="bg-gradient-blue m-white" style="width:20px;height:20px;border-radius:10px;display:inline-block;padding-top:3px;padding-left:5px;">2</div> <strong class="gradient-blue f-16">Salary Report </strong> <span style="font-size:12px;" class="f-right"></span></h6>
-											               <div class="row p-20 p-t-20 p-b-20" style="border-radius:5px;padding-bottom:10px;padding-left:4px;padding-right:4px;background:#FFF;border:1px solid white;border-top-left-radius: 15px;border-bottom-right-radius:25px;">
-
-                										                        											 <div class="col-6">
-                												 <button class="btn btn-sm m-l-10 f-right" style="border:1px solid #999;border-radius:15px;width:100%;text-align:center;padding:3px;font-size:10px;position:relative;padding-top:6px;background:#FFFFF7;">
-                    											  <font style="font-size:10px;font-weight:bold;" class="m-blue1"><i class="ti-wallet"></i> <span id="symbol">$</span> 2,000</font>
-                    											  <span class="m-gray" style="position:absolute;top:-7px;left:5px;background:#fff;font-size:9px;padding:none;padding-left:4px; padding-right:4px;border-radius:10px;line-height:12px;border:1px solid #999;"><span class="bg-m-blue1 badge" style="padding:3px;"></span> Current Salary</span>
-                											     </button>
-                											     </div>
-                												 <div class="col-6">
-                												 <button class="btn btn-sm m-l-10 f-right" style="border:1px solid #999;border-radius:15px;width:100%;text-align:center;padding:3px;font-size:10px;position:relative;padding-top:6px;background:#FFFFF7;">
-                    											  <font style="font-size:10px;font-weight:bold;" class="m-green"><i class="fa fa-check"></i> <span id="symbol">$</span> 2,000 RECIEVED</font>
-                    											  <span class="m-gray" style="position:absolute;top:-7px;left:5px;background:#fff;font-size:9px;padding:none;padding-left:4px; padding-right:4px;border-radius:10px;line-height:12px;border:1px solid #999;"><span class="bg-c-green badge" style="padding:3px;"></span> This Month</span>
-                											     </button>
-                											     </div>
-                												                 											     <div class="col-12">
-                											         <div class="row">
-                											             <div class="col-3 p-0"><hr></div>
-                											             <div class="col-6 text-center" style="padding-top:4px;">
-                											                 <span class="m-gray f-12"><span class="bg-m-gray badge" style="padding:3px;"></span> Latest salary record <span class="bg-m-gray badge" style="padding:3px;"></span></span>
-                											             </div>
-                											             <div class="col-3 p-0"><hr></div>
-                											         </div>
-                											                         											         <div class="row p-10" style="border-bottom:1px solid #999;">
-                											             <div class="col-6">
-                											                 <strong class="m-blue1">February, 2025</strong><br>
-                											                 <span class="f-12 m-gray">12/02/2025</span>
-                											             </div>
-                											             <div class="col-6 text-right" style="line-height:8px;">
-                											                 <strong class="m-blue1 f-12 text-center" style="display:inline;"><i class="ti ti-plus" style="font-size:8px;"></i> <span id="symbol">$</span>0</strong>
-                											                 <strong class="m-orange f-12 text-center m-l-10 m-r-20" style="display:inline;"><i class="ti ti-minus" style="font-size:8px;"></i> <span id="symbol">$</span>0</strong>
-                											                 <button class="btn btn-sm bg-gradient-green m-white" style="padding-top:5px;padding-bottom:5px;margin-top:5px;border-radius:20px;">PAID <strong><span id="symbol">$</span> 2,000</strong> <i class="fa fa-check"></i> </button>
-                											             </div>
-                											         </div>
-                											                         											     </div>
-
-
-                										</div>
-											           </div>
-											       </div>
-											    </div>
-										</div>
+										<div class="row">
+                                            <div class="col-12 p-10 f-14" style="border-radius:10px;background:#fff;box-shadow:0px 0px 1px 0px gray;"><strong style="border-right:1px solid #777;padding-right:10px;margin-right:10px;">Salary</strong>
+										    <i class="ti-home"></i> - Pay Salary
+										    </div>
                                         </div>
+                                        <div class="row m-t-30">
+										<div class="col-md-1 col-xl-2"></div>
+										<div class="col-md-10 col-xl-8" style="border-radius:10px;background:#fff;box-shadow:0px 0px 1px 0px gray;padding:30px;">
+										<h4 class="f-20 text-center text-gray" style="line-height:16px;">Pay Employee Salary<br>
+									    <div class="bg-gradient-blue" style="width:15px;height:6px;border-radius:10px;display:inline-block;"></div> <span class="f-10 m-dblue" style="display:inline-block;font-weight:100;">Required*</span>
+									    <div class="bg-gradient-gray m-l-10" style="width:20px;height:7px;border-radius:10px;display:inline-block;"></div> <span class="f-12 gradient-gray" style="display:inline-block;font-weight:100;">Optional</span>
+									    </h4>
+											<form action="depositsalary.php" method="post" id="myform">
+											    <div class="row text-left p-t-20 ">
+											        <div class="col-lg-2">
+    											        <div style="position:relative;" class="">
+        											    <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:20px;height:16px;">
+        											    <span class="f-12 m-gray" style="border-bottom:1.5px solid #999;">Employee ID</span><br>
+        											    <strong class="f-14 m-l-20"><input type="text" value="140518" name="registration" class="text-blue"></strong>
+        											    </div>
+    											   </div>
+    											   <div class="col-lg-5">
+    											        <div style="position:relative;" class="">
+        											    <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:20px;height:16px;">
+        											    <span class="f-12 m-gray" style="border-bottom:1.5px solid #999;">Employee Role</span><br>
+        											    <strong class="f-14 m-l-20"><input type="text" value="Teacher" name="class" class="text-blue" ></strong>
+        											    </div>
+    											   </div>
+    											   <div class="col-lg-5">
+    											        <div style="position:relative;" class="">
+        											    <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:20px;height:16px;">
+        											    <span class="f-12 m-gray" style="border-bottom:1.5px solid #999;">Employee Name</span><br>
+        											    <strong class="f-14 m-l-20"><input type="text" value="Ramita kc" name="sname" class="text-blue"></strong>
+        											    </div>
+        											    <input type="hidden" value="" name="fname">
+    											   </div>
+											    </div>
+											   <div class="row text-left m-t-10">
+    											   <div class="col-lg-6">
+    											       <div class="m-div">
+    											           <label class="m-label bg-gradient-blue m-white">Salary Month*</label>
+    											           <input type="month" class="form-control m-field" name="month" onchange="changeMonth()" id="month" required>
+    											       </div>
+    											   </div>
+
+    											   <div class="col-lg-6">
+    											       <div class="m-div">
+    											           <label class="m-label bg-gradient-blue m-white">Date*</label>
+    											           <input type="date" class="form-control m-field" value="2025-02-24" name="feedate" required>
+    											       </div>
+    											   </div>
+											   </div>
+                                               <div class="row text-left m-t-10">
+                                                   <div class="col-lg-4">
+    											       <div class="m-div">
+    											           <label class="m-label bg-gradient-blue m-white">Fixed Salary*</label>
+    											           <input type="number" class="form-control m-field" value="2000" name="fees" id="netsalary" required>
+    											       </div>
+    											   </div>
+    											   <div class="col-lg-4">
+    											       <div class="m-div">
+    											           <label class="m-label bg-gradient-gray m-white">Any Bouns</label>
+    											           <input type="number" class="form-control m-field" placeholder="Bouns amount" name="bouns" >
+    											       </div>
+    											   </div>
+    											   <div class="col-lg-4">
+    											       <div class="m-div">
+    											           <label class="m-label bg-gradient-gray m-white">Any Deduction</label>
+    											           <input type="number" class="form-control m-field" placeholder="Deduction amount" name="fine" >
+    											       </div>
+    											   </div>
+                                                </div>
+											   <p class="text-center m-t-40">
+        										<button type="submit" id="submitBtn" class="btn bg-c-yellow" style="border-radius:25px;"><i class="fa-solid fa-check"></i> Submit Salary</button>
+        										</p>
+                                               </form>
+                                               </div>
+                                               <div class="col-md-1 col-xl-2"></div>
+                                               </div>
+
+
+										</div>
 										<!-- Row end -->
 										<!-- Row start -->
 
@@ -1583,31 +1260,22 @@
 <script type="text/javascript" src="assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 <!-- modernizr js -->
 <script type="text/javascript" src="assets/js/modernizr/modernizr.js"></script>
-<!-- am chart -->
-<script src="assets/pages/widget/amchart/amcharts.min.js"></script>
-<script src="assets/pages/widget/amchart/serial.min.js"></script>
-<!-- Chart js -->
-<script type="text/javascript" src="assets/js/chart.js/Chart.js"></script>
-<script type="text/javascript" src="assets/js/mdb.js"></script>
-<!-- Todo js -->
-<script type="text/javascript " src="assets/pages/todo/todo.js "></script>
+<script type="text/javascript" src="assets/js/modernizr/css-scrollbars.js"></script>
+
+<!-- Accordion js -->
+<script type="text/javascript" src="assets/pages/accordion/accordion.js"></script>
 <!-- Custom js -->
-<script type="text/javascript" src="assets/pages/dashboard/custom-dashboard.min.js"></script>
 <script type="text/javascript" src="assets/js/script.js"></script>
-<script type="text/javascript " src="assets/js/SmoothScroll.js"></script>
 <script src="assets/js/pcoded.min.js"></script>
 <script src="assets/js/vartical-demo.js"></script>
 <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="assets/calendar/javascript-calendar.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <script>
 
 // navigator activator
 document.getElementById("dashboard").classList.remove('active');
-document.getElementById("allemployees").classList.add('active');
-document.getElementById("employees").classList.add('active');
-document.getElementById("employees").classList.add('pcoded-trigger');
+document.getElementById("submitsalary").classList.add('active');
+document.getElementById("salary").classList.add('active');
+document.getElementById("salary").classList.add('pcoded-trigger');
 //----------end-----------------
 
 // search students api
@@ -1622,146 +1290,28 @@ $( "#tags" ).autocomplete({
 });
 
 //---------end------------------
-$(document).ready(function(){
-$('#showpi').click(function(){
-	$("#showpi").toggle();
-	$(".hidepi").toggle();
-	$("#pi").toggle();
-});
-$('.hidepi').click(function(){
-	$(".hidepi").toggle();
-	$("#showpi").toggle();
-	$("#pi").toggle();
-});
-});
-//---------end------------------
-//pie
-var ctxP = document.getElementById("pieChart").getContext('2d');
-var p=0;
-var l=0;
-var a=0;
-var myPieChart = new Chart(ctxP, {
-    type: 'pie',
-    data: {
-        labels: ["P", "L", "A"],
-        datasets: [
-            {
-                borderWidth: 2,
-                data: [p, l, a],
-                backgroundColor: ["#5e81f4", "#9698d6", "#ff808b"],
-                hoverBackgroundColor: ["#5e81f4", "#9698d6","#ff808b"]
+function changeMonth(){
+	var ereg=$('[name="registration"]').val();
+	var emon=$("#month").val();
+	$.ajax({
+    type:'post',
+        url:'checkfees.php',// put your real file name
+        data:{ereg: ereg, emonth:emon},
+        success:function(msg){
+            if(msg=="YES"){
+				alert("Salary Of This Employee is Already Added for This Month!");
+				$("#netsalary").val(0);
             }
-        ]
-    },
-    options: {
-        responsive: true,
-        legend: {
-            labels: {
-              usePointStyle: true,
-              boxWidth: 6,
-              fontSize: 10
-            },
-            border: 0
-          }
-    }
-});
-//number animate
-$('.count').each(function () {
-    $(this).prop('Counter',0).animate({
-        Counter: $(this).text()
-    }, {
-        duration: 2000,
-        easing: 'swing',
-        step: function (now) {
-            $(this).text(Math.ceil(now));
         }
+	});
+}
+$(document).ready(function () {
+    $("#myform").submit(function () {
+        $("#submitBtn").html("<i class='fa fa-circle-o-notch fa-spin'></i> Please Wait");
+        return true;
+        $("#submitBtn").attr("disabled", true);
     });
 });
-const block = document.querySelectorAll('.block1');
-window.addEventListener('load', function(){
-  block.forEach(item => {
-    let numElement = item.querySelector('.num1');
-    let num = parseInt(numElement.innerText);
-    let count = 0;
-    let time = 2000 / num;
-    let circle = item.querySelector('.circle1');
-    setInterval(() => {
-      if(count == num){
-        clearInterval();
-      } else {
-        count += 1;
-        numElement.innerText = count;
-      }
-    }, time)
-    circle.style.strokeDashoffset
-      = 245 - ( 245 * ( num / 100 ));
-    let dots = item.querySelector('.dots1');
-    dots.style.transform =
-      `rotate(${360 * (num / 100)}deg)`;
-    if(num == 100){
-      dots.style.opacity = 0;
-    }
-  })
-});
-const block2 = document.querySelectorAll('.block2');
-window.addEventListener('load', function(){
-  block2.forEach(item => {
-    let numElement = item.querySelector('.num2');
-    let num2 = parseInt(numElement.innerText);
-    let count = 0;
-    let time = 2000 / num2;
-    let circle = item.querySelector('.circle2');
-    setInterval(() => {
-      if(count == num2){
-        clearInterval();
-      } else {
-        count += 1;
-        numElement.innerText = count;
-      }
-    }, time)
-    circle.style.strokeDashoffset
-      = 245 - ( 245 * ( num2 / 100 ));
-    let dots = item.querySelector('.dots2');
-    dots.style.transform =
-      `rotate(${360 * (num2 / 100)}deg)`;
-    if(num2 == 100){
-      dots.style.opacity = 0;
-    }
-  })
-});
-//Create PDf from HTML...
-	function getPDF(){
-
-		var HTML_Width = $(".canvas_div_pdf").width();
-		var HTML_Height = $(".canvas_div_pdf").height();
-		var top_left_margin = 15;
-		var PDF_Width = HTML_Width+(top_left_margin*2);
-		var PDF_Height = (PDF_Width*1.5)+(top_left_margin*2);
-		var canvas_image_width = HTML_Width;
-		var canvas_image_height = HTML_Height;
-
-		var totalPDFPages = Math.ceil(HTML_Height/PDF_Height)-1;
-
-
-		html2canvas($(".canvas_div_pdf")[0],{allowTaint:true}).then(function(canvas) {
-			canvas.getContext('2d');
-
-			console.log(canvas.height+"  "+canvas.width);
-
-
-			var imgData = canvas.toDataURL("image/jpeg", 1.0);
-			var pdf = new jsPDF('p', 'pt',  [PDF_Width, PDF_Height]);
-		    pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin,canvas_image_width,canvas_image_height);
-
-
-			for (var i = 1; i <= totalPDFPages; i++) {
-				pdf.addPage(PDF_Width, PDF_Height);
-				pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
-			}
-
-		    pdf.save("Ramita kc.pdf");
-        });
-	};
 </script>
 </body>
 </html>

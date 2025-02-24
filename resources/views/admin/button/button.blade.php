@@ -12,6 +12,12 @@
             class="fa-duotone fa-solid fa-magnifying-glass"></i></a>
 @endif
 
+@if (isset($isViewModal) && $isViewModal == 'Y')
+    <a class="btn btn-sm m-round bg-m-gray m-white" data-toggle="tooltip" title="View details"
+        style="border:0px;width:30px;height:30px;padding-left:9px;"
+        data-id="{{ $action->id }}" id="viewButton" name="eview" title="view"><i
+            class="fa-duotone fa-solid fa-magnifying-glass"></i></a>
+@endif
 
 
 @if (isset($isedit) && $isedit == 'Y')
