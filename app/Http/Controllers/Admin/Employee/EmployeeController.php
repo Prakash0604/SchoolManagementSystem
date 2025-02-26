@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResetPasswordRequest;
+use App\Models\EmployeeSalary;
+use App\Models\InstituteInfo;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -74,14 +77,18 @@ class EmployeeController extends Controller
     {
         try {
             // $data=$request->validated();
+            $institute=InstituteInfo::first();
+            if(empty($institute)){
+                return response()->json(['status'=>404,'message'=>'Institute has not Created yet please create institute first.']);
+            }
             if ($request->hasFile('image')) {
                 $imagePath = "images/users";
                 $imageName = time() . '.' . $request->image->getClientOriginalName();
                 $store = $request->image->storeAs($imagePath, $imageName, 'public');
                 $data['image'] = $store;
             }
-            $registration_id = Str::upper(Str::random(4) . '' . date('Ymd') . time());
-            $username = Str::upper(Str::random(4) . '' . time() . '' . date('Ymd'));
+            $registration_id =Str::upper(Str::limit($institute->schoolname,2,'')).''. Str::upper(Str::random(2) . '' . date('Ymd')).''.Str::upper(Str::limit($request->name,2,''));
+            $username = Str::upper(Str::limit($institute->schoolname,2,'')).''.Str::upper(Str::random(2) . '' . '' . date('Ymd')).Str::upper(Str::limit($request->name,2,''));
             $password = $username;
             User::create([
                 'name' => $request->name,
@@ -119,7 +126,8 @@ class EmployeeController extends Controller
         $employee = User::with('role', 'blood_group', 'religion')->find($id);
         // dd($employee);
         $title = "Detail -" . $employee->name;
-        return view('admin.employee.employeeDetail', compact('employee', 'title'));
+        $salaries=EmployeeSalary::where('user_id',$id)->orderBy('id','desc')->get();
+        return view('admin.employee.employeeDetail', compact('employee', 'title','salaries'));
     }
 
     /**

@@ -34,6 +34,7 @@
                         <div class="row mt-4 mb-4">
                             <div class="col-md-4"></div>
                             <div class="col-md-4">
+                                <input type="hidden" name="id" id="salary_id">
                                 <h3 class="text-center">Employee</h3>
                                 <select class="form-select " name="user_id" id="user_id">
                                     <option selected value="">-------Select one----------</option>
@@ -112,7 +113,7 @@
                                 <div class="m-div">
                                     <label class="m-label bg-gradient-gray m-white">Any Bouns</label>
                                     <input type="number" class="form-control m-field" placeholder="Bouns amount"
-                                        name="bonus">
+                                        name="bonus" id="bonus">
                                 </div>
                                 <span id="bonus-error" class="text-danger error-message"></span>
                             </div>
@@ -120,7 +121,7 @@
                                 <div class="m-div">
                                     <label class="m-label bg-gradient-gray m-white">Any Deduction</label>
                                     <input type="number" class="form-control m-field" placeholder="Deduction amount"
-                                        name="fine">
+                                        name="fine" id="fine">
                                 </div>
                                 <span id="fine-error" class="text-danger error-message"></span>
                             </div>
@@ -139,6 +140,70 @@
                         </p>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="modalTitleId"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitleId">
+                    Salary Description
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="col-lg-12 col-md-10 text-center m-round p-20"
+                        style="border-radius:10px;background:#fff;box-shadow:0px 0px 1px 0px gray;">
+                        <h5><img src="" width=100px class='img-circle' height=100px id="userImageAppend"></h5>
+                        <h3 style="color:#3144de;" id="view_name"></h3>
+
+                        <table style="margin:0 auto;text-align:left;">
+                            <tr>
+                                <th>Registration/ID : </th>
+                                <td><b id="view_username"> </b></td>
+                            </tr>
+                            <tr>
+                                <th>Type:</th>
+                                <td><b id="view_role_id"> </b></td>
+                            </tr>
+                            <tr>
+                                <th>Salary Month:</th>
+                                <td><b id="view_salary_month"></b></td>
+                            </tr>
+                            <tr>
+                                <th>Salary Date:</th>
+                                <td><b id="view_receiving_date"> </b></td>
+                            </tr>
+                            <tr>
+                                <th>Salary Amount :</th>
+                                <td><b id="view_salary_amount"> </b></td>
+                            </tr>
+                            <tr>
+                                <th>Bouns:</th>
+                                <td><b id="view_bonus"> </b></td>
+                            </tr>
+                            <tr>
+                                <th>Deduction:</th>
+                                <td><b id="view_deduction"></b></td>
+                            </tr>
+                            <tr>
+                                <th>Total Paid:</th>
+                                <td><b id="view_net_amount"></b></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"  style="border-radius:25px;" data-bs-dismiss="modal">
+                    Close
+                </button>
             </div>
         </div>
     </div>

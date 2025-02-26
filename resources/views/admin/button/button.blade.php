@@ -6,14 +6,14 @@
 
 
 @if (isset($isView) && $isView == 'Y')
-    <a class="btn btn-sm m-round bg-m-gray m-white" data-toggle="tooltip" title="View details"
+    <a class="btn btn-sm m-round bg-m-gray m-white viewButton"  data-toggle="tooltip" title="View details"
         style="border:0px;width:30px;height:30px;padding-left:9px;" href="{{ $route }}"
         data-id="{{ $action->id }}" id="viewButton" name="eview" title="view"><i
             class="fa-duotone fa-solid fa-magnifying-glass"></i></a>
 @endif
 
 @if (isset($isViewModal) && $isViewModal == 'Y')
-    <a class="btn btn-sm m-round bg-m-gray m-white" data-toggle="tooltip" title="View details"
+    <a class="btn btn-sm m-round bg-m-gray m-white viewModalBtn" data-toggle="tooltip" title="View details"
         style="border:0px;width:30px;height:30px;padding-left:9px;"
         data-id="{{ $action->id }}" id="viewButton" name="eview" title="view"><i
             class="fa-duotone fa-solid fa-magnifying-glass"></i></a>
@@ -22,7 +22,7 @@
 
 @if (isset($isedit) && $isedit == 'Y')
     <button class="btn btn-sm m-round bg-m-blue1 m-white editButton" data-toggle="tooltip" title="Edit" type="button"
-        style="border:0px;width:30px;height:30px;padding-left:9px;" data-id="{{ $action->id }}" name="eedit"
+        style="border:0px;width:30px;height:30px;padding-left:9px;" data-url="{{ $route }}" data-id="{{ $action->id }}" name="eedit"
         id="editButton" title="edit"><i class="fas fa-user-edit"></i></button>
 @endif
 

@@ -3,10 +3,11 @@
     <div class="container-fluid">
         <div class="page-wrapper">
             <style>
-                .hide_field{
-                    display:none;
+                .hide_field {
+                    display: none;
                 }
-                .gradient-blue{
+
+                .gradient-blue {
 
                     -webkit-background-clip: text;
                     -webkit-text-fill-color: transparent;
@@ -14,151 +15,169 @@
                     background-image: -o-linear-gradient(left, #501e9c 0%, #8169f1 30%, #8169f1 30%, #a44cee 73%, #ff847f 100%);
                     background-image: linear-gradient(to right, #501e9c 0%, #8169f1 30%, #8169f1 30%, #a44cee 73%, #ff847f 100%);
                 }
-                .text-blue{
-                    color:#3144de;
+
+                .text-blue {
+                    color: #3144de;
                 }
-                .hidepi{
-                  display:none;
-              }
-              .titlecell{
-                  color:#999;
-                  font-size:12px;
-              }
-              .datacell{
-                  font-weight:bold;
-                  padding-left:20px;
-                  font-size:13px;
-                  color:#777;
-              }
-              #pi{
-                  display:none;
-              }
-              canvas {
-              width: 100% !important;
-              height: auto !important;
 
-              text-align:center !important;
-              }
+                .hidepi {
+                    display: none;
+                }
 
-              .block1 , .block2 {
-                  position: relative;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  width: 110px;
-                  height: 110px;
-                  border-radius: 50%;
-                  padding:0px;
-                  margin:0px;
-              }
+                .titlecell {
+                    color: #999;
+                    font-size: 12px;
+                }
 
-              .box1 , .box2 {
-                  position: relative;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  flex-direction: column;
-                  width: calc(100% - 50px);
-                  height: calc(100% - 50px);
-                  border-radius: 50%;
-                  /*background-color: #292929;*/
-                  box-shadow: 0 0 2px 2px #9698d6;
+                .datacell {
+                    font-weight: bold;
+                    padding-left: 20px;
+                    font-size: 13px;
+                    color: #777;
+                }
 
-              }
+                #pi {
+                    display: none;
+                }
 
-              .box1::before , .box2::before {
-                  position: absolute;
-                  content: '';
-                  width: calc(100% + 18px);
-                  height: calc(100% + 18px);
-                  border-radius: 50%;
-                  border: 1px solid silver;
-              }
+                canvas {
+                    width: 100% !important;
+                    height: auto !important;
 
-              .box1 .number1 span , .box2 .number2 span {
-                  color: #e9e9e9;
-                  line-height:12px;
-              }
+                    text-align: center !important;
+                }
 
-              .box1 .number1 .num1 , .box2 .number2 .num2 {
-                  font-size: 20px;
-                  font-weight: bold;
-                  line-height:12px;
-              }
+                .block1,
+                .block2 {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 110px;
+                    height: 110px;
+                    border-radius: 50%;
+                    padding: 0px;
+                    margin: 0px;
+                }
 
-              .box1 .number1 .sub1 , .box2 .number2 .sub2 {
-                  font-size: 14px;
-                  line-height:12px;
-              }
+                .box1,
+                .box2 {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    width: calc(100% - 50px);
+                    height: calc(100% - 50px);
+                    border-radius: 50%;
+                    /*background-color: #292929;*/
+                    box-shadow: 0 0 2px 2px #9698d6;
 
-              .box1 .title1 , .box2 .title2{
-                  font-size: 10px;
-                  color: #fff;
-                  line-height:12px;
-              }
+                }
 
-              .dots1 , .dots2 {
-                  display: block;
-                  position: absolute;
-                  z-index: 2;
-                  width: 100%;
-                  height: 100%;
-                  border-radius: 50%;
-                  transition: 2s transform, 2s opacity ease;
-              }
+                .box1::before,
+                .box2::before {
+                    position: absolute;
+                    content: '';
+                    width: calc(100% + 18px);
+                    height: calc(100% + 18px);
+                    border-radius: 50%;
+                    border: 1px solid silver;
+                }
 
-              .dots1::after {
-                  position: absolute;
-                  content: '';
-                  width: 10px;
-                  height: 10px;
-                  top: 11px;
-                  left: 50%;
-                  border-radius: 50%;
-                  background-color: #ff808b;
-                  box-shadow: 0 0 3px 2px #9698d6;
-                  transform: translateX(-50%);
-              }
-              .dots2::after {
-                  position: absolute;
-                  content: '';
-                  width: 10px;
-                  height: 10px;
-                  top: 11px;
-                  left: 50%;
-                  border-radius: 50%;
-                  background-color: #ff808b;
-                  box-shadow: 0 0 3px 2px #9698d6;
-                  transform: translateX(-50%);
-              }
-              .svg1 , .svg2 {
-                  position: absolute;
-                  width: 100%;
-                  height: 100%;
-                  fill: none;
-                  transform: rotate(-90deg);
-              }
+                .box1 .number1 span,
+                .box2 .number2 span {
+                    color: #e9e9e9;
+                    line-height: 12px;
+                }
 
-              .circle1 {
-                  stroke: url(#gradientStyle);
-                  stroke-width: 5px;
-                  stroke-dasharray: 245;
-                  stroke-dashoffset: 245;
-                  animation-duration: 2s;
-                  animation-timing-function: linear;
-                  animation-fill-mode: forwards;
-                  transition: 2s stroke-dashoffset;
-              }
-              .circle2 {
-                  stroke: url(#gradientStyle2);
-                  stroke-width: 5px;
-                  stroke-dasharray: 245;
-                  stroke-dashoffset: 245;
-                  animation-duration: 2s;
-                  animation-timing-function: linear;
-                  animation-fill-mode: forwards;
-                  transition: 2s stroke-dashoffset;
-              }
+                .box1 .number1 .num1,
+                .box2 .number2 .num2 {
+                    font-size: 20px;
+                    font-weight: bold;
+                    line-height: 12px;
+                }
+
+                .box1 .number1 .sub1,
+                .box2 .number2 .sub2 {
+                    font-size: 14px;
+                    line-height: 12px;
+                }
+
+                .box1 .title1,
+                .box2 .title2 {
+                    font-size: 10px;
+                    color: #fff;
+                    line-height: 12px;
+                }
+
+                .dots1,
+                .dots2 {
+                    display: block;
+                    position: absolute;
+                    z-index: 2;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    transition: 2s transform, 2s opacity ease;
+                }
+
+                .dots1::after {
+                    position: absolute;
+                    content: '';
+                    width: 10px;
+                    height: 10px;
+                    top: 11px;
+                    left: 50%;
+                    border-radius: 50%;
+                    background-color: #ff808b;
+                    box-shadow: 0 0 3px 2px #9698d6;
+                    transform: translateX(-50%);
+                }
+
+                .dots2::after {
+                    position: absolute;
+                    content: '';
+                    width: 10px;
+                    height: 10px;
+                    top: 11px;
+                    left: 50%;
+                    border-radius: 50%;
+                    background-color: #ff808b;
+                    box-shadow: 0 0 3px 2px #9698d6;
+                    transform: translateX(-50%);
+                }
+
+                .svg1,
+                .svg2 {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    fill: none;
+                    transform: rotate(-90deg);
+                }
+
+                .circle1 {
+                    stroke: url(#gradientStyle);
+                    stroke-width: 5px;
+                    stroke-dasharray: 245;
+                    stroke-dashoffset: 245;
+                    animation-duration: 2s;
+                    animation-timing-function: linear;
+                    animation-fill-mode: forwards;
+                    transition: 2s stroke-dashoffset;
+                }
+
+                .circle2 {
+                    stroke: url(#gradientStyle2);
+                    stroke-width: 5px;
+                    stroke-dasharray: 245;
+                    stroke-dashoffset: 245;
+                    animation-duration: 2s;
+                    animation-timing-function: linear;
+                    animation-fill-mode: forwards;
+                    transition: 2s stroke-dashoffset;
+                }
             </style>
             <!-- Page-body start -->
             <div class="page-body">
@@ -176,16 +195,17 @@
                     <div class="row m-round m-t-20" style="">
                         <div class="col-lg-3 col-md-12 text-center m-round m-b-20" style="background:#fff;">
                             <div style="padding-top:25px;">
-                                @if ($employee && $employee->image!=null)
-                                <img src="/storage/{{ $employee->image }}" class="img-circle"
-                                style="width:140px; height:140px;border:6px solid #f6f7fb;box-shadow:0px 0px 3px 8px #f6f7fb;padding:1px;">
+                                @if ($employee && $employee->image != null)
+                                    <img src="/storage/{{ $employee->image }}" class="img-circle"
+                                        style="width:140px; height:140px;border:6px solid #f6f7fb;box-shadow:0px 0px 3px 8px #f6f7fb;padding:1px;">
                                 @else
-                                <img src="{{ asset('default/avatar-5.webp') }}" class="img-circle"
-                                style="width:140px; height:140px;border:6px solid #f6f7fb;box-shadow:0px 0px 3px 8px #f6f7fb;padding:1px;">
+                                    <img src="{{ asset('default/avatar-5.webp') }}" class="img-circle"
+                                        style="width:140px; height:140px;border:6px solid #f6f7fb;box-shadow:0px 0px 3px 8px #f6f7fb;padding:1px;">
                                 @endif
                             </div>
                             <div style="padding-top:15px;">
-                                <h4 style="margin:0px;line-height:25px;" class="gradient-blue f-24">{{ $employee->name }}</h4>
+                                <h4 style="margin:0px;line-height:25px;" class="gradient-blue f-24">{{ $employee->name }}
+                                </h4>
 
                             </div>
                             <div style="padding:15px;background:#f6f7fb;" class="m-round text-left m-t-10">
@@ -201,7 +221,7 @@
                                         style="position:absolute;left:0px;top:15px;height:14px;">
                                     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Employee
                                         Role</span><br>
-                                    <strong class="f-12 m-l-20 text-blue">{{$employee->role->title}}</strong>
+                                    <strong class="f-12 m-l-20 text-blue">{{ $employee->role->title }}</strong>
                                 </div>
                                 <div style="position:relative;line-height:15px;min-height:30px;">
                                     <img src="{{ asset('assets/arrow-down.png') }}"
@@ -297,7 +317,7 @@
                                     <strong class="f-12 m-l-20 text-blue">{{ $employee->dob }}</strong>
                                 </div>
                                 <div style="position:relative;line-height:15px;min-height:30px;">
-                                    <img src="{{  asset('assets/arrow-down.png') }}"
+                                    <img src="{{ asset('assets/arrow-down.png') }}"
                                         style="position:absolute;left:0px;top:15px;height:14px;">
                                     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Date of
                                         Joining</span><br>
@@ -462,7 +482,8 @@
                                             <button class="btn btn-sm m-l-10 f-right"
                                                 style="border:1px solid #999;border-radius:15px;width:100%;text-align:center;padding:3px;font-size:10px;position:relative;padding-top:6px;background:#FFFFF7;">
                                                 <font style="font-size:10px;font-weight:bold;" class="m-blue1"><i
-                                                        class="ti-wallet"></i> <span id="symbol">Rs</span> {{$employee->monthly_salary ?? ""}} </font>
+                                                        class="ti-wallet"></i> <span id="symbol">Rs</span>
+                                                    {{ $employee->monthly_salary ?? '' }} </font>
                                                 <span class="m-gray"
                                                     style="position:absolute;top:-7px;left:5px;background:#fff;font-size:9px;padding:none;padding-left:4px; padding-right:4px;border-radius:10px;line-height:12px;border:1px solid #999;"><span
                                                         class="bg-m-blue1 badge" style="padding:3px;"></span> Current
@@ -473,7 +494,7 @@
                                             <button class="btn btn-sm m-l-10 f-right"
                                                 style="border:1px solid #999;border-radius:15px;width:100%;text-align:center;padding:3px;font-size:10px;position:relative;padding-top:6px;background:#FFFFF7;">
                                                 <font style="font-size:10px;font-weight:bold;" class="m-green"><i
-                                                        class="fa fa-check"></i> <span id="symbol">$</span> 2,000
+                                                        class="fa fa-check"></i> <span id="symbol">$</span>
                                                     RECIEVED</font>
                                                 <span class="m-gray"
                                                     style="position:absolute;top:-7px;left:5px;background:#fff;font-size:9px;padding:none;padding-left:4px; padding-right:4px;border-radius:10px;line-height:12px;border:1px solid #999;"><span
@@ -495,25 +516,30 @@
                                                     <hr>
                                                 </div>
                                             </div>
-                                            <div class="row p-10" style="border-bottom:1px solid #999;">
-                                                <div class="col-6">
-                                                    <strong class="m-blue1">February, 2025</strong><br>
-                                                    <span class="f-12 m-gray">12/02/2025</span>
+                                            @foreach ($salaries as $salary)
+                                                <div class="row p-10" style="border-bottom:1px solid #999;">
+                                                    <div class="col-6">
+                                                        <strong
+                                                            class="m-blue1">{{ optional(\Carbon\Carbon::createFromFormat('Y-m', $salary->month))->format('F Y') ?? '-' }}
+                                                        </strong><br>
+                                                        <span class="f-12 m-gray"> {{ $salary->salary_date }}</span>
+                                                    </div>
+                                                    <div class="col-6 text-right" style="line-height:8px;">
+                                                        <strong class="m-blue1 f-12 text-center"
+                                                            style="display:inline;"><i class="fas fa-plus"
+                                                                style="font-size:8px;"></i> <span
+                                                                id="symbol">Rs</span> {{ $salary->bonus ?? '0' }}</strong>
+                                                        <strong class="m-orange f-12 text-center m-l-10 m-r-20"
+                                                            style="display:inline;"><i class="fas fa-minus"
+                                                                style="font-size:8px;"></i> <span
+                                                                id="symbol">Rs</span> {{ $salary->fine ?? '0' }}</strong>
+                                                        <button class="btn btn-sm bg-gradient-green m-white"
+                                                            style="padding-top:5px;padding-bottom:5px;margin-top:5px;border-radius:20px;">PAID
+                                                            <strong><span id="symbol">Rs</span> {{ $salary->total_salary }}</strong> <i
+                                                                class="fa fa-check"></i> </button>
+                                                    </div>
                                                 </div>
-                                                <div class="col-6 text-right" style="line-height:8px;">
-                                                    <strong class="m-blue1 f-12 text-center" style="display:inline;"><i
-                                                            class="ti ti-plus" style="font-size:8px;"></i> <span
-                                                            id="symbol">$</span>0</strong>
-                                                    <strong class="m-orange f-12 text-center m-l-10 m-r-20"
-                                                        style="display:inline;"><i class="ti ti-minus"
-                                                            style="font-size:8px;"></i> <span
-                                                            id="symbol">$</span>0</strong>
-                                                    <button class="btn btn-sm bg-gradient-green m-white"
-                                                        style="padding-top:5px;padding-bottom:5px;margin-top:5px;border-radius:20px;">PAID
-                                                        <strong><span id="symbol">$</span> 2,000</strong> <i
-                                                            class="fa fa-check"></i> </button>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
 
 

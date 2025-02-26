@@ -99,11 +99,42 @@ $(document)
                     $("#get-employee-data").DataTable().destroy().clear();
                     getData();
                 } else {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Warning!",
-                        text: "Something went wrong!",
-                    });
+                    $("#formModal").modal("hide");
+
+                    if (response.status == 404) {
+                        Swal.fire({
+                            title: "Are you sure?",
+                            text: "You will be redirected!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#3085d6",
+                            cancelButtonColor: "#d33",
+                            confirmButtonText: "Create Institute",
+                            cancelButtonText: "Cancel",
+                            timer: 3000,
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "/admin/institute-info";
+                            }
+                        });
+
+                        setTimeout(() => {
+                            $("#formModal").modal("show");
+                        }, 3000);
+                    } else {
+                        $("#formModal").modal("hide");
+
+                        Swal.fire({
+                            icon: "error",
+                            title: "Warning!",
+                            text: "Something went wrong!",
+                            showConfirmButton: false,
+                            timer: 2000,
+                        });
+                        setTimeout(() => {
+                            $("#formModal").modal("show");
+                        }, 2000);
+                    }
                 }
             },
             error: function (xhr) {
@@ -113,11 +144,18 @@ $(document)
                         $("#" + data + "-error").text(message[0]);
                     });
                 } else {
+                    $("#formModal").modal("hide");
+
                     Swal.fire({
                         icon: "error",
                         title: "Warning!",
                         text: "Something went wrong!",
+                        showConfirmButton: false,
+                        timer: 2000,
                     });
+                    setTimeout(() => {
+                        $("#formModal").modal("show");
+                    }, 2000);
                 }
             },
             complete: function () {
@@ -318,14 +356,12 @@ $(document)
         // const new_password=$("#new_password").val();
         // const confirm_password=$("#confirm_password").val();
         // console.log(new_password,confirm_password);
-        let formdata=new FormData(this);
+        let formdata = new FormData(this);
         let dataId = $("#reset_id").val();
         let dataUrl = "/admin/employee/reset-password/" + dataId;
         $.ajax({
             headers: {
-                "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr(
-                    "content"
-                ),
+                "X-CSRF-TOKEN": $("meta[name='csrf-token']").attr("content"),
             },
             type: "post",
             url: dataUrl,
@@ -363,14 +399,13 @@ $(document)
                     $.each(errors, function (data, message) {
                         $("#" + data + "-error").text(message[0]);
                     });
-                }else{
+                } else {
                     Swal.fire({
                         icon: "error",
                         title: "Warning",
                         text: "Something went wrong!",
                     });
                     $("#resetModal").modal("hide");
-
                 }
             },
         });

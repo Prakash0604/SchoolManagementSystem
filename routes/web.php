@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Employee\EmployeeAttendanceController;
 use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Employee\SalaryController;
 use App\Http\Controllers\Admin\Institute\InstituteController;
@@ -29,4 +30,8 @@ Route::prefix('admin')->group(function () {
     Route::post('employee/reset-password/{id}',[EmployeeController::class,'resetPassword']);
     Route::resource('salary',SalaryController::class);
     Route::get('employee/get-data/{id}',[SalaryController::class,'getEmployee']);
+    Route::get('employee-attendance',[EmployeeAttendanceController::class,'index'])->name('employee.attendance.index');
+    Route::get('employee/attendance/check/{date}',[EmployeeAttendanceController::class,'checkEmployeeAttendance'])->name('employee.attendance.check');
+    Route::post('employee-attendance/store', [EmployeeAttendanceController::class, 'storeEmployeeAttendace'])->name('employee.attendance.store');
+
 });
