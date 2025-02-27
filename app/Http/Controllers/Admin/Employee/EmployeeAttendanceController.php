@@ -110,9 +110,9 @@ class EmployeeAttendanceController extends Controller
     public function checkEmployeeAttendance($date)
     {
         try {
-            $data = EmployeeAttendance::where('attendance_date', $date)->first();
+            $data = EmployeeAttendance::where('attendance_date', $date)->get();
             if ($data) {
-                return response()->json(['status' => 403, 'message' => "Already Taken"]);
+                return response()->json(['status' => 403, 'message' => $data]);
             } else {
                 return response()->json(['status' => 402, 'message' => 'Not taken yet']);
             }

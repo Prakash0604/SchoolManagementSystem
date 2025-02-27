@@ -105,8 +105,7 @@
                 </div>
 
                 <button class="btn btn-primary " id="addEmployeeAttendanceBtn"
-                    style="width:120px;padding:10px;border-radius:20px" type="button"><i class="fas fa-plus"></i> Add
-                    New</button>
+                    style="width:155px;padding:10px;border-radius:20px" type="button"><i class="fas fa-plus"></i> Add/Update</button>
 
                 @include('admin.employee.attendance.modal')
                 <div class="row" style="margin-top:20px;">

@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResetPasswordRequest;
+use App\Models\EmployeeAttendance;
 use App\Models\EmployeeSalary;
 use App\Models\InstituteInfo;
 use Carbon\Carbon;
@@ -40,7 +41,7 @@ class EmployeeController extends Controller
                     $isDelete = "Y";
                     $isreset = "Y";
 
-                    return view('admin.button.button', compact('action', 'route','isView', 'isedit', 'isDelete', 'isreset'));
+                    return view('admin.button.button', compact('action', 'route', 'isView', 'isedit', 'isDelete', 'isreset'));
                 })
                 ->addColumn('role', function ($role) {
                     return $role->role->title;
@@ -77,9 +78,9 @@ class EmployeeController extends Controller
     {
         try {
             // $data=$request->validated();
-            $institute=InstituteInfo::first();
-            if(empty($institute)){
-                return response()->json(['status'=>404,'message'=>'Institute has not Created yet please create institute first.']);
+            $institute = InstituteInfo::first();
+            if (empty($institute)) {
+                return response()->json(['status' => 404, 'message' => 'Institute has not Created yet please create institute first.']);
             }
             if ($request->hasFile('image')) {
                 $imagePath = "images/users";
@@ -87,8 +88,8 @@ class EmployeeController extends Controller
                 $store = $request->image->storeAs($imagePath, $imageName, 'public');
                 $data['image'] = $store;
             }
-            $registration_id =Str::upper(Str::limit($institute->schoolname,2,'')).''. Str::upper(Str::random(2) . '' . date('Ymd')).''.Str::upper(Str::limit($request->name,2,''));
-            $username = Str::upper(Str::limit($institute->schoolname,2,'')).''.Str::upper(Str::random(2) . '' . '' . date('Ymd')).Str::upper(Str::limit($request->name,2,''));
+            $registration_id = Str::upper(Str::limit($institute->schoolname, 2, '')) . '' . Str::upper(Str::random(2) . '' . date('Ymd')) . '' . Str::upper(Str::limit($request->name, 2, ''));
+            $username = Str::upper(Str::limit($institute->schoolname, 2, '')) . '' . Str::upper(Str::random(2) . '' . '' . date('Ymd')) . Str::upper(Str::limit($request->name, 2, ''));
             $password = $username;
             User::create([
                 'name' => $request->name,
@@ -126,8 +127,17 @@ class EmployeeController extends Controller
         $employee = User::with('role', 'blood_group', 'religion')->find($id);
         // dd($employee);
         $title = "Detail -" . $employee->name;
-        $salaries=EmployeeSalary::where('user_id',$id)->orderBy('id','desc')->get();
-        return view('admin.employee.employeeDetail', compact('employee', 'title','salaries'));
+
+        $daysInMonth = Carbon::now()->daysInMonth;
+        $month = Carbon::now()->monthName;
+
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $endOfMonth = Carbon::now()->endOfMonth();
+        $present = EmployeeAttendance::whereBetween('attendance_date', [$startOfMonth, $endOfMonth])->where('user_id',$id)->where('status','P')->count();
+        $lateIn = EmployeeAttendance::whereBetween('attendance_date', [$startOfMonth, $endOfMonth])->where('user_id',$id)->where('status','L')->count();
+        $absent = EmployeeAttendance::whereBetween('attendance_date', [$startOfMonth, $endOfMonth])->where('user_id',$id)->where('status','A')->count();
+        $salaries = EmployeeSalary::where('user_id', $id)->orderBy('id', 'desc')->get();
+        return view('admin.employee.employeeDetail', compact('employee', 'title', 'salaries', 'daysInMonth', 'present', 'lateIn', 'absent'));
     }
 
     /**
@@ -184,14 +194,15 @@ class EmployeeController extends Controller
         }
     }
 
-    public function resetPassword(ResetPasswordRequest $request,$id){
-        try{
-            $user=User::find($id);
+    public function resetPassword(ResetPasswordRequest $request, $id)
+    {
+        try {
+            $user = User::find($id);
             $user->update([
-                'password'=>$request->confirm_password
+                'password' => $request->confirm_password
             ]);
             return response()->json(['status' => true, 'message' => 'Password Updated Successfully!']);
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             return response()->json(['status' => false, 'message' => $e->getMessage()]);
         }
     }

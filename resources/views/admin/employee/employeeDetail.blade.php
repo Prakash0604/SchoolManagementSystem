@@ -344,67 +344,6 @@
                                     </h6>
                                     <div class="row p-b-20 p-t-20"
                                         style="border-radius:5px;padding-bottom:20px;padding-left:4px;padding-right:0px;background:#FFF;border:1px solid white;border-top-left-radius: 15px;border-bottom-right-radius:25px;">
-
-                                        <div class="col-3 p-0 text-center">
-                                            <div class="block1">
-                                                <div class="box1" style="background:#ff808b;">
-                                                    <p class="number1 p-0 m-0">
-                                                        <span class="num1">0</span>
-                                                        <span class="sub1">%</span>
-                                                    </p>
-                                                    <p class="title1 p-0 m-0">Overall</p>
-                                                </div>
-                                                <span class="dots1"></span>
-                                                <svg class="svg1">
-                                                    <defs>
-                                                        <linearGradient id="gradientStyle">
-                                                            <stop offset="0%" stop-color="#ff808b" />
-                                                            <stop offset="100%" stop-color="#9698d6" />
-                                                        </linearGradient>
-                                                    </defs>
-                                                    <circle class="circle1" cx="55" cy="55" r="39" />
-                                                </svg>
-                                            </div>
-                                            <button class="btn btn-sm"
-                                                style="border:1px solid #999;border-radius:15px;width:100%;text-align:center;padding:3px;font-size:10px;position:relative;padding-top:5px;background:#FFFFF7;">
-                                                <font style="font-size:10px;font-weight:bold;" class="m-gray">NOT MARKED
-                                                </font>
-                                                <span class="m-gray"
-                                                    style="position:absolute;top:-7px;left:5px;background:#fff;font-size:9px;padding:none;padding-left:4px; padding-right:4px;border-radius:10px;line-height:12px;border:1px solid #999;"><span
-                                                        class="bg-m-gray badge" style="padding:3px;"></span> Today</span>
-                                            </button>
-
-                                        </div>
-                                        <div class="col-3 p-0" style="">
-                                            <div class="block2">
-                                                <div class="box2" style="background:#ff808b;">
-                                                    <p class="number2 p-0 m-0">
-                                                        <span class="num2">0</span>
-                                                        <span class="sub2">%</span>
-                                                    </p>
-                                                    <p class="title2 p-0 m-0">Feb 2025</p>
-                                                </div>
-                                                <span class="dots2"></span>
-                                                <svg class="svg2">
-                                                    <defs>
-                                                        <linearGradient id="gradientStyle2">
-                                                            <stop offset="0%" stop-color="#ff808b" />
-                                                            <stop offset="100%" stop-color="#9698d6" />
-                                                        </linearGradient>
-                                                    </defs>
-                                                    <circle class="circle2" cx="55" cy="55" r="39" />
-                                                </svg>
-                                            </div>
-                                            <button class="btn btn-sm m-l-10"
-                                                style="border:1px solid #999;border-radius:15px;width:100%;text-align:center;padding:3px;font-size:10px;position:relative;padding-top:5px;background:#FFFFF7;">
-                                                <font style="font-size:10px;font-weight:bold;" class="m-gray">NOT MARKED
-                                                </font>
-                                                <span class="m-gray"
-                                                    style="position:absolute;top:-7px;left:5px;background:#fff;font-size:9px;padding:none;padding-left:4px; padding-right:4px;border-radius:10px;line-height:12px;border:1px solid #999;"><span
-                                                        class="bg-m-gray badge" style="padding:3px;"></span>
-                                                    Yesterday</span>
-                                            </button>
-                                        </div>
                                         <div class="col-12 " style="margin-top:8px;margin-bottom:10px;">
                                             <div class="row p-l-15 p-r-15">
                                                 <div class="col-4" style="padding:4px;">
@@ -419,10 +358,10 @@
                                                                     colors="primary:#ffffff"
                                                                     style="width:20px;height:20px;display:inline-block;">
                                                                 </lord-icon>
-                                                                <span style="display:inline-block;float:right;">0</span>
+                                                                <span style="display:inline-block;float:right;">{{ $present }}</span>
                                                             </h3>
                                                             <p class="m-b-0 m-t-0" style="font-size:9px;">This Month<span
-                                                                    class="f-right">0</span></p>
+                                                                    class="f-right">{{ $daysInMonth }}</span></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -430,7 +369,7 @@
                                                     <div class="bg-m-gray" style="border-radius:6px;">
                                                         <div class="m-white"
                                                             style="padding:8px;padding-left:10px;padding-right:10px;">
-                                                            <h6 class="f-12"style="margin-bottom:0px;">LEAVES</h6>
+                                                            <h6 class="f-12"style="margin-bottom:0px;">Late In</h6>
                                                             <h3 class="f-16 m-t-0 m-b-0" style="line-height:12px;">
                                                                 <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
                                                                 <lord-icon src="https://cdn.lordicon.com/zmkotitn.json"
@@ -438,10 +377,10 @@
                                                                     colors="primary:#ffffff"
                                                                     style="width:20px;height:20px;display:inline-block;">
                                                                 </lord-icon>
-                                                                <span style="display:inline-block;float:right;">0</span>
+                                                                <span style="display:inline-block;float:right;">{{ $lateIn }}</span>
                                                             </h3>
                                                             <p class="m-b-0 m-t-0" style="font-size:9px;">This Month<span
-                                                                    class="f-right">0</span></p>
+                                                                    class="f-right">{{ $daysInMonth }}</span></p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -457,10 +396,10 @@
                                                                     colors="primary:#ffffff"
                                                                     style="width:20px;height:20px;display:inline-block;">
                                                                 </lord-icon>
-                                                                <span style="display:inline-block;float:right;">0</span>
+                                                                <span style="display:inline-block;float:right;">{{ $absent }}</span>
                                                             </h3>
                                                             <p class="m-b-0 m-t-0" style="font-size:9px;">This Month<span
-                                                                    class="f-right">0</span></p>
+                                                                    class="f-right">{{ $daysInMonth }}</span></p>
                                                         </div>
                                                     </div>
                                                 </div>
