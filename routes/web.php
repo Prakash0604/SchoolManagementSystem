@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AcademicYear\AcademicYearController;
+use App\Http\Controllers\Admin\EducationLevel\EducationLevelController;
 use App\Http\Controllers\Admin\Employee\EmployeeAttendanceController;
 use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Employee\SalaryController;
@@ -37,6 +38,8 @@ Route::prefix('admin')->group(function () {
 
     // Academic Year
     Route::resource('academic-year',AcademicYearController::class);
+    Route::resource('education-level',EducationLevelController::class);
     Route::get('academic-year/status/{id}',[AcademicYearController::class,'statusToggle']);
+    Route::get('education-level/status/{id}',[EducationLevelController::class,'statusToggle']);
 
 });

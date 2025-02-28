@@ -32,6 +32,13 @@
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
+                    <li class=" " id="schoolinfo">
+                        <a href="{{ route('education-level.index') }}">
+                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Education Level</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
                     <li class=" " id="feeparticulars">
                         <a href="feeparticulars.php">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
