@@ -7,7 +7,9 @@ use App\Http\Controllers\Admin\Employee\EmployeeAttendanceController;
 use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Employee\SalaryController;
 use App\Http\Controllers\Admin\Institute\InstituteController;
+use App\Http\Controllers\Admin\Subject\SubjectController;
 use App\Models\Classroom;
+use App\Models\Subject;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,5 +50,9 @@ Route::prefix('admin')->group(function () {
     // Classroom
     Route::resource('classroom',ClassroomController::class);
     Route::get('classroom/status/{id}',[ClassroomController::class,'statusToggle']);
+
+    // Subject
+    Route::resource('subject',SubjectController::class);
+    Route::get('subject/status/{id}',[SubjectController::class,'statusToggle']);
 
 });

@@ -125,20 +125,12 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" " id="allclasses">
-                        <a href="classes.php">
+                        <a href="{{ route('classroom.index') }}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">All Classes</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
-                    <li class=" " id="newclass">
-                        <a href="addnewclass.php">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">New Class</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-
                 </ul>
             </li>
             <li class="pcoded-hasmenu" id="subjects">
@@ -149,10 +141,9 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" " id="showsubjects">
-                        <a href="showsubjects.php">
+                        <a href="{{ route('subject.index') }}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Classes With
-                                Subjects</span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Subject</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
