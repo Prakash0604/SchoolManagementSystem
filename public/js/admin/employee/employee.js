@@ -44,6 +44,9 @@ function getData() {
                 data: "role",
             },
             {
+                data: "status",
+            },
+            {
                 data: "action",
             },
         ],
@@ -335,6 +338,66 @@ $(".toggle-password").on("click", function () {
             : '<i class="fa-regular fa-eye-slash"></i>'
     );
 });
+
+$(document)
+    .off("click", ".statusToggle")
+    .on("click", ".statusToggle", function (e) {
+        let id = $(this).attr("data-id");
+        let checked = $(this);
+        checked.prop("disabled", true);
+        Swal.fire({
+            icon: "warning",
+            title: "Are you sure ?",
+            text: "You wan't to change status!",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            confirmButtonText: "Yes, Change it!",
+            cancelButtonColor: "#d33",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "employee/status/" + id,
+                    type: "get",
+                    success: function (res) {
+                        if (res.status == true) {
+                            Swal.fire({
+                                icon: "success",
+                                title: "Success!",
+                                text: "Status Changed Successfully!",
+                                showConfirmButton: false,
+                                timer: 1000,
+                            });
+                            checked.prop("disabled", false);
+                            $("#get-employee-data").DataTable().destroy().clear();
+                            getData();
+                        } else {
+                            Swal.fire({
+                                icon: "warning",
+                                title: "Warning!",
+                                text: "Something went wrong!",
+                            });
+                            checked.prop("disabled", false);
+                        }
+                    },
+                    error: function (xhr) {
+                        console.log(xhr);
+                        Swal.fire({
+                            icon: "warning",
+                            title: "Warning!",
+                            text: "Something went wrong!",
+                        });
+                        checked.prop("disabled", false);
+                    },
+                    complete: function () {
+                        checked.prop("disabled", false);
+                    },
+                });
+            } else {
+                checked.prop("disabled", false);
+                checked.prop("checked", !checked.prop("checked"));
+            }
+        });
+    });
 $(document)
     .off("click", ".resetPasswordBtn")
     .on("click", ".resetPasswordBtn", function () {

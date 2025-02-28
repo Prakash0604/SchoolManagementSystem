@@ -34,6 +34,12 @@ class EmployeeController extends Controller
                     $img = $image->image ? '/storage/' . $image->image : 'default/avatar-5.webp';
                     return '<img src="' . $img . '" class="img-circle" style="width:80px;height:80px;">';
                 })
+                ->addColumn('status', function ($status) {
+                    $stat = $status->status == 'Active' ? 'checked' : '';
+                    return '<div class="form-check form-switch d-flex">
+                    <input class="form-check-input statusToggle mx-auto" type="checkbox" ' . $stat . ' data-id="' . $status->id . '" role="switch" id="flexSwitchCheckDefault">
+                    </div>';
+                })
                 ->addColumn('action', function ($action) {
                     $route = route('employee.show', $action->id);
                     $isedit = "Y";
@@ -46,7 +52,7 @@ class EmployeeController extends Controller
                 ->addColumn('role', function ($role) {
                     return $role->role->title;
                 })
-                ->rawColumns(['action', 'image'])
+                ->rawColumns(['action', 'image','status'])
                 ->make(true);
         }
         $title = "All Employees";
@@ -69,6 +75,23 @@ class EmployeeController extends Controller
     public function create()
     {
         //
+    }
+
+    public function statusToggle($id)
+    {
+        try {
+
+            $user = User::find($id);
+            if ($user->status == 'Active') {
+                $user->status = 'Inactive';
+            } else {
+                $user->status = 'Active';
+            }
+            $user->save();
+            return response()->json(['status' => true, 'message' => 'Status Updated']);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -133,9 +156,9 @@ class EmployeeController extends Controller
 
         $startOfMonth = Carbon::now()->startOfMonth();
         $endOfMonth = Carbon::now()->endOfMonth();
-        $present = EmployeeAttendance::whereBetween('attendance_date', [$startOfMonth, $endOfMonth])->where('user_id',$id)->where('status','P')->count();
-        $lateIn = EmployeeAttendance::whereBetween('attendance_date', [$startOfMonth, $endOfMonth])->where('user_id',$id)->where('status','L')->count();
-        $absent = EmployeeAttendance::whereBetween('attendance_date', [$startOfMonth, $endOfMonth])->where('user_id',$id)->where('status','A')->count();
+        $present = EmployeeAttendance::whereBetween('attendance_date', [$startOfMonth, $endOfMonth])->where('user_id', $id)->where('status', 'P')->count();
+        $lateIn = EmployeeAttendance::whereBetween('attendance_date', [$startOfMonth, $endOfMonth])->where('user_id', $id)->where('status', 'L')->count();
+        $absent = EmployeeAttendance::whereBetween('attendance_date', [$startOfMonth, $endOfMonth])->where('user_id', $id)->where('status', 'A')->count();
         $salaries = EmployeeSalary::where('user_id', $id)->orderBy('id', 'desc')->get();
         return view('admin.employee.employeeDetail', compact('employee', 'title', 'salaries', 'daysInMonth', 'present', 'lateIn', 'absent'));
     }

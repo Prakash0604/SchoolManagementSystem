@@ -41,5 +41,6 @@ Route::prefix('admin')->group(function () {
     Route::resource('education-level',EducationLevelController::class);
     Route::get('academic-year/status/{id}',[AcademicYearController::class,'statusToggle']);
     Route::get('education-level/status/{id}',[EducationLevelController::class,'statusToggle']);
+    Route::get('employee/status/{id}',[EmployeeController::class,'statusToggle']);
 
 });
