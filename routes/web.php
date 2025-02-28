@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AcademicYear\AcademicYearController;
 use App\Http\Controllers\Admin\Employee\EmployeeAttendanceController;
 use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Employee\SalaryController;
@@ -33,5 +34,9 @@ Route::prefix('admin')->group(function () {
     Route::get('employee-attendance',[EmployeeAttendanceController::class,'index'])->name('employee.attendance.index');
     Route::get('employee/attendance/check/{date}',[EmployeeAttendanceController::class,'checkEmployeeAttendance'])->name('employee.attendance.check');
     Route::post('employee-attendance/store', [EmployeeAttendanceController::class, 'storeEmployeeAttendace'])->name('employee.attendance.store');
+
+    // Academic Year
+    Route::resource('academic-year',AcademicYearController::class);
+    Route::get('academic-year/status/{id}',[AcademicYearController::class,'statusToggle']);
 
 });

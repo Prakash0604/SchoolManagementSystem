@@ -25,6 +25,13 @@
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
+                    <li class=" " id="schoolinfo">
+                        <a href="{{ route('academic-year.index') }}">
+                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Academic Session</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
                     <li class=" " id="feeparticulars">
                         <a href="feeparticulars.php">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
@@ -431,7 +438,7 @@
                         </a>
                     </li>
                     <li class=" " id="employeesattandance">
-                        <a href="chooseeattend.php">
+                        <a href="{{ route('employee.attendance.index') }}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Employees
                                 Attendance</span>
