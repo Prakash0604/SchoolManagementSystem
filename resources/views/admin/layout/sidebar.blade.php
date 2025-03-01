@@ -148,9 +148,16 @@
                         </a>
                     </li>
                     <li class=" " id="assignsubjects">
-                        <a href="subjects.php">
+                        <a href="{{ route('assign-subject.index') }}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Assign Subjects</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
+                    <li class=" " id="assignsubjects">
+                        <a href="{{ route('assign-subject.list') }}">
+                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">View Assign Subjects</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
