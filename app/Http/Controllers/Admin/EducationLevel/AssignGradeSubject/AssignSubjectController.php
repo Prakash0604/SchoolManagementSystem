@@ -71,7 +71,7 @@ class AssignSubjectController extends Controller
             return DataTables::of($subject)
                 ->addIndexColumn()
                 ->addColumn('action', function ($action) {
-                    $route = "";
+                    $route = route('assign-subject.show',$action->id);
                     $isedit = "Y";
                     $isDelete = "Y";
                     return view('admin.button.button', compact('action', 'route', 'isDelete', 'isedit'));
@@ -159,7 +159,12 @@ class AssignSubjectController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try{
+            $data=AssignGradeSubject::with('level','year','subject')->find($id);
+            return response()->json(['status'=>true,'message'=>$data]);
+        }catch(\Exception $e){
+            return response()->json(['status'=>false,'message'=>$e->getMessage()]);
+        }
     }
 
     /**
@@ -175,7 +180,22 @@ class AssignSubjectController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try{
+            $data=$request->validate([
+                'full_marks'=>'required|numeric',
+                'pass_marks'=>'required|numeric'
+            ]);
+            $full_marks=intval($request->full_marks);
+            $pass_marks=intval($request->pass_marks);
+            if($pass_marks > $full_marks){
+                return response()->json(['status'=>211,'message'=>"Pass marks should not be greater than full marks"]);
+            }
+            $assign=AssignGradeSubject::find($id);
+            $assign->update($data);
+            return response()->json(['status'=>true,'message'=>'Marks Updated']);
+        }catch(\Exception $e){
+            return response()->json(['status'=>false,'message'=>$e->getMessage()]);
+        }
     }
 
     /**
@@ -183,6 +203,16 @@ class AssignSubjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $year = AssignGradeSubject::find($id);
+            if ($year != null) {
+                $year->delete();
+                return response()->json(['status' => true, 'message' => "Grade Subject Deleted Successfully!"]);
+            } else {
+                return response()->json(['status' => false, 'message' => "Something went wrong"]);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
     }
 }
