@@ -20,6 +20,8 @@ function getData() {
     $("#get-employee-data").DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        autoWidth: false,
         ajax: "employee",
         columnDefs: [
             {

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Employee\EmployeeAttendanceController;
 use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Employee\SalaryController;
 use App\Http\Controllers\Admin\Institute\InstituteController;
+use App\Http\Controllers\Admin\Student\StudentController;
 use App\Http\Controllers\Admin\Subject\SubjectController;
 use App\Models\Classroom;
 use App\Models\Subject;
@@ -60,5 +61,7 @@ Route::prefix('admin')->group(function () {
     Route::get('grade/subject/{academicYear}/{educationLevel}/get',[AssignSubjectController::class,'getSubject']);
     Route::get('assign-subject/view/list',[AssignSubjectController::class,'assignSubjectList'])->name('assign-subject.list');
     Route::get('assign-subject/view/list/status/{id}',[AssignSubjectController::class,'statusToggle']);
+
+    Route::resource('student',StudentController::class);
 
 });

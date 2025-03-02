@@ -3,12 +3,12 @@ $(document).ready(function () {
 });
 
 function getData() {
-    $("#get-year-data").DataTable({
+    $("#get-student-data").DataTable({
         processing: true,
         serverSide: true,
         responsive: true,
         autoWidth: false,
-        ajax: "academic-year",
+        ajax: "student",
         columnDefs: [
             {
                 targets: "_all",
@@ -20,13 +20,25 @@ function getData() {
                 data: "DT_RowIndex",
             },
             {
-                data: "academic_title",
+                data: "image",
             },
             {
-                data: "starting_date",
+                data: "student_name",
             },
             {
-                data: "ending_date",
+                data: "username",
+            },
+            {
+                data: "student_contact",
+            },
+            {
+                data: "academic_year",
+            },
+            {
+                data: "education_level",
+            },
+            {
+                data: "classroom",
             },
             {
                 data: "status",
@@ -39,31 +51,88 @@ function getData() {
 }
 
 $(document)
-    .off("click", "#addAcademicYearBtn")
-    .on("click", "#addAcademicYearBtn", function () {
+    .off("click", "#addStudentBtn")
+    .on("click", "#addStudentBtn", function () {
         $("#formModal").modal("show");
-        $("#sessionHeading").text("Add Session Year");
         $("#createBtn").show();
         $("#updateBtn").hide();
-        $(".addForm").attr("id", "storeAcademicYear");
-        $("#storeAcademicYear").trigger("reset");
+        $(".addForm").attr("id", "storeStudent");
+        $("#storeStudent").trigger("reset");
     });
 
-$(document).on("change", "#starting_date", function () {
-    let min = $(this).val();
-    $("#ending_date").attr("min", min);
-});
-$(document).on("change", "#ending_date", function () {
-    let max = $(this).val();
-    $("#starting_date").attr("max", max);
-});
+// $(document).on("change", "#starting_date", function () {
+//     let min = $(this).val();
+//     $("#ending_date").attr("min", min);
+// });
+// $(document).on("change", "#ending_date", function () {
+//     let max = $(this).val();
+//     $("#starting_date").attr("max", max);
+// });
 
 $(document)
-    .off("submit", "#storeAcademicYear")
-    .on("submit", "#storeAcademicYear", function (e) {
+    .off("click", ".addMoreBtn")
+    .on("click", ".addMoreBtn", function () {
+        let html = `<div class="row ">
+                <div class="col-lg-2">
+                            <div class="m-div">
+                            <label class="m-label bg-gradient-gray m-white"
+                                style="margin-top:-9px;z-index:1001;">Relation*</label>
+                            <select name="relation[]" id="relation" class="form-control m-field"
+                                required>
+                                <option value='Mother'>Mother</option>
+                                <option value='Father'>Father</option>
+                                <option value='Brother'>Brother</option>
+                                <option value='Sister'>Sister</option>
+                                <option value='Uncle'>Uncle</option>
+                                <option value='Aunty'>Aunty</option>
+                                <option value='Others'>Others</option>
+                            </select>
+                        </div>
+                </div>
+                <div class="col-lg-3">
+                        <div class="m-div ">
+                            <label class="m-label bg-gradient-gray m-white">Name</label>
+                            <input type="text" placeholder="Guardians Name" name="guardian_name[]"
+                                id="guardian_name" class="form-control m-field">
+                        </div>
+                    </div>
+                <div class="col-lg-2">
+                      <div class="m-div ">
+                          <label class="m-label bg-gradient-gray m-white">Mobile No</label>
+                          <input type="text" placeholder="Mobile No" name="contact[]"
+                                  id="contact" class="form-control m-field">
+                          </div>
+                </div>
+                      <div class="col-lg-2">
+                          <div class="m-div ">
+                              <label class="m-label bg-gradient-gray m-white">Occupation</label>
+                              <input type="text" placeholder="Occupation" name="occupation[]"
+                                  id="occupation" class="form-control m-field">
+                </div>
+                      </div>
+                      <div class="col-lg-3 mt-3">
+                          <button type="button" class="btn btn-warning addMoreBtn"
+                              style="width:100px;padding:10px;border-radius:20px"><i class="fas fa-plus"></i>Add</button>
+                          <button type="button" class="btn btn-danger removeBtn"
+                              style="width:100px;padding:10px;border-radius:20px"><i class="fas fa-minus"></i>Delete</button>
+                    </div>
+            </div>`;
+
+        $(".guardianinfo").append(html);
+    });
+
+$(document)
+    .off("click", ".removeBtn")
+    .on("click", ".removeBtn", function () {
+        $(this).closest(".row").remove();
+    });
+
+$(document)
+    .off("submit", "#storeStudent")
+    .on("submit", "#storeStudent", function (e) {
         e.preventDefault();
         let formdata = new FormData(this);
-        let dataUrl = "/admin/academic-year";
+        let dataUrl = "/admin/student";
         $.ajax({
             url: dataUrl,
             type: "post",
@@ -75,13 +144,13 @@ $(document)
                     Swal.fire({
                         icon: "success",
                         title: "Created",
-                        text: "Academic Year Created Successfully!",
+                        text: "Student Created Successfully!",
                         showConfirmButton: false,
                         timer: 1000,
                     });
-                    $("#storeAcademicYear").trigger("reset");
+                    $("#storeStudent").trigger("reset");
                     $("#formModal").modal("hide");
-                    $("#get-year-data").DataTable().destroy().clear();
+                    $("#get-student-data").DataTable().destroy().clear();
                     getData();
                 } else {
                     $("#formModal").modal("hide");
@@ -90,11 +159,11 @@ $(document)
                         title: "Warning!",
                         text: "Something went wrong!",
                         showConfirmButton: false,
-                        timer: 3000,
+                        timer: 2000,
                     });
                     setTimeout(() => {
                         $("#formModal").modal("show");
-                    }, 3000);
+                    }, 2000);
                 }
             },
             error: function (xhr) {
@@ -207,61 +276,62 @@ $(document)
         });
     });
 
-    $(document).off("submit","#updateAcademicYear").on("submit","#updateAcademicYear",function(e){
+$(document)
+    .off("submit", "#updateAcademicYear")
+    .on("submit", "#updateAcademicYear", function (e) {
         e.preventDefault();
-        let id=$("#academic_id").val();
-        let dataUrl="/admin/academic-year/"+id;
-        let formdata=new FormData(this);
-        formdata.append("_method","PUT");
+        let id = $("#academic_id").val();
+        let dataUrl = "/admin/academic-year/" + id;
+        let formdata = new FormData(this);
+        formdata.append("_method", "PUT");
         $.ajax({
-            type:"post",
-            url:dataUrl,
-            data:formdata,
-            contentType:false,
-            processData:false,
-            success:function(response){
-                if(response.status == true){
+            type: "post",
+            url: dataUrl,
+            data: formdata,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response.status == true) {
                     Swal.fire({
-                        icon:"success",
-                        title:"Updated!",
-                        text:"Academic Year Updated Successfully!",
-                        showConfirmButton:false,
-                        timer:1000
+                        icon: "success",
+                        title: "Updated!",
+                        text: "Academic Year Updated Successfully!",
+                        showConfirmButton: false,
+                        timer: 1000,
                     });
                     $("#formModal").modal("hide");
                     $("#updateAcademicYear").trigger("reset");
                     $("#get-year-data").DataTable().destroy().clear();
                     getData();
-                }else{
+                } else {
                     $("#formModal").modal("hide");
                     Swal.fire({
-                        icon:"error",
-                        title:"Warning!",
-                        text:"Something went wrong!",
-                        showConfirmButton:false,
-                        timer:3000
+                        icon: "error",
+                        title: "Warning!",
+                        text: "Something went wrong!",
+                        showConfirmButton: false,
+                        timer: 3000,
                     });
                     setTimeout(() => {
                         $("#formModal").modal("show");
                     }, 3000);
                 }
             },
-            error:function(xhr){
-                if(xhr.status == 422){
-                    let errors=xhr.responseJSON.errors;
-                    $.each(errors,function(data,message){
-                        $("#"+data+"-error").text(message[0]);
+            error: function (xhr) {
+                if (xhr.status == 422) {
+                    let errors = xhr.responseJSON.errors;
+                    $.each(errors, function (data, message) {
+                        $("#" + data + "-error").text(message[0]);
                     });
                     setTimeout(() => {
                         $(".error-message").text("");
                     }, 3000);
                 }
-            }
+            },
+        });
+    });
 
-        })
-    })
-
-    $(document)
+$(document)
     .off("click", ".deleteButton")
     .on("click", ".deleteButton", function () {
         let dataId = $(this).attr("data-id");
@@ -291,10 +361,7 @@ $(document)
                                 title: "Deleted!",
                                 text: "Academic Year has been deleted.",
                             });
-                            $("#get-year-data")
-                                .DataTable()
-                                .destroy()
-                                .clear();
+                            $("#get-year-data").DataTable().destroy().clear();
                             getData();
                         } else {
                             Swal.fire({

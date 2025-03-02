@@ -9,6 +9,8 @@ function getData() {
     $("#get-assign-subject-data").DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        autoWidth: false,
         ajax: {
             url: "/admin/assign-subject/view/list",
             type: "Get",

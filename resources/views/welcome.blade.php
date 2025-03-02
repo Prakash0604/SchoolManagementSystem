@@ -29,9 +29,7 @@
     	<link rel="stylesheet" href="./assets/fontawesome/css/sharp-regular.css" />
     	<link rel="stylesheet" href="./assets/fontawesome/css/sharp-light.css" />
 
-            <!-- Favicon icon -->
-      <link rel="icon" href="assets/images/favicon.png" type="image/x-png">
-    <!-- Google font-->
+          <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
     <!-- Required Fremwork -->
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap/css/bootstrap.min.css">
@@ -43,7 +41,7 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
-	<link rel="stylesheet" type="text/css" href="../bb/assets/css/selectlistsearch.css">
+    <link rel="stylesheet" type="text/css" href="../bb/assets/css/selectlistsearch.css">
 	<style>
 	    .m-div{
             padding:5px;
@@ -69,7 +67,12 @@
             padding-right:10px;
             margin-left:10px;
         }
-
+        #checkReg{
+            display:none;
+        }
+        .hide_field{
+            display:none;
+        }
 	</style>
 </head>
 
@@ -1152,54 +1155,317 @@
                                     <!-- Page-body start -->
                                     <div class="page-body">
                                         <!-- Row start -->
-                                        <div class="row">
-                                            <div class="col-12 p-10 f-14" style="border-radius:10px;background:#fff;box-shadow:0px 0px 1px 0px gray;"><strong style="border-right:1px solid #777;padding-right:10px;margin-right:10px;">Subjects</strong>
-										    <i class="ti-home"></i> - Assign Subjects
-										    </div>
-                                        </div>
-                                        <div class="row m-t-20">
-										<div class="col-md-6 col-lg-3"></div>
-										<div class="col-md-6 col-lg-6 m-round" style="background:#fff;box-shadow:0px 0px 1px 0px gray;">
-										    <h5 class="text-center m-t-30 w-100" style="line-height:16px;">Create Subjects
-    										<br><div class="bg-gradient-blue" style="width:20px;height:7px;border-radius:10px;display:inline-block;"></div> <span class="f-12 m-dblue" style="display:inline-block;font-weight:100;">Required*</span>
-    										<div class="bg-gradient-gray m-l-10" style="width:20px;height:7px;border-radius:10px;display:inline-block;"></div> <span class="f-12 gradient-gray" style="display:inline-block;font-weight:100;">Optional</span>
-    										</h5>
-										<form action="subjects.php" method="POST" id="myform">
+										<div class="row">
+
+										    <div class="col-12 p-10 f-16" style="border-radius:10px;background:#fff;"><strong style="border-right:1px solid #777;padding-right:10px;margin-right:10px;">Students</strong>
+										    <i class="ti-home"></i> - Admission Form
+										    											<a href="#" class="f-right" data-toggle="tooltip" title="This option is available in Desktop Version only.">
+											<button class="btn btn-sm bg-m-purple m-white m-round" style="opacity:0.8;">
+											    <i class="ti-import"></i> Import Students
+											</button>
+											</a>
+																																	<a href="#" class="f-right m-r-10" data-toggle="tooltip" title="This option is available in Desktop Version only.">
+											<button class="btn btn-sm bg-gradient-red m-white m-round" style="opacity:0.8;">
+											    <i class="ti-ruler-pencil"></i> Customize
+											</button>
+											</a>
+																					    </div>
+
+										<h3 class="text-center m-t-20 w-100" style="line-height:20px;">Admission Form
+										<br><div class="bg-gradient-blue" style="width:20px;height:7px;border-radius:10px;display:inline-block;"></div> <span class="f-12 m-dblue" style="display:inline-block;font-weight:100;">Required*</span>
+										<div class="bg-gradient-gray m-l-10" style="width:20px;height:7px;border-radius:10px;display:inline-block;"></div> <span class="f-12 gradient-gray" style="display:inline-block;font-weight:100;">Optional</span>
+										</h3>
+
+										<form action="newstudent.php" method="post" enctype="multipart/form-data" id="myform">
+										</div>
+										<div class="row" style="border:0px solid #9698d6;padding:5px 5px 5px 15px;">
+										<h6 class="w-100" style="border-bottom:1px solid #999;"><div class="bg-gradient-dark m-white" style="width:20px;height:20px;border-radius:10px;display:inline-block;padding-top:3px;padding-left:7px;">1</div> Student Information <span style="font-size:12px;" class="f-right"></span></h6>
+										    <div  class="col-lg-4">
 										    <div class="m-div">
-										        <label class="m-label bg-gradient-blue m-white">Select Class*</label>
-										        <select name="class" class="form-control m-field" id="searchlist" required>
-        										<option value="">Select*</option>
-        										<option value='200720'>One</option><option value='210008'>Two</option>        										</select>
-										    </div>
-										    <table id="textboxDiv" style="width:100%;border-spacing: 5px;border-collapse: separate;position: relative;overflow-x: auto;">
-												<tr class="row">
-												<td class="col-7 p-r-0">
-												    <div class="m-div">
-												    <label class="m-label bg-gradient-blue m-white">Subject Name*</label>
-												    <input type="text" name="s1" placeholder="Name Of Subject" class="form-control m-field" required>
-												    </div>
-												</td>
-												<td class="col-5">
-												    <div class="m-div">
-												    <label class="m-label bg-gradient-blue m-white">Marks*</label>
-												    <input type="number" name="marks1" placeholder="Total Exam Marks" min="0" class="form-control m-field" required>
-												    </div>
-												</td>
-											    </tr>
-											</table>
-										    <div class="text-center m-t-10">
-											<div>
-											    <span id="add" class="btn btn-sm bg-gradient-gray m-white" style="padding-top:2px;padding-bottom:2px;border-radius:15px;"><i class="ti-plus"></i> Add more</span>
-											    <span id="Remove" class="btn btn-sm bg-gradient-dark m-white" style="padding-top:2px;padding-bottom:2px;border-radius:15px;"><i class="ti-minus"></i> Remove</span>
+									        <label class="m-label bg-gradient-blue m-white">Student Name*</label>
+											<input type="text" class="form-control m-field" placeholder="Name of Student" id="studentname" name="studentname" required>
 											</div>
-											<div class="m-t-40 p-b-30">
-											<button class="btn bg-c-yellow" style="border-radius:20px;" id="submitBtn" type="submit" name="addsubjects"><i class="ti-plus"></i> Assign Subjects</button>
+											<div class="m-div">
+									        <label class="m-label bg-gradient-gray m-white">Picture - Optional</label>
+											<input type="file" class="form-control m-field" name="fileToUpload" id="fileToUpload">
+											</div>
+											<span class="bg-c-yellow m-round m-t-0 m-l-10" style="font-size:10px;padding-left:5px; padding-right:5px;">Max size 100KB</span>
+											</div>
+											<div class="col-lg-4">
+											<div class="m-div">
+										    <label class="m-label bg-gradient-blue m-white">Last Registration: <strong>REG0101</strong></label>
+											<input style="" type="text" class="form-control m-field" placeholder="Registration No" onblur="checkMailStatus()" id="reg" name="reg" required>
+											</div>
+											<span id="checkReg" class="bg-gradient-red m-round m-t-0 m-l-10 m-white" style="font-size:10px;"></span>
+											<div class="m-div">
+									        <label class="m-label bg-gradient-blue m-white">Date of Admission*</label>
+											<input type="date" class="form-control m-field" name="doa" value="2025-03-01" required>
+											</div>
+											</div>
+											<div class="col-lg-4">
+											<div class="m-div p-t-0 p-b-0">
+									        <label class="m-label bg-gradient-blue m-white" style="margin-top:-9px;z-index:1001;">Select Class*</label>
+											<select name="class" id="searchlist" class="form-control m-field" required>
+
+											<option value='200720'>One</option><option value='210008'>Two</option>											</select>
+											</div>
+											<div class="m-div">
+									        <label class="m-label bg-gradient-blue m-white">Discount In Fee*</label>
+											<input type="number" class="form-control m-field" placeholder="In %" name="discount" required>
+											</div>
+											<div class="m-div">
+									        <label class="m-label bg-gradient-gray m-white">Mobile No. for SMS/WhatsApp</label>
+											<input class="form-control m-field" type="tel" placeholder="e.g +44xxxxxxxxxx" name="Gphone" >
+											</div>
+											</div>
+										</div>
+										<div class="row" style="border:0px solid #9698d6;padding:5px 5px 5px 15px;">
+										<h6 class="w-100" style="border-bottom:1px solid #999;"><div class="bg-gradient-dark m-white" style="width:20px;height:20px;border-radius:10px;display:inline-block;padding-top:2px;padding-left:6px;">2</div> Other Information <span style="font-size:12px;" class="f-right"></span></h6>
+										    <div  class="col-lg-4">
+
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Date Of Birth</label>
+										    <input type="date" name="dob" class="form-control m-field">
+										    </div>
+							                <div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Gender</label>
+											<select name="gender" class="form-control m-field">
+											<option value="">Gender</option>
+											<option value="male">Male</option>
+											<option value="female">Female</option>
+											</select>
+											</div>
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Any Identification Mark?</label>
+											<input type="text" placeholder="Any Identification Mark?" name="idmark" class="form-control m-field">
+											</div>
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Blood Group</label>
+											<select name="blood" class="form-control m-field">
+											<option value="">Blood Group</option>
+											<option value="A+">A+</option>
+											<option value="A-">A-</option>
+											<option value="B+">B+</option>
+											<option value="B-">B-</option>
+											<option value="O+">O+</option>
+											<option value="O-">O-</option>
+											<option value="AB+">AB+</option>
+											<option value="AB-">AB-</option>
+											</select>
+											</div>
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Disease If Any?</label>
+											<input type="text" placeholder="Disease If Any?" name="desease" class="form-control m-field">
+											</div>
+											</div>
+											<div class="col-lg-4">
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Student Birth Form ID / NIC</label>
+											<input type="text" placeholder="Student Birth Form ID / NIC" name="scnic" class="form-control m-field">
+											</div>
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Cast</label>
+											<input type="text" placeholder="Cast" name="cast" class="form-control m-field">
+											</div>
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Previous School</label>
+											<input type="text" placeholder="Previous School" name="pr" class="form-control m-field">
+											</div>
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Previous ID / Board Roll No</label>
+											<input type="text" placeholder="Previous ID / Board Roll No" name="previousid" class="form-control m-field">
+											</div>
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Any Additional Note</label>
+											<input type="text" placeholder="Any Additional Note" name="additionalinfo" class="form-control m-field">
+											</div>
+
+											</div>
+											<div class="col-lg-4">
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Orphan Student</label>
+											<select name="os" class="form-control m-field">
+											<option value="">Select</option>
+											<option value="Yes">YES</option>
+											<option value="No">NO</option>
+											</select>
+											</div>
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">OSC</label>
+											<select name="osc" class="form-control m-field">
+											<option value="">Select</option>
+											<option value="Yes">YES</option>
+											<option value="No">NO</option>
+											</select>
+											</div>
+											<div class="m-div p-t-0 p-b-0 ">
+										    <label class="m-label bg-gradient-gray m-white" style="margin-top:-9px;z-index:1001;">Religion</label>
+											<select name="religion" id="searchlist1" class="form-control m-field">
+											<option value="">Religion</option>
+											<option value="African Traditional &amp; Diasporic">African Traditional &amp; Diasporic</option>
+											<option value="Agnostic">Agnostic</option>
+											<option value="Atheist">Atheist</option>
+											<option value="Baha'i">Baha'i</option>
+											<option value="Buddhism">Buddhism</option>
+											<option value="Cao Dai">Cao Dai</option>
+											<option value="Chinese traditional religion">Chinese traditional religion</option>
+											<option value="Christianity">Christianity</option>
+											<option value="Hinduism">Hinduism</option>
+											<option value="Islam">Islam</option>
+											<option value="Jainism">Jainism</option>
+											<option value="Juche">Juche</option>
+											<option value="Judaism">Judaism</option>
+											<option value="Muslim">Muslim</option>
+											<option value="Muslim &amp; Hafiz">Muslim &amp; Hafiz</option>
+											<option value="Non-Muslim">Non-Muslim</option>
+											<option value="Neo-Paganism">Neo-Paganism</option>
+											<option value="Nonreligious">Nonreligious</option>
+											<option value="Rastafarianism">Rastafarianism</option>
+											<option value="Secular">Secular</option>
+											<option value="Shinto">Shinto</option>
+											<option value="Sikhism">Sikhism</option>
+											<option value="Spiritism">Spiritism</option>
+											<option value="Tenrikyo">Tenrikyo</option>
+											<option value="Unitarian-Universalism">Unitarian-Universalism</option>
+											<option value="Zoroastrianism">Zoroastrianism</option>
+											<option value="primal-indigenous">primal-indigenous</option>
+											<option value="Other">Other</option>
+											</select>
+											</div>
+											<div class="m-div p-t-0 p-b-0">
+										    <label class="m-label bg-gradient-gray m-white" style="margin-top:-9px;z-index:2;">Select Family</label>
+											<select name="family" id="searchlist2" class="form-control m-field">
+											<option value="0">Select</option>
+																						</select>
+											</div>
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Total Siblings</label>
+							                <input type="number" name="noc" placeholder="Total Siblings" class="form-control m-field">
+							                </div>
+											</div>
+											<div class="col-lg-8">
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Address</label>
+											<input type="text" placeholder="Address" class="form-control m-field" name="address">
+											</div>
+							                </div>
+
+											<div class="col-lg-4 m-t-10">
+
+							                <button type="button" class="btn bg-c-yellow m-t-10" style="border-radius:25px;" data-toggle="modal" data-target="#myModal"><i class="ti-plus"></i> Add Parents</button>
+
+
+											</div>
+
+										</div>
+                                        <div class="row" style="border:0px solid #9698d6;padding:5px 5px 5px 15px;">
+										<h6 class="w-100" style="border-bottom:1px solid #999;"><div class="bg-gradient-dark m-white" style="width:20px;height:20px;border-radius:10px;display:inline-block;padding-top:2px;padding-left:6px;">3</div> Father/Guardien Information <span style="font-size:12px;" class="f-right"></span></h6>
+										    <div  class="col-lg-4">
+										    <div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Father Name</label>
+											<input type="text" placeholder="Father Name" name="fname" id="fname" class="form-control m-field">
+											</div>
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Education</label>
+							                <input type="text" placeholder="Education" name="fedu" id="fedu" class="form-control m-field">
+							                </div>
+											</div>
+											<div class="col-lg-4">
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Father National ID</label>
+											<input type="text" placeholder="Father National ID" name="fcnic" id="fcnic" class="form-control m-field">
+							                </div>
+							                <div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Mobile No</label>
+							                <input type="text" placeholder="Mobile No" name="fmobile" id="fmobile" class="form-control m-field">
+							                </div>
+											</div>
+											<div class="col-lg-4">
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Occupation</label>
+											<input type="text" placeholder="Occupation" name="fo" id="fo" class="form-control m-field">
+											</div>
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Profession</label>
+											<input type="text" placeholder="Profession" name="fp" id="fp" class="form-control m-field">
+											</div>
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Income</label>
+											<input type="number" placeholder="Income" name="fi" id="fi" class="form-control m-field">
 											</div>
 											</div>
 
-										</form>
 										</div>
-										<div class="col-md-6 col-lg-3"></div>
+										<div class="row" style="border:0px solid #9698d6;padding:5px 5px 5px 15px;">
+										<h6 class="w-100" style="border-bottom:1px solid #999;"><div class="bg-gradient-dark m-white" style="width:20px;height:20px;border-radius:10px;display:inline-block;padding-top:2px;padding-left:5px;">4</div> Mother Information <span style="font-size:12px;" class="f-right"></span></h6>
+										    <div  class="col-lg-4">
+										    <div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Mother Name</label>
+											<input type="text" placeholder="Mother Name" name="mname" id="mname" class="form-control m-field">
+											</div>
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Education</label>
+							                <input type="text" placeholder="Education" name="medu" id="medu" class="form-control m-field">
+							                </div>
+											</div>
+											<div class="col-lg-4">
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Mother National ID</label>
+											<input type="text" placeholder="Mother National ID" name="mcnic" id="mcnic" class="form-control m-field">
+											</div>
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Mobile No</label>
+											<input type="text" placeholder="Mobile No" name="mmobile" id="mmobile" class="form-control m-field">
+											</div>
+											</div>
+											<div class="col-lg-4">
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Occupation</label>
+											<input type="text" placeholder="Occupation" name="mo" id="mo" class="form-control m-field">
+											</div>
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Profession</label>
+											<input type="text" placeholder="Profession" name="mp" id="mp" class="form-control m-field">
+											</div>
+											<div class="m-div ">
+										    <label class="m-label bg-gradient-gray m-white">Income</label>
+											<input type="number" placeholder="Income" name="mi" id="mi" class="form-control m-field">
+											</div>
+											</div>
+
+										</div><hr>
+										<div class="row" style="padding:5px 5px 5px 15px;">
+										<h5 class="w-100 text-center">
+										<button class="btn btn-large bg-c-yellow" style="border-radius:20px;" type="reset"><i class="ti-reload"></i> Reset</button>
+										<button class="btn btn-large bg-m-dblue m-white" style="width:170px;padding:10px;border-radius:20px;" type="submit" id="submitBtn" name="submit"><i class="ti-check"></i>   Submit</button>
+										</h5>
+										</form>
+
+										<!-- Modal -->
+                                              <div class="modal fade" id="myModal" role="dialog">
+                                                <div class="modal-dialog modal-md m-round">
+                                                  <div class="modal-content">
+                                                    <div class="modal-header p-10 p-t-0 p-b-0 bg-gradient-dark m-white">
+
+                                                      <strong class="modal-title">Add Parents Record if exist.</strong>
+                                                      <button type="button" class="close m-white btn-lg" data-dismiss="modal">&times;</button>
+                                                    </div>
+                                                    <div class="modal-body text-center">
+                                                    <div class="m-div text-left ">
+										            <label class="m-label bg-gradient-blue m-white">Father National ID*</label>
+                                                      <input type="text" class="form-control m-field" name="spid" id="spid" placeholder="Father National ID" required>
+                                                      </div>
+                                                      <button class="btn btn-sm bg-gradient-green m-white p-10 m-t-10" style="border-radius:20px;" id="spidb"><i class="ti-search"></i> Search</button>
+
+                                                      <p id="spidr" class="m-t-10"></p>
+                                                    </div>
+                                                    <div class="modal-footer" style="padding-top:5px; padding-bottom:5px;">
+                                                      <button type="button" class="btn bg-c-yellow btn-sm" style="border-radius:20px;" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+
 										</div>
 										<!-- Row end -->
 										<!-- Row start -->
@@ -1216,8 +1482,7 @@
             </div>
         </div>
     </div>
-
-<!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="addnewclass" role="dialog">
         <div class="modal-dialog">
 
@@ -1341,9 +1606,7 @@
 
         </div>
     </div>
-<!-- end Modal --><!-- Main-body end -->
-
-<!-- Required Jquery -->
+<!-- end Modal --><!-- Required Jquery -->
 <script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>
@@ -1359,16 +1622,17 @@
 <!-- Custom js -->
 <script type="text/javascript" src="assets/js/script.js"></script>
 <script src="assets/js/pcoded.min.js"></script>
+
 <script src="assets/js/vartical-demo.js"></script>
 <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="assets/js/selectlistsearch.js"></script>
+<script src="../bb/assets/js/selectlistsearch.js"></script>
 <script>
 
 // navigator activator
 document.getElementById("dashboard").classList.remove('active');
-document.getElementById("assignsubjects").classList.add('active');
-document.getElementById("subjects").classList.add('active');
-document.getElementById("subjects").classList.add('pcoded-trigger');
+document.getElementById("addnewstudent").classList.add('active');
+document.getElementById("students").classList.add('active');
+document.getElementById("students").classList.add('pcoded-trigger');
 //----------end-----------------
 
 // search students api
@@ -1381,20 +1645,28 @@ $( "#tags" ).autocomplete({
 		$("#tags_code").val(availableTagsCode[index]);
 	}
 });
+
 //---------end------------------
-var count=1;
-        $(document).ready(function() {
-            $("#add").on("click", function() {
-                count++;
-                $("#textboxDiv").append('<tr class="row"><td class="col-7 p-r-0"><div class="m-div"><label class="m-label bg-gradient-blue m-white">Subject Name*</label><input type="text" name="s'+count+'" placeholder="Name Of Subject" class="form-control m-field" required></div></td><td class="col-5"><div class="m-div"><label class="m-label bg-gradient-blue m-white">Marks*</label><input type="number" name="marks'+count+'" placeholder="Total Exam Marks" min="0" class="form-control m-field" required></div></td></tr>');
-            });
-            $("#Remove").on("click", function() {
-                if(count>1){
-			    count--;
-                $("#textboxDiv").find("tr:last").remove();
-                }
-            });
-        });
+function checkMailStatus(){
+    //alert("came");
+var reg=$("#reg").val();// value in field email
+$.ajax({
+    type:'post',
+        url:'checkMail.php',// put your real file name
+        data:{reg: reg},
+        success:function(msg){
+			if(msg=="YES"){
+	          $("#checkReg").show();
+    		  $("#checkReg").html("<strong class='p-10'><i class='ti-alert'></i> This Registration No. Already Exist !</strong>");
+    		  $("#reg").focus();
+			}else{
+			    $("#checkReg").hide();
+			    $("#checkReg").html("");
+			}
+         // alert(msg); // your message will come here.
+        }
+ });
+}
 $(function()
 {
     $("#myform").validate(
@@ -1409,16 +1681,80 @@ $(function()
       });
 });
 $(document).ready(function () {
-      $('#searchlist').selectize({
-          sortField: 'text'
-      });
-  });
-$(document).ready(function () {
     $("#myform").submit(function () {
+        $("#submitBtn").attr("disabled", true);
         $("#submitBtn").html("<i class='fa fa-circle-o-notch fa-spin'></i> Please Wait");
         return true;
     });
 });
+$("#spidb").on('click', function(e) {
+
+      e.preventDefault();
+
+    var cnic=$("#spid").val();// value in field email
+$.ajax({
+    type:'post',
+        url:'checkMail.php',// put your real file name
+        data:{cnic: cnic},
+        beforeSend:function(){
+				$('#spidb').html('<i class="fa fa-spinner"></i>');
+
+			},
+        success:function(result){
+        $('#spidb').html('<i class="ti-search"></i> Search');
+		$("#spidr").html(result);
+        }
+ });
+});
+
+function addparents() {
+    var cnic=$("#spid").val();// value in field email
+$.ajax({
+    type:'post',
+        url:'checkMail.php',// put your real file name
+        data:{id: cnic},
+        beforeSend:function(){
+				$('#addparents').html('<i class="fa fa-spinner"></i> Adding');
+
+			},
+        success:function(r){
+		$("#fname").val(r[0]);
+		$("#fedu").val(r[2]);
+		$("#fcnic").val(r[1]);
+		$("#fmobile").val(r[3]);
+		$("#fo").val(r[4]);
+		$("#fp").val(r[5]);
+		$("#fi").val(r[6]);
+		$("#mname").val(r[7]);
+		$("#medu").val(r[8]);
+		$("#mcnic").val(r[9]);
+		$("#mmobile").val(r[10]);
+		$("#mo").val(r[11]);
+		$("#mp").val(r[12]);
+		$("#mi").val(r[13]);
+		$('#myModal').modal('toggle');
+        },dataType: "json"
+ });
+}
+$('#studentname').on('input', function(){
+    var company_name = $('#studentname').val().replace(/[&\/\\#,+()$~%.'":*?<>{}]/ig, "");
+    $('#studentname').val(company_name);
+});
+$('#reg').on('input', function(){
+    var company_name = $('#reg').val().replace(/[&\/\\#,+$~%.'":*?<>{}]/ig, "");
+    $('#reg').val(company_name);
+});
+$(document).ready(function () {
+      $('#searchlist').selectize({
+          sortField: 'text'
+      });
+      $('#searchlist1').selectize({
+          sortField: 'text'
+      });
+      $('#searchlist2').selectize({
+          sortField: 'text'
+      });
+  });
 </script>
 </body>
 </html>

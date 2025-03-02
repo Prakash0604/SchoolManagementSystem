@@ -9,6 +9,8 @@ function getData() {
     $("#get-attendance-data").DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        autoWidth: false,
         ajax: {
             url: "employee-attendance",
             type: "Get",

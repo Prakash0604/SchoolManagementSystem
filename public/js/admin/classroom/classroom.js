@@ -6,6 +6,8 @@ function getData() {
     $("#get-classroom-data").DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        autoWidth: false,
         ajax: "classroom",
         columnDefs: [
             {

@@ -6,6 +6,8 @@ function getData() {
     $("#get-level-data").DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        autoWidth: false,
         ajax: "education-level",
         columnDefs: [
             {

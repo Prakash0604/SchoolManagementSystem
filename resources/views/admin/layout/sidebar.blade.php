@@ -176,7 +176,7 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" " id="allstudents">
-                        <a href="allstudents.php">
+                        <a href="{{ route('student.index') }}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">All Students</span>
                             <span class="pcoded-mcaret"></span>

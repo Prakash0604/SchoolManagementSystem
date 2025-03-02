@@ -6,6 +6,8 @@ function getData() {
     $("#get-subject-data").DataTable({
         processing: true,
         serverSide: true,
+        responsive: true,
+        autoWidth: false,
         ajax: "subject",
         columnDefs: [
             {
