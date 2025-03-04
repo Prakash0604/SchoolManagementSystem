@@ -63,5 +63,7 @@ Route::prefix('admin')->group(function () {
     Route::get('assign-subject/view/list/status/{id}',[AssignSubjectController::class,'statusToggle']);
 
     Route::resource('student',StudentController::class);
+    Route::get('student/status/{id}',[StudentController::class,'statusToggle']);
+    Route::get('student/guardians/remove/{id}',[StudentController::class,'removeGuardians']);
 
 });

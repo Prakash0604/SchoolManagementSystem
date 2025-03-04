@@ -41,6 +41,7 @@
                                 <div class="col-lg-4">
                                     <div class="m-div">
                                         @csrf
+                                        <input type="hidden" name="" id="student_id">
                                         <label class="m-label bg-gradient-blue m-white">Student Name*</label>
                                         <input type="text" class="form-control m-field" placeholder="Name of Student"
                                             id="student_name" name="student_name">
@@ -49,6 +50,9 @@
                                         <label class="m-label bg-gradient-gray m-white">Picture - Optional</label>
                                         <input type="file" class="form-control m-field" name="student_image"
                                             id="student_image">
+                                    </div>
+                                    <div class="appendImage mt-2">
+
                                     </div>
                                     <span class="bg-c-yellow m-round m-t-0 m-l-10"
                                         style="font-size:10px;padding-left:5px; padding-right:5px;">Max size
@@ -87,7 +91,7 @@
                                     <div class="m-div ">
                                         <label class="m-label bg-gradient-blue m-white">Gender</label>
                                         <select name="student_gender" id="student_gender" class="form-control m-field">
-                                            <option value="">Gender</option>
+                                            <option value="">Select..</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                             <option value="Others">Others</option>
@@ -111,7 +115,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row" style="border:0px solid #9698d6;padding:5px 5px 5px 15px;">
+                            <div class="row" id="academic_info" style="border:0px solid #9698d6;padding:5px 5px 5px 15px;">
                                 <h6 class="w-100" style="border-bottom:1px solid #999;">
                                     <div class="bg-gradient-dark m-white"
                                         style="width:20px;height:20px;border-radius:10px;display:inline-block;padding-top:2px;padding-left:6px;">
@@ -124,6 +128,7 @@
                                             style="margin-top:-9px;z-index:1001;">Year*</label>
                                         <select name="academic_year_id" id="academic_year_id"
                                             class="form-control m-field">
+                                            <option value="">Select...</option>
                                             @foreach ($academicYears as $year)
                                                 <option value='{{ $year->id }}'>{{ $year->academic_title }}
                                                 </option>
@@ -140,6 +145,8 @@
                                             style="margin-top:-9px;z-index:1001;">Education Level*</label>
                                         <select name="education_level_id" id="education_level_id"
                                             class="form-control m-field">
+                                            <option value="">Select...</option>
+
                                             @foreach ($educationLevels as $level)
                                                 <option value='{{ $level->id }}'>{{ $level->title }}</option>
                                             @endforeach
@@ -153,6 +160,8 @@
                                         <label class="m-label bg-gradient-gray m-white"
                                             style="margin-top:-9px;z-index:1001;">Classroom*</label>
                                         <select name="classroom_id" id="classroom_id" class="form-control m-field">
+                                            <option value="">Select...</option>
+
                                             @foreach ($classrooms as $room)
                                                 <option value='{{ $room->id }}'>{{ $room->class_title }}</option>
                                             @endforeach
@@ -201,7 +210,7 @@
                                             <label class="m-label bg-gradient-gray m-white"
                                                 style="margin-top:-9px;z-index:1001;">Relation*</label>
                                             <select name="relation[]" id="relation" class="form-control m-field">
-
+                                                <option value="">Select Relation</option>
                                                 <option value='Mother'>Mother</option>
                                                 <option value='Father'>Father</option>
                                                 <option value='Brother'>Brother</option>
@@ -242,6 +251,9 @@
                                                 class="fas fa-plus"></i>Add</button>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="appendGuardians">
+
                             </div>
 
                         </div>

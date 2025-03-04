@@ -14,6 +14,7 @@ use App\Models\StudentGuardian;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StudentRequest;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class StudentController extends Controller
@@ -46,13 +47,13 @@ class StudentController extends Controller
                     return $name->student_name;
                 })
                 ->addColumn('academic_year', function ($year) {
-                    return optional($year->academicData->academicYear)->academic_title ?? 'N/A';
+                    return $year?->academicData?->academicYear?->academic_title ?? 'N/A';
                 })
                 ->addColumn('education_level', function ($year) {
-                    return optional($year->academicData->educationLevel)->title ?? 'N/A';
+                    return $year?->academicData?->educationLevel?->title ?? 'N/A';
                 })
                 ->addColumn('classroom', function ($level) {
-                    return optional($level->academicData->classroom)->class_title ?? 'N/A';
+                    return $level?->academicData?->classroom?->class_title ?? 'N/A';
                 })
                 ->addColumn('status', function ($status) {
                     $stat = $status->status === 'Active' ? 'checked' : '';
@@ -116,7 +117,7 @@ class StudentController extends Controller
                     'student_id' => $student->id,
                     'academic_year_id' => $request->academic_year_id,
                     'education_level_id' => $request->education_level_id,
-                    'is_current'=>1,
+                    'is_current' => 1,
                     'classroom_id' => $request->classroom_id,
                     'registraion_number' => $request->registraion_number,
                     'roll_number' => $request->roll_number
@@ -148,7 +149,22 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        try {
+            $student = Student::with('studentMember', 'academicData')->find($id);
+            return response()->json(['status' => true, 'message' => $student]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+    public function removeGuardians($id)
+    {
+        try {
+            StudentGuardian::find($id)->delete();
+            return response()->json(['status' => true, 'message' => 'Guardians removed Successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -159,12 +175,71 @@ class StudentController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(StudentRequest $request, string $id)
     {
-        //
+        try {
+            $student = Student::find($id);
+            if (!$student) {
+                return response()->json(['status' => false, 'message' => 'Student not found'], 404);
+            }
+
+            $data = $request->validated();
+
+            DB::beginTransaction();
+
+            if ($request->hasFile('student_image')) {
+                if ($student->student_image && Storage::disk('public')->exists($student->student_image)) {
+                    Storage::disk('public')->delete($student->student_image);
+                }
+
+                $path = "images/student";
+                $imageName = time() . '-' . $request->student_image->getClientOriginalName();
+                $imagePath = $request->student_image->storeAs($path, $imageName, 'public');
+                $data['student_image'] = $imagePath;
+            }
+
+            $student->update($data);
+
+            if ($request->has('relation')) {
+                foreach ($request->relation as $key => $relation) {
+                    StudentGuardian::updateOrCreate(
+                        [
+                            'student_id' => $student->id,
+                            'relation' => $relation
+                        ],
+                        [
+                            'guardian_name' => $request->guardian_name[$key] ?? null,
+                            'contact' => $request->contact[$key] ?? null,
+                            'occupation' => $request->occupation[$key] ?? null
+                        ]
+                    );
+                }
+            }
+
+            DB::commit();
+            return response()->json(['status' => true, 'message' => 'Student Updated Successfully']);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['status' => false, 'message' => $e->getMessage()], 500);
+        }
+    }
+
+    public function statusToggle($id)
+    {
+        try {
+
+            $student = Student::find($id);
+            if ($student->status == 'Active') {
+                $student->status = 'Inactive';
+            } else {
+                $student->status = 'Active';
+            }
+            $student->save();
+            return response()->json(['status' => true, 'message' => 'Status Updated']);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
     }
 
     /**
@@ -172,6 +247,19 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $student = Student::find($id);
+            if ($student != null) {
+                if($student->studentMember()->count() > 0){
+                    return response()->json(['status' => 219, 'message' => "Please remove guardians first"]);
+                }
+                $student->delete();
+                return response()->json(['status' => true, 'message' => "Student Deleted Successfully!"]);
+            } else {
+                return response()->json(['status' => false, 'message' => "Something went wrong"]);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
     }
 }
