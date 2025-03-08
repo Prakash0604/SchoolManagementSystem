@@ -160,11 +160,6 @@
                                         <label class="m-label bg-gradient-gray m-white"
                                             style="margin-top:-9px;z-index:1001;">Classroom*</label>
                                         <select name="classroom_id" id="classroom_id" class="form-control m-field">
-                                            <option value="">Select...</option>
-
-                                            @foreach ($classrooms as $room)
-                                                <option value='{{ $room->id }}'>{{ $room->class_title }}</option>
-                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

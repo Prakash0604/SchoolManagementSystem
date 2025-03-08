@@ -31,47 +31,231 @@
 
           <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
-    <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap/css/bootstrap.min.css">
-    <!-- themify-icons line icon -->
-    <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css">
-    <link rel="stylesheet" type="text/css" href="assets/icon/font-awesome/css/font-awesome.min.css">
-    <!-- ico font -->
-    <link rel="stylesheet" type="text/css" href="assets/icon/icofont/css/icofont.css">
-    <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
-    <link rel="stylesheet" type="text/css" href="../bb/assets/css/selectlistsearch.css">
-	<style>
-	    .m-div{
-            padding:5px;
-            border-radius:25px !important;
-            margin-top:20px;
+      <!-- Required Fremwork -->
+      <link rel="stylesheet" type="text/css" href="assets/css/bootstrap/css/bootstrap.min.css">
+      <!-- themify-icons line icon -->
+      <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css">
+	  <link rel="stylesheet" type="text/css" href="assets/icon/font-awesome/css/font-awesome.min.css">
+      <!-- ico font -->
+      <link rel="stylesheet" type="text/css" href="assets/icon/icofont/css/icofont.css">
+      <!-- Style.css -->
+      <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+      <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
+	  <link rel="stylesheet" type="text/css" href="assets/calendar/javascript-calendar.css">
+	  <style>
+	  .hide_field{
+	          display:none;
+	      }
+	      .gradient-blue{
+
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              background-image: -webkit-gradient(linear, left top, right top, from(#501e9c), color-stop(30%, #8169f1), color-stop(30%, #8169f1), color-stop(73%, #a44cee), to(#ff847f));
+              background-image: -o-linear-gradient(left, #501e9c 0%, #8169f1 30%, #8169f1 30%, #a44cee 73%, #ff847f 100%);
+              background-image: linear-gradient(to right, #501e9c 0%, #8169f1 30%, #8169f1 30%, #a44cee 73%, #ff847f 100%);
+	      }
+	      .text-blue{
+	          color:#3144de;
+	      }
+    	.hidepi{
+    		display:none;
+    	}
+        .titlecell{
+            color:#999;
+            font-size:12px;
         }
-        .m-field{
-            border-radius:25px !important;
+        .datacell{
+            font-weight:bold;
+            padding-left:20px;
+            font-size:13px;
+            color:#777;
         }
-        .selectize-input, .selectize-input:focus{
-            border-radius:25px !important;
-            margin-top:4px;
-            border:none !important;
-            box-shadow:none !important;
-            outline: none !important;
-        }
-        .m-label{
-            margin-top:-14px;
-            border:1px solid #999;
-            border-radius:12px;
-            font-size:10px;
-            padding-left:10px;
-            padding-right:10px;
-            margin-left:10px;
-        }
-        #checkReg{
+        #pi,#fd,#hidefi{
             display:none;
         }
-        .hide_field{
-            display:none;
+        canvas {
+        width: 100% !important;
+        height: auto !important;
+
+        text-align:center !important;
+        }
+
+        .block1 , .block2 , .block3 {
+        	position: relative;
+        	display: flex;
+        	align-items: center;
+        	justify-content: center;
+        	width: 110px;
+        	height: 110px;
+        	border-radius: 50%;
+        	padding:0px;
+        	margin:0px;
+        }
+
+        .box1 , .box2 , .box3 {
+        	position: relative;
+        	display: flex;
+        	align-items: center;
+        	justify-content: center;
+        	flex-direction: column;
+        	width: calc(100% - 50px);
+        	height: calc(100% - 50px);
+        	border-radius: 50%;
+        	/*background-color: #292929;*/
+        	box-shadow: 0 0 0px 0px #9698d6;
+
+        }
+
+        .box1::before , .box2::before , .box3::before{
+        	position: absolute;
+        	content: '';
+        	width: calc(100% + 18px);
+        	height: calc(100% + 18px);
+        	border-radius: 50%;
+        	border: 1px solid silver;
+        }
+
+        .box1 .number1 span , .box2 .number2 span , .box3 .number3 span{
+        	color: #e9e9e9;
+        	line-height:12px;
+        }
+
+        .box1 .number1 .num1 , .box2 .number2 .num2 , .box3 .number3 .num3{
+        	font-size: 20px;
+        	font-weight: bold;
+        	line-height:12px;
+        }
+
+        .box1 .number1 .sub1 , .box2 .number2 .sub2 , .box3 .number3 .sub3{
+        	font-size: 14px;
+        	line-height:12px;
+        }
+
+        .box1 .title1 , .box2 .title2 , .box3 .title3{
+        	font-size: 10px;
+        	color: #fff;
+        	line-height:12px;
+        }
+
+        .dots1 , .dots2 , .dots3 {
+        	display: block;
+        	position: absolute;
+        	z-index: 2;
+        	width: 100%;
+        	height: 100%;
+        	border-radius: 50%;
+        	transition: 2s transform, 2s opacity ease;
+        }
+
+        .dots1::after {
+        	position: absolute;
+        	content: '';
+        	width: 10px;
+        	height: 10px;
+        	top: 11px;
+        	left: 50%;
+        	border-radius: 50%;
+        	background-color: #5e81f4;
+        	transform: translateX(-50%);
+
+        }
+        .dots2::after {
+        	position: absolute;
+        	content: '';
+        	width: 10px;
+        	height: 10px;
+        	top: 11px;
+        	left: 50%;
+        	border-radius: 50%;
+        	background-color: #ff808b;
+
+        	transform: translateX(-50%);
+        }
+        .dots3::after {
+        	position: absolute;
+        	content: '';
+        	width: 10px;
+        	height: 10px;
+        	top: 11px;
+        	left: 50%;
+        	border-radius: 50%;
+
+        	transform: translateX(-50%);
+        }
+        .svg1 , .svg2 , .svg3 {
+        	position: absolute;
+        	width: 100%;
+        	height: 100%;
+        	fill: none;
+        	transform: rotate(-90deg);
+        }
+
+        .circle1 {
+        	stroke: url(#gradientStyle);
+        	stroke-width: 5px;
+        	stroke-dasharray: 245;
+        	stroke-dashoffset: 245;
+        	animation-duration: 2s;
+        	animation-timing-function: linear;
+        	animation-fill-mode: forwards;
+        	transition: 2s stroke-dashoffset;
+        }
+        .circle2 {
+        	stroke: url(#gradientStyle2);
+        	stroke-width: 5px;
+        	stroke-dasharray: 245;
+        	stroke-dashoffset: 245;
+        	animation-duration: 2s;
+        	animation-timing-function: linear;
+        	animation-fill-mode: forwards;
+        	transition: 2s stroke-dashoffset;
+        }
+        .circle3 {
+        	stroke: url(#gradientStyle3);
+        	stroke-width: 5px;
+        	stroke-dasharray: 245;
+        	stroke-dashoffset: 245;
+        	animation-duration: 2s;
+        	animation-timing-function: linear;
+        	animation-fill-mode: forwards;
+        	transition: 2s stroke-dashoffset;
+        }
+
+        .tooltip > .tooltip-inner {background-color: #eebf3f; padding:2px 7px; color:rgb(23,44,66); font-weight:bold; font-size:11px;}
+        .popOver + .tooltip > .tooltip-arrow {	border-left: 5px solid transparent !important; border-right: 5px solid transparent !important; border-top: 5px solid #eebf3f !important;}
+
+        section{
+          margin:100px auto;
+          height:1000px;
+        }
+        .progress{
+          border-radius:0;
+          overflow:visible;
+        }
+        .progress-bar{
+          -webkit-transition: width 5.5s ease-in-out;
+          transition: width 5.5s ease-in-out !important;
+        }
+        svg {
+          height: 14vh;
+          margin: auto;
+          display: block;
+        }
+
+        path {
+          stroke-linecap: round;
+          stroke-width: 6;
+        }
+
+        path.grey {
+          stroke: #e7e7e8;
+        }
+
+        path.blue {
+          stroke-dasharray: 200;
+          stroke-dashoffset: 200;
+          animation: dash 5s ease-out backwords;
+
         }
 	</style>
 </head>
@@ -1155,318 +1339,596 @@
                                     <!-- Page-body start -->
                                     <div class="page-body">
                                         <!-- Row start -->
-										<div class="row">
+                                        <div class="row">
+                                            <div class="col-12 p-10 f-14" style="border-radius:10px;background:#fff;box-shadow:0px 0px 1px 0px gray;"><strong style="border-right:1px solid #777;padding-right:10px;margin-right:10px;">Students</strong>
+										    <i class="ti-home"></i> - Student Report
+										    										    <button class="btn btn-sm f-right p-t-5 p-b-5 bg-gradient-blue m-white" style="border-radius:15px;" data-toggle="tooltip" title="This option is available in the Desktop version only." disabled><i class="ti-file"></i> Get PDF</button>
+										    										    </div>
+                                        </div>
+										<div class="row m-round canvas_div_pdf m-t-15" style="" >
 
-										    <div class="col-12 p-10 f-16" style="border-radius:10px;background:#fff;"><strong style="border-right:1px solid #777;padding-right:10px;margin-right:10px;">Students</strong>
-										    <i class="ti-home"></i> - Admission Form
-										    											<a href="#" class="f-right" data-toggle="tooltip" title="This option is available in Desktop Version only.">
-											<button class="btn btn-sm bg-m-purple m-white m-round" style="opacity:0.8;">
-											    <i class="ti-import"></i> Import Students
-											</button>
-											</a>
-																																	<a href="#" class="f-right m-r-10" data-toggle="tooltip" title="This option is available in Desktop Version only.">
-											<button class="btn btn-sm bg-gradient-red m-white m-round" style="opacity:0.8;">
-											    <i class="ti-ruler-pencil"></i> Customize
-											</button>
-											</a>
-																					    </div>
+											   											   <div class="col-lg-3 col-md-12 text-center m-round m-b-20" style="background:#fff;box-shadow:0px 0px 1px 0px gray;">
+												 <div style="padding-top:15px;">
+												 <img src="uploads/students/no-image.png" class="img-circle" style="width:140px; height:140px;border:6px solid #f6f7fb;box-shadow:0px 0px 3px 8px #f6f7fb;padding:1px;">
+												 </div>
+												 <div style="padding-top:15px;padding-bottom:15px;">
+												 <h4 style="margin:0px;line-height:22px;" class="gradient-blue">Elisa sakya</h4>
 
-										<h3 class="text-center m-t-20 w-100" style="line-height:20px;">Admission Form
-										<br><div class="bg-gradient-blue" style="width:20px;height:7px;border-radius:10px;display:inline-block;"></div> <span class="f-12 m-dblue" style="display:inline-block;font-weight:100;">Required*</span>
-										<div class="bg-gradient-gray m-l-10" style="width:20px;height:7px;border-radius:10px;display:inline-block;"></div> <span class="f-12 gradient-gray" style="display:inline-block;font-weight:100;">Optional</span>
-										</h3>
+												 </div>
+												 <div class="text-left p-15" style="background:#f6f7fb;border-radius:5px;border-top-left-radius: 15px;border-bottom-right-radius:25px;">
+												     <div style="position:relative;line-height:15px;min-height:30px;">
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Registration No</span><br>
+												     <strong class="f-12 m-l-20 text-blue">REG0101</strong>
+												     </div>
+												     <div style="position:relative;line-height:15px;min-height:30px;">
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Date of Admission</span><br>
+												     <strong class="f-12 m-l-20 text-blue">07 January, 2025</strong>
+												     </div>
+												     <div style="position:relative;line-height:15px;min-height:30px;">
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Class</span><br>
+												     <strong class="f-12 m-l-20 text-blue">One</strong>
+												     </div>
+												     <div style="position:relative;line-height:15px;min-height:30px;">
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Family</span><br>
+												     <strong class="f-12 m-l-20 text-blue"></strong>
+												     </div>
+												     <div style="position:relative;line-height:15px;min-height:30px;">
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:15px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Discount in Fee</span><br>
+												     <strong class="f-12 m-l-20 text-blue">10 %</strong>
+												     </div>
 
-										<form action="newstudent.php" method="post" enctype="multipart/form-data" id="myform">
+												 </div>
+												 <div class="text-left p-10">
+												     <div style="position:relative;line-height:16px;min-height:30px;" class="" >
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:16px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Date Of Birth</span><br>
+												     <strong class="f-12 m-l-20 text-blue"></strong>
+												     </div>
+												     <div style="position:relative;line-height:16px;min-height:30px;" class="" >
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:16px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Gender</span><br>
+												     <strong class="f-12 m-l-20 text-blue"></strong>
+												     </div>
+												     <div style="position:relative;line-height:16px;min-height:30px;" class="" >
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:16px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Any Identification Mark?</span><br>
+												     <strong class="f-12 m-l-20 text-blue"></strong>
+												     </div>
+												     <div style="position:relative;line-height:16px;min-height:30px;" class="" >
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:16px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Blood Group</span><br>
+												     <strong class="f-12 m-l-20 text-blue"></strong>
+												     </div>
+												     <div style="position:relative;line-height:16px;min-height:30px;" class="" >
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:16px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Disease If Any?</span><br>
+												     <strong class="f-12 m-l-20 text-blue"></strong>
+												     </div>
+												     <div style="position:relative;line-height:16px;min-height:30px;" class="" >
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:16px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Student Birth Form ID / NIC</span><br>
+												     <strong class="f-12 m-l-20 text-blue"></strong>
+												     </div>
+												     <div style="position:relative;line-height:16px;min-height:30px;" class="" >
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:16px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Cast</span><br>
+												     <strong class="f-12 m-l-20 text-blue"></strong>
+												     </div>
+												     <div style="position:relative;line-height:16px;min-height:30px;" class="" >
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:16px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Previous School</span><br>
+												     <strong class="f-12 m-l-20 text-blue"></strong>
+												     </div>
+												     <div style="position:relative;line-height:16px;min-height:30px;" class="" >
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:16px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Previous ID / Board Roll No</span><br>
+												     <strong class="f-12 m-l-20 text-blue"></strong>
+												     </div>
+												     <div style="position:relative;line-height:16px;min-height:30px;" class="" >
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:16px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Any Additional Note</span><br>
+												     <strong class="f-12 m-l-20 text-blue"></strong>
+												     </div>
+												     <div style="position:relative;line-height:16px;min-height:30px;" class="" >
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:16px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Orphan Student</span><br>
+												     <strong class="f-12 m-l-20 text-blue"></strong>
+												     </div>
+												     <div style="position:relative;line-height:16px;min-height:30px;" class="" >
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:16px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">OSC</span><br>
+												     <strong class="f-12 m-l-20 text-blue"></strong>
+												     </div>
+												     <div style="position:relative;line-height:16px;min-height:30px;" class="" >
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:16px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Religion</span><br>
+												     <strong class="f-12 m-l-20 text-blue"></strong>
+												     </div>
+												     <div style="position:relative;line-height:16px;min-height:30px;" class="" >
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:16px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Total Siblings</span><br>
+												     <strong class="f-12 m-l-20 text-blue">0</strong>
+												     </div>
+
+												 </div>
+												 <div class="text-left p-15 m-b-10" style="background:#f6f7fb;border-radius:5px;border-top-left-radius: 15px;border-bottom-right-radius:25px;">
+												     <div style="position:relative;line-height:16px;min-height:30px;" class="" >
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:16px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Father Name</span><br>
+												     <strong class="f-12 m-l-20 text-blue"></strong>
+												     </div>
+												     <div style="position:relative;line-height:16px;min-height:30px;" class="" >
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:16px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Mother Name</span><br>
+												     <strong class="f-12 m-l-20 text-blue"></strong>
+												     </div>
+												     <div style="position:relative;line-height:16px;min-height:30px;" class="" >
+												     <img src="assets/arrow-down.png" style="position:absolute;left:0px;top:16px;height:14px;">
+												     <span class="f-10 m-gray" style="border-bottom:1.5px solid #999;">Address</span><br>
+												     <strong class="f-12 m-l-20 text-blue"></strong>
+												     </div>
+
+												 </div>
+
+											   </div>
+											   <div class="col-lg-9 col-md-12 m-round" style="background:none;margin-bottom:0px;">
+												    <div class="row">
+												        <div class="col-lg-6">
+												            <h6 class="w-100"><div class="bg-gradient-blue m-white" style="width:20px;height:20px;border-radius:10px;display:inline-block;padding-top:3px;padding-left:7px;">1</div> <strong class="gradient-blue f-16">Attendance Report </strong><span style="font-size:12px;" class="f-right"></span></h6>
+												            <div class="row m-round m-b-20" style="border-radius:5px;padding-bottom:10px;background:#FFF;margin-left:5px;padding:5px;box-shadow:0px 0px 1px 0px gray;">
+
+                										    <div class="col-5 p-0" style="padding:0px !important;color:#fff;"><canvas id="pieChart" width="100%" height="100%"></canvas></div>
+                										    <div class="col-3 p-0 text-center">
+                										        <div class="block1">
+                                                        		<div class="box1" style="background:#5e81f4;">
+                                                        			<p class="number1 p-0 m-0">
+                                                        				<span class="num1">100</span>
+                                                        				<span class="sub1">%</span>
+                                                        			</p>
+                                                        			<p class="title1 p-0 m-0">Overall</p>
+                                                        		</div>
+                                                        		<span class="dots1"></span>
+                                                        		<svg class="svg1">
+                                                        			<defs>
+                                                        				<linearGradient id="gradientStyle">
+                                                        					<stop offset="0%" stop-color="#5e81f4" />
+                                                        					<stop offset="100%" stop-color="#9698d6" />
+                                                        				</linearGradient>
+                                                        			</defs>
+                                                        			<circle class="circle1" cx="55" cy="55" r="39" />
+                                                        		</svg>
+                                                        	    </div>
+                                                        	                        											  <button class="btn btn-sm" style="border:1px solid #999;border-radius:15px;width:100%;text-align:center;padding:3px;font-size:10px;position:relative;padding-top:5px;background:#FFFFF7;">
+                    											  <font style="font-size:10px;font-weight:bold;" class="m-gray">NOT MARKED</font>
+                    											  <span class="m-gray" style="position:absolute;top:-7px;left:5px;background:#fff;font-size:9px;padding:none;padding-left:4px; padding-right:4px;border-radius:10px;line-height:12px;border:1px solid #999;"><span class="bg-m-gray badge" style="padding:3px;"></span> Today</span>
+                    											  </button>
+
+                										    </div>
+                										    <div class="col-3 p-0" style="">
+                										        <div class="block2">
+                                                        		<div class="box2" style="background:#ff808b;">
+                                                        			<p class="number2 p-0 m-0">
+                                                        				<span class="num2">0</span>
+                                                        				<span class="sub2">%</span>
+                                                        			</p>
+                                                        			<p class="title2 p-0 m-0">Mar 2025</p>
+                                                        		</div>
+                                                        		<span class="dots2"></span>
+                                                        		<svg class="svg2">
+                                                        			<defs>
+                                                        				<linearGradient id="gradientStyle2">
+                                                        					<stop offset="0%" stop-color="#ff808b" />
+                                                        					<stop offset="100%" stop-color="#9698d6" />
+                                                        				</linearGradient>
+                                                        			</defs>
+                                                        			<circle class="circle2" cx="55" cy="55" r="39" />
+                                                        		</svg>
+                                                        	    </div>
+                                                        	                        											  <button class="btn btn-sm m-l-10" style="border:1px solid #999;border-radius:15px;width:100%;text-align:center;padding:3px;font-size:10px;position:relative;padding-top:5px;background:#FFFFF7;">
+                    											  <font style="font-size:10px;font-weight:bold;" class="m-gray">NOT MARKED</font>
+                    											  <span class="m-gray" style="position:absolute;top:-7px;left:5px;background:#fff;font-size:9px;padding:none;padding-left:4px; padding-right:4px;border-radius:10px;line-height:12px;border:1px solid #999;"><span class="bg-m-gray badge" style="padding:3px;"></span> Yesterday</span>
+                    											  </button>
+                    											                  										    </div>
+                										    <div class="col-12" style="margin-top:8px;margin-bottom:10px;">
+                										        <div class="row" style="padding-left:4px;padding-right:4px;">
+                										            <div class="col-4" style="padding:4px;">
+                                                                        <div class="bg-m-blue1" style="border-radius:6px;">
+                                                                            <div class="m-white" style="padding:8px;padding-left:10px;padding-right:10px;">
+                                                                                <h6 class="f-12"style="margin-bottom:0px;">PRESENTS</h6>
+                                                                                <h3 class="f-16 m-t-0 m-b-0" style="line-height:20px;">
+                                                                                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                                                                <lord-icon
+                                                                                    src="https://cdn.lordicon.com/zmkotitn.json"
+                                                                                    trigger="loop"
+                                                                                    delay="2000"
+                                                                                    colors="primary:#ffffff"
+                                                                                    style="width:20px;height:20px;display:inline-block;">
+                                                                                </lord-icon>
+                                                                                <span  style="display:inline-block;float:right;">2</span></h3>
+                                                                                <p class="m-b-0 m-t-0" style="font-size:9px;">This Month<span class="f-right">0</span></p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                        <div class="col-4" style="padding:4px;">
+                                                                        <div class="bg-m-gray" style="border-radius:6px;">
+                                                                            <div class="m-white" style="padding:8px;padding-left:10px;padding-right:10px;">
+                                                                                <h6 class="f-12"style="margin-bottom:0px;">LEAVES</h6>
+                                                                                <h3 class="f-16 m-t-0 m-b-0" style="line-height:20px;">
+                                                                                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                                                                <lord-icon
+                                                                                    src="https://cdn.lordicon.com/zmkotitn.json"
+                                                                                    trigger="loop"
+                                                                                    delay="2100"
+                                                                                    colors="primary:#ffffff"
+                                                                                    style="width:20px;height:20px;display:inline-block;">
+                                                                                </lord-icon>
+                                                                                <span  style="display:inline-block;float:right;">0</span></h3>
+                                                                                <p class="m-b-0 m-t-0" style="font-size:9px;">This Month<span class="f-right">0</span></p>
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
+                                                                        <div class="col-4" style="padding:4px;">
+                                                                        <div class="bg-m-orange" style="border-radius:6px;">
+                                                                            <div class="m-white" style="padding:8px;padding-left:10px;padding-right:10px;">
+                                                                                <h6 class="f-12"style="margin-bottom:0px;">ABSENTS</h6>
+                                                                                <h3 class="f-16 m-t-0 m-b-0" style="line-height:20px;">
+                                                                                <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                                                                <lord-icon
+                                                                                    src="https://cdn.lordicon.com/zmkotitn.json"
+                                                                                    trigger="loop"
+                                                                                    delay="2200"
+                                                                                    colors="primary:#ffffff"
+                                                                                    style="width:20px;height:20px;display:inline-block;">
+                                                                                </lord-icon>
+                                                                                <span  style="display:inline-block;float:right;">0</span></h3>
+                                                                                <p class="m-b-0 m-t-0" style="font-size:9px;">This Month<span class="f-right">0</span></p>
+                                                                            </div>
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+                										        </div>
+                										    </div>
+                										    <h6 class="w-100"><div class="bg-gradient-blue m-white" style="width:20px;height:20px;border-radius:10px;display:inline-block;padding-top:3px;padding-left:6px;">2</div> <strong class="gradient-blue f-16">Class Tests Report </strong><span style="font-size:12px;" class="f-right"></span></h6>
+                										    <div class="row m-t-10 m-b-20 m-round" style="padding-bottom:10px;padding:5px;background:#FFF;margin-left:5px;box-shadow:0px 0px 1px 0px gray;">
+
+                    										                   														<div class="col-12 p-0">
+                														    <div class="row m-10 p-10 p-b-0 m-round" style="background:#fff;">
+                														        <div class="col-8 m-gray p-0 f-10" style="line-height:15px;">
+                														            <strong class="m-dblue f-16"><i class="ti-book"></i> English</strong><br>
+                														            <div style="margin-top:5px;margin-bottom:5px;">
+                														            <strong class="f-14 " style="display:inline-block;">0%</strong>
+                														            <div class="progress" style="height:8px;border-radius:5px;width:90px;display:inline-block;">
+
+                            														  <div class="progress-bar  f-left" role="progressbar" aria-valuenow="0"
+                            														  aria-valuemin="0" aria-valuemax="100" style="width:0%;border-radius:5px;">
+
+                            														  </div>
+
+                            														</div>
+                            														</div>
+                														            <span class="bg-m-orange badge" style="padding:5px;"></span> TOTAL <b>CLASS TESTS</b> (<strong class="m-orange f-12">0</strong>)<br>
+                														            <span class="bg-m-gray badge" style="padding:5px;"></span> TOTAL <b>MARKS</b> (<strong class="m-gray f-12">0</strong>)<br>
+                														            <span class="bg-m-blue1 badge" style="padding:5px;"></span> OBTAINED <b>MARKS</b> (<strong class="m-blue1 f-12">0</strong>)
+                														        </div>
+                														        <div class="col-4 p-0">
+                														                            														            <input type="hidden" value="0" id="perval0">
+                														            <div id="progress0">
+                                                                                      <svg viewbox="0 0 110 100">
+                                                                                        <linearGradient id="gradient0" x1="0" y1="0" x2="0" y2="100%">
+                                                                                          <stop offset="0%" stop-color="#f5365c" />
+                                                                                          <stop offset="100%" stop-color="#f56036" />
+                                                                                        </linearGradient>
+                                                                                        <path class="grey" d="M30,90 A40,40 0 1,1 80,90" fill='none' />
+                                                                                        <path id="blue" fill='none'  class="blue" d="M30,90 A40,40 0 1,1 80,90" style="stroke: url(#gradient0);"/>
+
+                                                                                        <text x="50%" y="60%"  dominant-baseline="middle" text-anchor="middle" style="font-size:18px;font-weight:900;">0%</text>
+                                                                                        <text x="50%" y="90%" dominant-baseline="middle" text-anchor="middle" style="font-size:12px;">score</text>
+                                                                                      </svg>
+                                                                                    </div>
+                														        </div>
+                														    </div>
+                														</div>
+
+                														                														<div class="col-12 p-0">
+                														    <div class="row m-10 p-10 p-b-0 m-round" style="background:#fff;">
+                														        <div class="col-8 m-gray p-0 f-10" style="line-height:15px;">
+                														            <strong class="m-dblue f-16"><i class="ti-book"></i> Nepali</strong><br>
+                														            <div style="margin-top:5px;margin-bottom:5px;">
+                														            <strong class="f-14 " style="display:inline-block;">0%</strong>
+                														            <div class="progress" style="height:8px;border-radius:5px;width:90px;display:inline-block;">
+
+                            														  <div class="progress-bar  f-left" role="progressbar" aria-valuenow="0"
+                            														  aria-valuemin="0" aria-valuemax="100" style="width:0%;border-radius:5px;">
+
+                            														  </div>
+
+                            														</div>
+                            														</div>
+                														            <span class="bg-m-orange badge" style="padding:5px;"></span> TOTAL <b>CLASS TESTS</b> (<strong class="m-orange f-12">0</strong>)<br>
+                														            <span class="bg-m-gray badge" style="padding:5px;"></span> TOTAL <b>MARKS</b> (<strong class="m-gray f-12">0</strong>)<br>
+                														            <span class="bg-m-blue1 badge" style="padding:5px;"></span> OBTAINED <b>MARKS</b> (<strong class="m-blue1 f-12">0</strong>)
+                														        </div>
+                														        <div class="col-4 p-0">
+                														                            														            <input type="hidden" value="0" id="perval1">
+                														            <div id="progress1">
+                                                                                      <svg viewbox="0 0 110 100">
+                                                                                        <linearGradient id="gradient1" x1="0" y1="0" x2="0" y2="100%">
+                                                                                          <stop offset="0%" stop-color="#f5365c" />
+                                                                                          <stop offset="100%" stop-color="#f56036" />
+                                                                                        </linearGradient>
+                                                                                        <path class="grey" d="M30,90 A40,40 0 1,1 80,90" fill='none' />
+                                                                                        <path id="blue" fill='none'  class="blue" d="M30,90 A40,40 0 1,1 80,90" style="stroke: url(#gradient1);"/>
+
+                                                                                        <text x="50%" y="60%"  dominant-baseline="middle" text-anchor="middle" style="font-size:18px;font-weight:900;">0%</text>
+                                                                                        <text x="50%" y="90%" dominant-baseline="middle" text-anchor="middle" style="font-size:12px;">score</text>
+                                                                                      </svg>
+                                                                                    </div>
+                														        </div>
+                														    </div>
+                														</div>
+
+                														                														<div class="col-12 p-0">
+                														    <div class="row m-10 p-10 p-b-0 m-round" style="background:#fff;">
+                														        <div class="col-8 m-gray p-0 f-10" style="line-height:15px;">
+                														            <strong class="m-dblue f-16"><i class="ti-book"></i> Science</strong><br>
+                														            <div style="margin-top:5px;margin-bottom:5px;">
+                														            <strong class="f-14 " style="display:inline-block;">0%</strong>
+                														            <div class="progress" style="height:8px;border-radius:5px;width:90px;display:inline-block;">
+
+                            														  <div class="progress-bar  f-left" role="progressbar" aria-valuenow="0"
+                            														  aria-valuemin="0" aria-valuemax="100" style="width:0%;border-radius:5px;">
+
+                            														  </div>
+
+                            														</div>
+                            														</div>
+                														            <span class="bg-m-orange badge" style="padding:5px;"></span> TOTAL <b>CLASS TESTS</b> (<strong class="m-orange f-12">0</strong>)<br>
+                														            <span class="bg-m-gray badge" style="padding:5px;"></span> TOTAL <b>MARKS</b> (<strong class="m-gray f-12">0</strong>)<br>
+                														            <span class="bg-m-blue1 badge" style="padding:5px;"></span> OBTAINED <b>MARKS</b> (<strong class="m-blue1 f-12">0</strong>)
+                														        </div>
+                														        <div class="col-4 p-0">
+                														                            														            <input type="hidden" value="0" id="perval2">
+                														            <div id="progress2">
+                                                                                      <svg viewbox="0 0 110 100">
+                                                                                        <linearGradient id="gradient2" x1="0" y1="0" x2="0" y2="100%">
+                                                                                          <stop offset="0%" stop-color="#f5365c" />
+                                                                                          <stop offset="100%" stop-color="#f56036" />
+                                                                                        </linearGradient>
+                                                                                        <path class="grey" d="M30,90 A40,40 0 1,1 80,90" fill='none' />
+                                                                                        <path id="blue" fill='none'  class="blue" d="M30,90 A40,40 0 1,1 80,90" style="stroke: url(#gradient2);"/>
+
+                                                                                        <text x="50%" y="60%"  dominant-baseline="middle" text-anchor="middle" style="font-size:18px;font-weight:900;">0%</text>
+                                                                                        <text x="50%" y="90%" dominant-baseline="middle" text-anchor="middle" style="font-size:12px;">score</text>
+                                                                                      </svg>
+                                                                                    </div>
+                														        </div>
+                														    </div>
+                														</div>
+
+
+                    										</div>
+
+												        </div>
+												        <div class="col-lg-6">
+												            <h6 class="w-100"><div class="bg-gradient-blue m-white" style="width:20px;height:20px;border-radius:10px;display:inline-block;padding-top:3px;padding-left:6px;">3</div> <strong class="gradient-blue f-16">Examination Report </strong><span style="font-size:12px;" class="f-right"></span></h6>
+												            <div class="row m-round m-t-10 m-b-20" style="padding:5px;background:#fff;margin-left:5px;padding-top:15px;box-shadow:0px 0px 1px 0px gray;">
+                    										                 											 <div  class="col-12">
+            												             												    <div class="barWrapper m-t-20">
+                                                                <div class="progress text-right m-round" style="height:8px;">
+                                                                  <div class="progress-bar bg-m-dblue" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="border-top-left-radius:10px;border-bottom-left-radius:10px;">
+                                                                     <span  class="popOver f-right tiptool" data-toggle="tooltip" data-placement="top" title="67%"> </span>
+                                                                  </div>
+                                                                </div>
+                                                                <span class="progressText f-12 m-gray" style=""><B>First terminal</B><font style="float:right;"><strong class="m-dblue">200</strong>/300</font></span>
+                                                                </div>
+
+            												             												 </div>
+            												 <div class="col-12" style="margin-top:0px;margin-bottom:0px;padding-bottom:0px;">
+            										        <div class="row" style="padding-left:4px;padding-right:4px;">
+            										            <div class="col-4" style="padding:4px;padding-top:20px;">
+                                                                    <div class="bg-m-dblue" style="border-radius:6px;">
+                                                                        <div class="m-white" style="padding:8px;padding-left:10px;padding-right:10px;">
+                                                                            <h6 class="f-12"style="margin-bottom:0px;">OBTAINED</h6>
+                                                                            <h3 class="f-16 m-t-0 m-b-0" style="line-height:20px;">
+                                                                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                                                            <lord-icon
+                                                                                src="https://cdn.lordicon.com/zmkotitn.json"
+                                                                                trigger="loop"
+                                                                                delay="2300"
+                                                                                colors="primary:#ffffff"
+                                                                                style="width:20px;height:20px;display:inline-block;">
+                                                                            </lord-icon>
+                                                                            <span  style="display:inline-block;float:right;">200</span></h3>
+                                                                            <p class="m-b-0 m-t-0" style="font-size:9px;">IN ALL EXAMS</span></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                    <div class="col-4" style="padding:4px;padding-top:20px;">
+                                                                    <div class="bg-m-gray" style="border-radius:6px;">
+                                                                        <div class="m-white" style="padding:8px;padding-left:10px;padding-right:10px;">
+                                                                            <h6 class="f-12"style="margin-bottom:0px;">TOTAL</h6>
+                                                                            <h3 class="f-16 m-t-0 m-b-0" style="line-height:20px;">
+                                                                            <script src="https://cdn.lordicon.com/bhenfmcm.js"></script>
+                                                                            <lord-icon
+                                                                                src="https://cdn.lordicon.com/zmkotitn.json"
+                                                                                trigger="loop"
+                                                                                delay="2400"
+                                                                                colors="primary:#ffffff"
+                                                                                style="width:20px;height:20px;display:inline-block;">
+                                                                            </lord-icon>
+                                                                            <span  style="display:inline-block;float:right;">300</span></h3>
+                                                                            <p class="m-b-0 m-t-0" style="font-size:9px;">IN ALL EXAMS</span></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    </div>
+                                                                    <div class="col-4" style="padding:4px;padding-top:0px;padding-bottom:0px;">
+                                                                    <div class="block3">
+                                                            		<div class="box3" style="background:#5e81f4;">
+                                                            			<p class="number3 p-0 m-0">
+                                                            				<span class="num3">67</span>
+                                                            				<span class="sub3">%</span>
+                                                            			</p>
+                                                            			<p class="title3 p-0 m-0">Overall</p>
+                                                            		</div>
+                                                            		<style>.dots3::after{background-color:#5e81f4;}</style>
+                                                            		<span class="dots3"></span>
+                                                            		<svg class="svg3">
+                                                            			<defs>
+                                                            				<linearGradient id="gradientStyle3">
+                                                            					<stop offset="0%" stop-color="#5e81f4" />
+                                                            					<stop offset="100%" stop-color="#9698d6" />
+                                                            				</linearGradient>
+                                                            			</defs>
+                                                            			<circle class="circle3" cx="55" cy="55" r="39" />
+                                                            		</svg>
+                                                            	    </div>
+                                                                    </div>
+                                                                </div>
+            										        </div>
+                											                 									        </div>
+                									        <h6 class="w-100"><div class="bg-gradient-blue m-white" style="width:20px;height:20px;border-radius:10px;display:inline-block;padding-top:2px;padding-left:5px;">4</div> <strong class="gradient-blue f-16">Fee Report </strong><span style="font-size:12px;" class="f-right"></span></h6>
+                									        <div class="row m-t-10 m-round" style="padding:5px;background:#fff;margin-left:5px;box-shadow:0px 0px 1px 0px gray;">
+                										    <div class="col-12 p-0">
+                										                     										        <div class="row p-10 p-t-20 p-b-20 showfd" style="background:#fff;margin:15px;border-bottom:4px solid #f6f7fb;">
+                										            <div class="col-2 p-0">
+                										               <i class="fa fa-money f-14 bg-m-dblue m-white" style="border-radius:50%;padding:5px;"></i>
+                										            </div>
+                										            <div class="col-8 p-0 p-r-10">
+                										                <strong class="m-dblue f-20 m-b-10" style="font-weight:900;line-height:20px;"><span id="symbol">$</span> 10,650                										                                										                    <span class="bg-gradient-green m-white badge f-right f-10 m-r-10" style="padding:5px;"><i class="fa fa-check"></i> PAID</span>
+                										                                										                </strong><br>
+                										                <span class="f-12 m-dblue"  style="line-height:12px;"> Fees of <b>
+                										                March, 2025                        												 </b>
+                        												 </span>
+                										            </div>
+                										            <div class="col-2 p-0 text-center">
+                										                <span id="showfi" class="m-blue1 f-10">
+                            									       <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+                                                                        <lord-icon
+                                                                            src="https://cdn.lordicon.com/rxufjlal.json"
+                                                                            trigger="loop"
+                                                                            delay="3000"
+                                                                            colors="primary:#e7e7e8"
+                                                                            state="intro"
+                                                                            style="width:35px;height:35px">
+                                                                        </lord-icon>
+                            									       </span>
+                            									       <span id="hidefi" class="m-gray">
+                            									       <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+                                                                        <lord-icon
+                                                                            src="https://cdn.lordicon.com/xsdtfyne.json"
+                                                                            trigger="loop"
+                                                                            delay="2000"
+                                                                            colors="primary:#e7e7e8"
+                                                                            style="width:35px;height:35px">
+                                                                        </lord-icon>
+                            									       </span>
+                										            </div>
+                										            <div class="col-12 m-dblue p-t-10 p-0 f-10" id="fd" style="border-top:1px solid #4d4cac;line-height:12px;">
+                										                <span class="p-l-10">Submission Date<strong class="f-right m-r-10">05 March, 2025</strong></span><br>
+                										                <span class="p-l-10">Total Amount<strong class="f-right m-r-10"><span id="symbol">$</span> 10650</strong></span><br>
+                										                <span class="p-l-10">Paid Amount<strong class="f-right m-r-10"><span id="symbol">$</span> 10650</strong></span>
+                										                <hr class="m-0 p-0" style="border:none;background-color:#4d4cac;height:1px;margin-top:5px !important;margin-bottom:5px !important;">
+                										                <span class="p-l-10">Remaining Balance<strong class="f-right m-r-10"><span id="symbol">$</span> 0</strong></span>
+                										            </div>
+                										        </div>
+                										                    										        <div class="row p-10 p-t-20 p-b-20 showfd" style="background:#fff;margin:15px;border-bottom:4px solid #f6f7fb;">
+                										            <div class="col-2 p-0">
+                										               <i class="fa fa-money f-14 bg-m-dblue m-white" style="border-radius:50%;padding:5px;"></i>
+                										            </div>
+                										            <div class="col-8 p-0 p-r-10">
+                										                <strong class="m-dblue f-20 m-b-10" style="font-weight:900;line-height:20px;"><span id="symbol">$</span> 20,300                										                                										                    <span class="bg-c-yellow m-white badge f-10 f-right m-r-10" style="padding:5px;">PARTIALLY PAID</span>
+                										                                										                </strong><br>
+                										                <span class="f-12 m-dblue"  style="line-height:12px;"> Fees of <b>
+                										                February, 2025                        												 </b>
+                        												 </span>
+                										            </div>
+                										            <div class="col-2 p-0 text-center">
+                										                <span id="showfi" class="m-blue1 f-10">
+                            									       <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+                                                                        <lord-icon
+                                                                            src="https://cdn.lordicon.com/rxufjlal.json"
+                                                                            trigger="loop"
+                                                                            delay="3000"
+                                                                            colors="primary:#e7e7e8"
+                                                                            state="intro"
+                                                                            style="width:35px;height:35px">
+                                                                        </lord-icon>
+                            									       </span>
+                            									       <span id="hidefi" class="m-gray">
+                            									       <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+                                                                        <lord-icon
+                                                                            src="https://cdn.lordicon.com/xsdtfyne.json"
+                                                                            trigger="loop"
+                                                                            delay="2000"
+                                                                            colors="primary:#e7e7e8"
+                                                                            style="width:35px;height:35px">
+                                                                        </lord-icon>
+                            									       </span>
+                										            </div>
+                										            <div class="col-12 m-dblue p-t-10 p-0 f-10" id="fd" style="border-top:1px solid #4d4cac;line-height:12px;">
+                										                <span class="p-l-10">Submission Date<strong class="f-right m-r-10">12 February, 2025</strong></span><br>
+                										                <span class="p-l-10">Total Amount<strong class="f-right m-r-10"><span id="symbol">$</span> 20300</strong></span><br>
+                										                <span class="p-l-10">Paid Amount<strong class="f-right m-r-10"><span id="symbol">$</span> 1000</strong></span>
+                										                <hr class="m-0 p-0" style="border:none;background-color:#4d4cac;height:1px;margin-top:5px !important;margin-bottom:5px !important;">
+                										                <span class="p-l-10">Remaining Balance<strong class="f-right m-r-10"><span id="symbol">$</span> 19300</strong></span>
+                										            </div>
+                										        </div>
+                										                    										        <div class="row p-10 p-t-20 p-b-20 showfd" style="background:#fff;margin:15px;border-bottom:4px solid #f6f7fb;">
+                										            <div class="col-2 p-0">
+                										               <i class="fa fa-money f-14 bg-m-dblue m-white" style="border-radius:50%;padding:5px;"></i>
+                										            </div>
+                										            <div class="col-8 p-0 p-r-10">
+                										                <strong class="m-dblue f-20 m-b-10" style="font-weight:900;line-height:20px;"><span id="symbol">$</span> 10,650                										                                										                    <span class="bg-c-yellow m-white badge f-10 f-right m-r-10" style="padding:5px;">PARTIALLY PAID</span>
+                										                                										                </strong><br>
+                										                <span class="f-12 m-dblue"  style="line-height:12px;"> Fees of <b>
+                										                January, 0007                        												 </b>
+                        												 </span>
+                										            </div>
+                										            <div class="col-2 p-0 text-center">
+                										                <span id="showfi" class="m-blue1 f-10">
+                            									       <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+                                                                        <lord-icon
+                                                                            src="https://cdn.lordicon.com/rxufjlal.json"
+                                                                            trigger="loop"
+                                                                            delay="3000"
+                                                                            colors="primary:#e7e7e8"
+                                                                            state="intro"
+                                                                            style="width:35px;height:35px">
+                                                                        </lord-icon>
+                            									       </span>
+                            									       <span id="hidefi" class="m-gray">
+                            									       <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
+                                                                        <lord-icon
+                                                                            src="https://cdn.lordicon.com/xsdtfyne.json"
+                                                                            trigger="loop"
+                                                                            delay="2000"
+                                                                            colors="primary:#e7e7e8"
+                                                                            style="width:35px;height:35px">
+                                                                        </lord-icon>
+                            									       </span>
+                										            </div>
+                										            <div class="col-12 m-dblue p-t-10 p-0 f-10" id="fd" style="border-top:1px solid #4d4cac;line-height:12px;">
+                										                <span class="p-l-10">Submission Date<strong class="f-right m-r-10">07 January, 2025</strong></span><br>
+                										                <span class="p-l-10">Total Amount<strong class="f-right m-r-10"><span id="symbol">$</span> 10650</strong></span><br>
+                										                <span class="p-l-10">Paid Amount<strong class="f-right m-r-10"><span id="symbol">$</span> 1000</strong></span>
+                										                <hr class="m-0 p-0" style="border:none;background-color:#4d4cac;height:1px;margin-top:5px !important;margin-bottom:5px !important;">
+                										                <span class="p-l-10">Remaining Balance<strong class="f-right m-r-10"><span id="symbol">$</span> 9650</strong></span>
+                										            </div>
+                										        </div>
+                										                												                										    </div>
+
+                										</div>
+												        </div>
+												    </div>
+											   </div>
+
 										</div>
-										<div class="row" style="border:0px solid #9698d6;padding:5px 5px 5px 15px;">
-										<h6 class="w-100" style="border-bottom:1px solid #999;"><div class="bg-gradient-dark m-white" style="width:20px;height:20px;border-radius:10px;display:inline-block;padding-top:3px;padding-left:7px;">1</div> Student Information <span style="font-size:12px;" class="f-right"></span></h6>
-										    <div  class="col-lg-4">
-										    <div class="m-div">
-									        <label class="m-label bg-gradient-blue m-white">Student Name*</label>
-											<input type="text" class="form-control m-field" placeholder="Name of Student" id="studentname" name="studentname" required>
-											</div>
-											<div class="m-div">
-									        <label class="m-label bg-gradient-gray m-white">Picture - Optional</label>
-											<input type="file" class="form-control m-field" name="fileToUpload" id="fileToUpload">
-											</div>
-											<span class="bg-c-yellow m-round m-t-0 m-l-10" style="font-size:10px;padding-left:5px; padding-right:5px;">Max size 100KB</span>
-											</div>
-											<div class="col-lg-4">
-											<div class="m-div">
-										    <label class="m-label bg-gradient-blue m-white">Last Registration: <strong>REG0101</strong></label>
-											<input style="" type="text" class="form-control m-field" placeholder="Registration No" onblur="checkMailStatus()" id="reg" name="reg" required>
-											</div>
-											<span id="checkReg" class="bg-gradient-red m-round m-t-0 m-l-10 m-white" style="font-size:10px;"></span>
-											<div class="m-div">
-									        <label class="m-label bg-gradient-blue m-white">Date of Admission*</label>
-											<input type="date" class="form-control m-field" name="doa" value="2025-03-01" required>
-											</div>
-											</div>
-											<div class="col-lg-4">
-											<div class="m-div p-t-0 p-b-0">
-									        <label class="m-label bg-gradient-blue m-white" style="margin-top:-9px;z-index:1001;">Select Class*</label>
-											<select name="class" id="searchlist" class="form-control m-field" required>
 
-											<option value='200720'>One</option><option value='210008'>Two</option>											</select>
-											</div>
-											<div class="m-div">
-									        <label class="m-label bg-gradient-blue m-white">Discount In Fee*</label>
-											<input type="number" class="form-control m-field" placeholder="In %" name="discount" required>
-											</div>
-											<div class="m-div">
-									        <label class="m-label bg-gradient-gray m-white">Mobile No. for SMS/WhatsApp</label>
-											<input class="form-control m-field" type="tel" placeholder="e.g +44xxxxxxxxxx" name="Gphone" >
-											</div>
-											</div>
-										</div>
-										<div class="row" style="border:0px solid #9698d6;padding:5px 5px 5px 15px;">
-										<h6 class="w-100" style="border-bottom:1px solid #999;"><div class="bg-gradient-dark m-white" style="width:20px;height:20px;border-radius:10px;display:inline-block;padding-top:2px;padding-left:6px;">2</div> Other Information <span style="font-size:12px;" class="f-right"></span></h6>
-										    <div  class="col-lg-4">
-
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Date Of Birth</label>
-										    <input type="date" name="dob" class="form-control m-field">
-										    </div>
-							                <div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Gender</label>
-											<select name="gender" class="form-control m-field">
-											<option value="">Gender</option>
-											<option value="male">Male</option>
-											<option value="female">Female</option>
-											</select>
-											</div>
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Any Identification Mark?</label>
-											<input type="text" placeholder="Any Identification Mark?" name="idmark" class="form-control m-field">
-											</div>
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Blood Group</label>
-											<select name="blood" class="form-control m-field">
-											<option value="">Blood Group</option>
-											<option value="A+">A+</option>
-											<option value="A-">A-</option>
-											<option value="B+">B+</option>
-											<option value="B-">B-</option>
-											<option value="O+">O+</option>
-											<option value="O-">O-</option>
-											<option value="AB+">AB+</option>
-											<option value="AB-">AB-</option>
-											</select>
-											</div>
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Disease If Any?</label>
-											<input type="text" placeholder="Disease If Any?" name="desease" class="form-control m-field">
-											</div>
-											</div>
-											<div class="col-lg-4">
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Student Birth Form ID / NIC</label>
-											<input type="text" placeholder="Student Birth Form ID / NIC" name="scnic" class="form-control m-field">
-											</div>
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Cast</label>
-											<input type="text" placeholder="Cast" name="cast" class="form-control m-field">
-											</div>
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Previous School</label>
-											<input type="text" placeholder="Previous School" name="pr" class="form-control m-field">
-											</div>
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Previous ID / Board Roll No</label>
-											<input type="text" placeholder="Previous ID / Board Roll No" name="previousid" class="form-control m-field">
-											</div>
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Any Additional Note</label>
-											<input type="text" placeholder="Any Additional Note" name="additionalinfo" class="form-control m-field">
-											</div>
-
-											</div>
-											<div class="col-lg-4">
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Orphan Student</label>
-											<select name="os" class="form-control m-field">
-											<option value="">Select</option>
-											<option value="Yes">YES</option>
-											<option value="No">NO</option>
-											</select>
-											</div>
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">OSC</label>
-											<select name="osc" class="form-control m-field">
-											<option value="">Select</option>
-											<option value="Yes">YES</option>
-											<option value="No">NO</option>
-											</select>
-											</div>
-											<div class="m-div p-t-0 p-b-0 ">
-										    <label class="m-label bg-gradient-gray m-white" style="margin-top:-9px;z-index:1001;">Religion</label>
-											<select name="religion" id="searchlist1" class="form-control m-field">
-											<option value="">Religion</option>
-											<option value="African Traditional &amp; Diasporic">African Traditional &amp; Diasporic</option>
-											<option value="Agnostic">Agnostic</option>
-											<option value="Atheist">Atheist</option>
-											<option value="Baha'i">Baha'i</option>
-											<option value="Buddhism">Buddhism</option>
-											<option value="Cao Dai">Cao Dai</option>
-											<option value="Chinese traditional religion">Chinese traditional religion</option>
-											<option value="Christianity">Christianity</option>
-											<option value="Hinduism">Hinduism</option>
-											<option value="Islam">Islam</option>
-											<option value="Jainism">Jainism</option>
-											<option value="Juche">Juche</option>
-											<option value="Judaism">Judaism</option>
-											<option value="Muslim">Muslim</option>
-											<option value="Muslim &amp; Hafiz">Muslim &amp; Hafiz</option>
-											<option value="Non-Muslim">Non-Muslim</option>
-											<option value="Neo-Paganism">Neo-Paganism</option>
-											<option value="Nonreligious">Nonreligious</option>
-											<option value="Rastafarianism">Rastafarianism</option>
-											<option value="Secular">Secular</option>
-											<option value="Shinto">Shinto</option>
-											<option value="Sikhism">Sikhism</option>
-											<option value="Spiritism">Spiritism</option>
-											<option value="Tenrikyo">Tenrikyo</option>
-											<option value="Unitarian-Universalism">Unitarian-Universalism</option>
-											<option value="Zoroastrianism">Zoroastrianism</option>
-											<option value="primal-indigenous">primal-indigenous</option>
-											<option value="Other">Other</option>
-											</select>
-											</div>
-											<div class="m-div p-t-0 p-b-0">
-										    <label class="m-label bg-gradient-gray m-white" style="margin-top:-9px;z-index:2;">Select Family</label>
-											<select name="family" id="searchlist2" class="form-control m-field">
-											<option value="0">Select</option>
-																						</select>
-											</div>
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Total Siblings</label>
-							                <input type="number" name="noc" placeholder="Total Siblings" class="form-control m-field">
-							                </div>
-											</div>
-											<div class="col-lg-8">
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Address</label>
-											<input type="text" placeholder="Address" class="form-control m-field" name="address">
-											</div>
-							                </div>
-
-											<div class="col-lg-4 m-t-10">
-
-							                <button type="button" class="btn bg-c-yellow m-t-10" style="border-radius:25px;" data-toggle="modal" data-target="#myModal"><i class="ti-plus"></i> Add Parents</button>
-
-
-											</div>
-
-										</div>
-                                        <div class="row" style="border:0px solid #9698d6;padding:5px 5px 5px 15px;">
-										<h6 class="w-100" style="border-bottom:1px solid #999;"><div class="bg-gradient-dark m-white" style="width:20px;height:20px;border-radius:10px;display:inline-block;padding-top:2px;padding-left:6px;">3</div> Father/Guardien Information <span style="font-size:12px;" class="f-right"></span></h6>
-										    <div  class="col-lg-4">
-										    <div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Father Name</label>
-											<input type="text" placeholder="Father Name" name="fname" id="fname" class="form-control m-field">
-											</div>
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Education</label>
-							                <input type="text" placeholder="Education" name="fedu" id="fedu" class="form-control m-field">
-							                </div>
-											</div>
-											<div class="col-lg-4">
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Father National ID</label>
-											<input type="text" placeholder="Father National ID" name="fcnic" id="fcnic" class="form-control m-field">
-							                </div>
-							                <div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Mobile No</label>
-							                <input type="text" placeholder="Mobile No" name="fmobile" id="fmobile" class="form-control m-field">
-							                </div>
-											</div>
-											<div class="col-lg-4">
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Occupation</label>
-											<input type="text" placeholder="Occupation" name="fo" id="fo" class="form-control m-field">
-											</div>
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Profession</label>
-											<input type="text" placeholder="Profession" name="fp" id="fp" class="form-control m-field">
-											</div>
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Income</label>
-											<input type="number" placeholder="Income" name="fi" id="fi" class="form-control m-field">
-											</div>
-											</div>
-
-										</div>
-										<div class="row" style="border:0px solid #9698d6;padding:5px 5px 5px 15px;">
-										<h6 class="w-100" style="border-bottom:1px solid #999;"><div class="bg-gradient-dark m-white" style="width:20px;height:20px;border-radius:10px;display:inline-block;padding-top:2px;padding-left:5px;">4</div> Mother Information <span style="font-size:12px;" class="f-right"></span></h6>
-										    <div  class="col-lg-4">
-										    <div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Mother Name</label>
-											<input type="text" placeholder="Mother Name" name="mname" id="mname" class="form-control m-field">
-											</div>
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Education</label>
-							                <input type="text" placeholder="Education" name="medu" id="medu" class="form-control m-field">
-							                </div>
-											</div>
-											<div class="col-lg-4">
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Mother National ID</label>
-											<input type="text" placeholder="Mother National ID" name="mcnic" id="mcnic" class="form-control m-field">
-											</div>
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Mobile No</label>
-											<input type="text" placeholder="Mobile No" name="mmobile" id="mmobile" class="form-control m-field">
-											</div>
-											</div>
-											<div class="col-lg-4">
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Occupation</label>
-											<input type="text" placeholder="Occupation" name="mo" id="mo" class="form-control m-field">
-											</div>
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Profession</label>
-											<input type="text" placeholder="Profession" name="mp" id="mp" class="form-control m-field">
-											</div>
-											<div class="m-div ">
-										    <label class="m-label bg-gradient-gray m-white">Income</label>
-											<input type="number" placeholder="Income" name="mi" id="mi" class="form-control m-field">
-											</div>
-											</div>
-
-										</div><hr>
-										<div class="row" style="padding:5px 5px 5px 15px;">
-										<h5 class="w-100 text-center">
-										<button class="btn btn-large bg-c-yellow" style="border-radius:20px;" type="reset"><i class="ti-reload"></i> Reset</button>
-										<button class="btn btn-large bg-m-dblue m-white" style="width:170px;padding:10px;border-radius:20px;" type="submit" id="submitBtn" name="submit"><i class="ti-check"></i>   Submit</button>
-										</h5>
-										</form>
-
-										<!-- Modal -->
-                                              <div class="modal fade" id="myModal" role="dialog">
-                                                <div class="modal-dialog modal-md m-round">
-                                                  <div class="modal-content">
-                                                    <div class="modal-header p-10 p-t-0 p-b-0 bg-gradient-dark m-white">
-
-                                                      <strong class="modal-title">Add Parents Record if exist.</strong>
-                                                      <button type="button" class="close m-white btn-lg" data-dismiss="modal">&times;</button>
-                                                    </div>
-                                                    <div class="modal-body text-center">
-                                                    <div class="m-div text-left ">
-										            <label class="m-label bg-gradient-blue m-white">Father National ID*</label>
-                                                      <input type="text" class="form-control m-field" name="spid" id="spid" placeholder="Father National ID" required>
-                                                      </div>
-                                                      <button class="btn btn-sm bg-gradient-green m-white p-10 m-t-10" style="border-radius:20px;" id="spidb"><i class="ti-search"></i> Search</button>
-
-                                                      <p id="spidr" class="m-t-10"></p>
-                                                    </div>
-                                                    <div class="modal-footer" style="padding-top:5px; padding-bottom:5px;">
-                                                      <button type="button" class="btn bg-c-yellow btn-sm" style="border-radius:20px;" data-dismiss="modal">Close</button>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
-
-										</div>
 										<!-- Row end -->
 										<!-- Row start -->
 
@@ -1482,131 +1944,11 @@
             </div>
         </div>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="addnewclass" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header  bg-m-blue1 m-white" style="padding-top:2px;padding-bottom:2px;">
-
-                    <span class="modal-title text-center" style="display:inline;"><img src="assets/images/icon1.png" style="max-width:20px;"> eSkooly</span>
-                    <button type="button" class="close" style="display:inline;font-size:22px;" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body" style="padding-top:5px;padding-bottom:5px;">
-                <strong><i class="ti-alert"></i> Alert</strong>
-                <p class="f-12">No Class has been found. Please add at leaset one Class before to access this feature.</p>
-                </div>
-                <div class="modal-footer" style="padding-top:5px;padding-bottom:10px;">
-                    <a href="addnewclass.php"><button type="button" class="btn btn-sm bg-gradient-success m-white f-10">Ok, Add Class</button></a>
 
 
-                </div>
-            </div>
+<!-- Main-body end -->
 
-        </div>
-    </div>
-<!-- end Modal -->
-<!-- Modal -->
-    <div class="modal fade" id="addsubjects" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header  bg-m-blue1 m-white" style="padding-top:2px;padding-bottom:2px;">
-
-                    <span class="modal-title text-center" style="display:inline;"><img src="assets/images/icon1.png" style="max-width:20px;"> eSkooly</span>
-                    <button type="button" class="close" style="display:inline;font-size:22px;" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body" style="padding-top:5px;padding-bottom:5px;">
-                <strong><i class="ti-alert"></i> Alert</strong>
-                <p class="f-12">No Subject Found against this class. Please assign subjects to this class first!</p>
-                </div>
-                <div class="modal-footer" style="padding-top:5px;padding-bottom:10px;">
-                    <a href="subjects.php"><button type="button" class="btn btn-sm bg-gradient-success m-white f-10">Ok, Add Subjects</button></a>
-
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-<!-- end Modal -->
-<!-- Modal -->
-    <div class="modal fade" id="addteacher" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header  bg-m-blue1 m-white" style="padding-top:2px;padding-bottom:2px;">
-
-                    <span class="modal-title text-center" style="display:inline;"><img src="assets/images/icon1.png" style="max-width:20px;"> eSkooly</span>
-                    <button type="button" class="close" style="display:inline;font-size:22px;" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body" style="padding-top:5px;padding-bottom:5px;">
-                <strong><i class="ti-alert"></i> Alert</strong>
-                <p class="f-12">0 Teachers ! Please add a Teacher first.</p>
-                </div>
-                <div class="modal-footer" style="padding-top:5px;padding-bottom:10px;">
-                    <a href="addnewteacher.php"><button type="button" class="btn btn-sm bg-gradient-success m-white f-10">Ok, Add Teacher</button></a>
-
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-<!-- end Modal -->
-<!-- Modal -->
-    <div class="modal fade" id="addchaptersm" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header  bg-m-blue1 m-white" style="padding-top:2px;padding-bottom:2px;">
-
-                    <span class="modal-title text-center" style="display:inline;"><img src="assets/images/icon1.png" style="max-width:20px;"> eSkooly</span>
-                    <button type="button" class="close" style="display:inline;font-size:22px;" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body" style="padding-top:5px;padding-bottom:5px;">
-                <strong><i class="ti-alert"></i> Alert</strong>
-                <p class="f-12">No Chapter Found against this class and subject. Please add chapters first!</p>
-                </div>
-                <div class="modal-footer" style="padding-top:5px;padding-bottom:10px;">
-                    <a href="addchapters.php"><button type="button" class="btn btn-sm bg-gradient-success m-white f-10">Ok, Add Chapters</button></a>
-
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-<!-- end Modal -->
-<!-- Modal -->
-    <div class="modal fade" id="addstudent" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header  bg-m-blue1 m-white" style="padding-top:2px;padding-bottom:2px;">
-
-                    <span class="modal-title text-center" style="display:inline;"><img src="assets/images/icon1.png" style="max-width:20px;"> eSkooly</span>
-                    <button type="button" class="close" style="display:inline;font-size:22px;" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body" style="padding-top:5px;padding-bottom:5px;">
-                <strong><i class="ti-alert"></i> Alert</strong>
-                <p class="f-12">0 Students in this class ! Please add atleast 1 student first!</p>
-                </div>
-                <div class="modal-footer" style="padding-top:5px;padding-bottom:10px;">
-                    <a href="admission.php"><button type="button" class="btn btn-sm bg-gradient-success m-white f-10">Ok, Add Student</button></a>
-
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-<!-- end Modal --><!-- Required Jquery -->
+<!-- Required Jquery -->
 <script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>
@@ -1615,26 +1957,38 @@
 <script type="text/javascript" src="assets/js/jquery-slimscroll/jquery.slimscroll.js"></script>
 <!-- modernizr js -->
 <script type="text/javascript" src="assets/js/modernizr/modernizr.js"></script>
-<script type="text/javascript" src="assets/js/modernizr/css-scrollbars.js"></script>
-
-<!-- Accordion js -->
-<script type="text/javascript" src="assets/pages/accordion/accordion.js"></script>
+<!-- am chart -->
+<script src="assets/pages/widget/amchart/amcharts.min.js"></script>
+<script src="assets/pages/widget/amchart/serial.min.js"></script>
+<!-- Chart js -->
+<script type="text/javascript" src="assets/js/chart.js/Chart.js"></script>
+<script type="text/javascript" src="assets/js/mdb.js"></script>
+<!-- Todo js -->
+<script type="text/javascript " src="assets/pages/todo/todo.js "></script>
 <!-- Custom js -->
+<script type="text/javascript" src="assets/pages/dashboard/custom-dashboard.min.js"></script>
 <script type="text/javascript" src="assets/js/script.js"></script>
+<script type="text/javascript " src="assets/js/SmoothScroll.js"></script>
 <script src="assets/js/pcoded.min.js"></script>
-
 <script src="assets/js/vartical-demo.js"></script>
 <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="../bb/assets/js/selectlistsearch.js"></script>
+<script src="assets/calendar/javascript-calendar.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <script>
 
 // navigator activator
 document.getElementById("dashboard").classList.remove('active');
-document.getElementById("addnewstudent").classList.add('active');
+document.getElementById("allstudents").classList.add('active');
 document.getElementById("students").classList.add('active');
 document.getElementById("students").classList.add('pcoded-trigger');
 //----------end-----------------
 
+var tsublen=3;
+for(var i=0;i<tsublen;i++){
+var progress =$('#perval'+i).val();
+$('#progress'+i).find('#blue').animate({'stroke-dashoffset': 200 - 2 * progress}, 5000)
+}
 // search students api
 var availableTags = ["REG0101 - Elisa sakya - One"];
 var availableTagsCode = ["REG0101"];
@@ -1645,116 +1999,193 @@ $( "#tags" ).autocomplete({
 		$("#tags_code").val(availableTagsCode[index]);
 	}
 });
-
-//---------end------------------
-function checkMailStatus(){
-    //alert("came");
-var reg=$("#reg").val();// value in field email
-$.ajax({
-    type:'post',
-        url:'checkMail.php',// put your real file name
-        data:{reg: reg},
-        success:function(msg){
-			if(msg=="YES"){
-	          $("#checkReg").show();
-    		  $("#checkReg").html("<strong class='p-10'><i class='ti-alert'></i> This Registration No. Already Exist !</strong>");
-    		  $("#reg").focus();
-			}else{
-			    $("#checkReg").hide();
-			    $("#checkReg").html("");
-			}
-         // alert(msg); // your message will come here.
-        }
- });
-}
-$(function()
-{
-    $("#myform").validate(
-      {
-        rules:
-        {
-          class:
-          {
-            required: true
-          }
-        }
-      });
+$(document).ready(function(){
+$('#showpi').click(function(){
+	$("#showpi").toggle();
+	$(".hidepi").toggle();
+	$("#pi").toggle('slow');
 });
-$(document).ready(function () {
-    $("#myform").submit(function () {
-        $("#submitBtn").attr("disabled", true);
-        $("#submitBtn").html("<i class='fa fa-circle-o-notch fa-spin'></i> Please Wait");
-        return true;
+$('.hidepi').click(function(){
+	$(".hidepi").toggle();
+	$("#showpi").toggle();
+	$("#pi").toggle('slow');
+});
+});
+//---------end------------------
+//pie
+var ctxP = document.getElementById("pieChart").getContext('2d');
+var p=2;
+var l=0;
+var a=0;
+var myPieChart = new Chart(ctxP, {
+    type: 'pie',
+    data: {
+        labels: ["P", "L", "A"],
+        datasets: [
+            {
+                borderWidth: 2,
+                data: [p, l, a],
+                backgroundColor: ["#5e81f4", "#9698d6", "#ff808b"],
+                hoverBackgroundColor: ["#5e81f4", "#9698d6","#ff808b"]
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        legend: {
+            labels: {
+              usePointStyle: true,
+              boxWidth: 6,
+              fontSize: 10
+            },
+            border: 0
+          }
+    }
+});
+//number animate
+$('.count').each(function () {
+    $(this).prop('Counter',0).animate({
+        Counter: $(this).text()
+    }, {
+        duration: 2000,
+        easing: 'swing',
+        step: function (now) {
+            $(this).text(Math.ceil(now));
+        }
     });
 });
-$("#spidb").on('click', function(e) {
-
-      e.preventDefault();
-
-    var cnic=$("#spid").val();// value in field email
-$.ajax({
-    type:'post',
-        url:'checkMail.php',// put your real file name
-        data:{cnic: cnic},
-        beforeSend:function(){
-				$('#spidb').html('<i class="fa fa-spinner"></i>');
-
-			},
-        success:function(result){
-        $('#spidb').html('<i class="ti-search"></i> Search');
-		$("#spidr").html(result);
-        }
- });
+//------------end----------------------
+const block = document.querySelectorAll('.block1');
+window.addEventListener('load', function(){
+  block.forEach(item => {
+    let numElement = item.querySelector('.num1');
+    let num = parseInt(numElement.innerText);
+    let count = 0;
+    let time = 2000 / num;
+    let circle = item.querySelector('.circle1');
+    setInterval(() => {
+      if(count == num){
+        clearInterval();
+      } else {
+        count += 1;
+        numElement.innerText = count;
+      }
+    }, time)
+    circle.style.strokeDashoffset
+      = 245 - ( 245 * ( num / 100 ));
+    let dots = item.querySelector('.dots1');
+    dots.style.transform =
+      `rotate(${360 * (num / 100)}deg)`;
+    if(num == 100){
+      dots.style.opacity = 0;
+    }
+  })
+});
+const block2 = document.querySelectorAll('.block2');
+window.addEventListener('load', function(){
+  block2.forEach(item => {
+    let numElement = item.querySelector('.num2');
+    let num2 = parseInt(numElement.innerText);
+    let count = 0;
+    let time = 2000 / num2;
+    let circle = item.querySelector('.circle2');
+    setInterval(() => {
+      if(count == num2){
+        clearInterval();
+      } else {
+        count += 1;
+        numElement.innerText = count;
+      }
+    }, time)
+    circle.style.strokeDashoffset
+      = 245 - ( 245 * ( num2 / 100 ));
+    let dots = item.querySelector('.dots2');
+    dots.style.transform =
+      `rotate(${360 * (num2 / 100)}deg)`;
+    if(num2 == 100){
+      dots.style.opacity = 0;
+    }
+  })
+});
+const block3 = document.querySelectorAll('.block3');
+window.addEventListener('load', function(){
+  block3.forEach(item => {
+    let numElement = item.querySelector('.num3');
+    let num3 = parseInt(numElement.innerText);
+    let count = 0;
+    let time = 2000 / num3;
+    let circle = item.querySelector('.circle3');
+    setInterval(() => {
+      if(count == num3){
+        clearInterval();
+      } else {
+        count += 1;
+        numElement.innerText = count;
+      }
+    }, time)
+    circle.style.strokeDashoffset
+      = 245 - ( 245 * ( num3 / 100 ));
+    let dots = item.querySelector('.dots3');
+    dots.style.transform =
+      `rotate(${360 * (num3 / 100)}deg)`;
+    if(num3 == 100){
+      dots.style.opacity = 0;
+    }
+  })
+});
+//------progress bar-----------------
+$(function () {
+  $('.tiptool').tooltip({trigger: 'manual'}).tooltip('show');
 });
 
-function addparents() {
-    var cnic=$("#spid").val();// value in field email
-$.ajax({
-    type:'post',
-        url:'checkMail.php',// put your real file name
-        data:{id: cnic},
-        beforeSend:function(){
-				$('#addparents').html('<i class="fa fa-spinner"></i> Adding');
-
-			},
-        success:function(r){
-		$("#fname").val(r[0]);
-		$("#fedu").val(r[2]);
-		$("#fcnic").val(r[1]);
-		$("#fmobile").val(r[3]);
-		$("#fo").val(r[4]);
-		$("#fp").val(r[5]);
-		$("#fi").val(r[6]);
-		$("#mname").val(r[7]);
-		$("#medu").val(r[8]);
-		$("#mcnic").val(r[9]);
-		$("#mmobile").val(r[10]);
-		$("#mo").val(r[11]);
-		$("#mp").val(r[12]);
-		$("#mi").val(r[13]);
-		$('#myModal').modal('toggle');
-        },dataType: "json"
- });
-}
-$('#studentname').on('input', function(){
-    var company_name = $('#studentname').val().replace(/[&\/\\#,+()$~%.'":*?<>{}]/ig, "");
-    $('#studentname').val(company_name);
-});
-$('#reg').on('input', function(){
-    var company_name = $('#reg').val().replace(/[&\/\\#,+$~%.'":*?<>{}]/ig, "");
-    $('#reg').val(company_name);
-});
-$(document).ready(function () {
-      $('#searchlist').selectize({
-          sortField: 'text'
-      });
-      $('#searchlist1').selectize({
-          sortField: 'text'
-      });
-      $('#searchlist2').selectize({
-          sortField: 'text'
-      });
+// $( window ).scroll(function() {
+ // if($( window ).scrollTop() > 10){  // scroll down abit and get the action
+  $(".progress-bar").each(function(){
+    each_bar_width = $(this).attr('aria-valuenow');
+    $(this).width(each_bar_width + '%');
   });
+
+ //  }
+// });
+$(".showfd").on('click',function(){
+   $(this).find("#fd").toggle('slow');
+   $(this).find("#showfi").toggle();
+   $(this).find("#hidefi").toggle();
+});
+//Create PDf from HTML...
+	function getPDF(){
+
+		var HTML_Width = $(".canvas_div_pdf").width();
+		var HTML_Height = $(".canvas_div_pdf").height();
+		var top_left_margin = 15;
+		var PDF_Width = HTML_Width+(top_left_margin*2);
+		var PDF_Height = (PDF_Width*1.5)+(top_left_margin*2);
+		var canvas_image_width = HTML_Width;
+		var canvas_image_height = HTML_Height;
+
+		var totalPDFPages = Math.ceil(HTML_Height/PDF_Height)-1;
+
+
+		html2canvas($(".canvas_div_pdf")[0],{allowTaint:true}).then(function(canvas) {
+			canvas.getContext('2d');
+
+			console.log(canvas.height+"  "+canvas.width);
+
+
+			var imgData = canvas.toDataURL("image/jpeg", 1.0);
+			var pdf = new jsPDF('p', 'pt',  [PDF_Width, PDF_Height]);
+		    pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin,canvas_image_width,canvas_image_height);
+
+
+			for (var i = 1; i <= totalPDFPages; i++) {
+				pdf.addPage(PDF_Width, PDF_Height);
+				pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
+			}
+
+		    pdf.save("Elisa sakya.pdf");
+        });
+	};
+
 </script>
 </body>
 </html>

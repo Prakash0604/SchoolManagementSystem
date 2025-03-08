@@ -14,6 +14,7 @@ use App\Models\StudentGuardian;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StudentRequest;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -36,8 +37,8 @@ class StudentController extends Controller
                     $isedit = "Y";
                     $isDelete = "Y";
                     $isreset = 'Y';
-                    $isViewModal = 'Y';
-                    return view('admin.button.button', compact('action', 'route', 'isViewModal', 'isedit', 'isreset', 'isDelete'));
+                    $isView = 'Y';
+                    return view('admin.button.button', compact('action', 'route', 'isView', 'isedit', 'isreset', 'isDelete'));
                 })
                 ->addColumn('image', function ($img) {
                     $image = $img->student_image ? asset('storage/' . $img->student_image) : asset('default/avatar-5.webp');
@@ -149,11 +150,23 @@ class StudentController extends Controller
      */
     public function show(string $id)
     {
-        try {
-            $student = Student::with('studentMember', 'academicData')->find($id);
-            return response()->json(['status' => true, 'message' => $student]);
-        } catch (\Exception $e) {
-            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        try{
+            return view('admin.student.detail');
+        }catch(\Exception $e){
+            Log::error($e->getMessage());
+            return back();
+        }
+    }
+
+    public function getClassroom(Request $request){
+        try{
+
+            $academic_year_id=$request->academic_year_id;
+            $education_level_id=$request->education_level_id;
+            $classroom=Classroom::where('academic_year_id',$academic_year_id)->where('education_level_id',$education_level_id)->get();
+            return response()->json(['status'=>true,'message'=>$classroom]);
+        }catch(\Exception $e){
+            return response()->json(['status'=>false,'message'=>$e->getMessage()]);
         }
     }
 
@@ -172,7 +185,12 @@ class StudentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        try {
+            $student = Student::with('studentMember', 'academicData')->find($id);
+            return response()->json(['status' => true, 'message' => $student]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
     }
 
     public function update(StudentRequest $request, string $id)

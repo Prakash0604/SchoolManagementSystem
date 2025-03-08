@@ -260,10 +260,39 @@ $(document)
         });
     });
 
+    $(document).on("change", "#academic_year_id,#education_level_id", function () {
+        let academic_year_id = $("#academic_year_id").val();
+        let education_level_id = $("#education_level_id").val();
+        $("#classroom_id").empty();
+        if (academic_year_id && education_level_id) {
+            $.ajax({
+                type: "Get",
+                url: "/admin/student/classroom/get",
+                data: {
+                    academic_year_id,
+                    education_level_id,
+                },
+                success: function (response) {
+                    if (response.status == true) {
+                        console.log(response);
+                        let html = `<option value="">Select..</option>`;
+                        let rooms = response.message;
+                        $.each(rooms, function (index, data) {
+                            html += `<option value="${data.id}">${data.class_title}</option>`;
+                        });
+
+                        $("#classroom_id").html(html);
+                    }
+                },
+            });
+        }
+    });
+
 $(document)
     .off("click", ".editButton")
     .on("click", ".editButton", function (e) {
-        let urlData = $(this).attr("data-url");
+        let id = $(this).attr("data-id");
+        let urlData = "/admin/student/"+id+"/edit";
         $(".addForm").attr("id", "updateStudent");
         $.ajax({
             url: urlData,

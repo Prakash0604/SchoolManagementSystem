@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Employee\EmployeeAttendanceController;
 use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Employee\SalaryController;
 use App\Http\Controllers\Admin\Institute\InstituteController;
+use App\Http\Controllers\Admin\Student\StudentAttendanceController;
 use App\Http\Controllers\Admin\Student\StudentController;
 use App\Http\Controllers\Admin\Subject\SubjectController;
 use App\Models\Classroom;
@@ -65,5 +66,13 @@ Route::prefix('admin')->group(function () {
     Route::resource('student',StudentController::class);
     Route::get('student/status/{id}',[StudentController::class,'statusToggle']);
     Route::get('student/guardians/remove/{id}',[StudentController::class,'removeGuardians']);
+    Route::get('student/classroom/get',[StudentController::class,'getClassroom']);
+
+    Route::get('student-attendance',[StudentAttendanceController::class,'index'])->name('student.attendance.index');
+    Route::get('student/attendance/check/{date}',[StudentAttendanceController::class,'checkStudentAttendance'])->name('student.attendance.check');
+    Route::post('student-attendance/store', [StudentAttendanceController::class, 'storeStudentAttendace'])->name('student.attendance.store');
+    Route::get('student-attendance/classroom/get',[StudentAttendanceController::class,'getClassroom']);
+    Route::get('student-attendance/student/get',[StudentAttendanceController::class,'getStudent']);
+
 
 });
