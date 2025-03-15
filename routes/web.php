@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\EducationLevel\EducationLevelController;
 use App\Http\Controllers\Admin\Employee\EmployeeAttendanceController;
 use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Employee\SalaryController;
+use App\Http\Controllers\Admin\Exam\ExamController;
 use App\Http\Controllers\Admin\Institute\InstituteController;
 use App\Http\Controllers\Admin\Student\StudentAttendanceController;
 use App\Http\Controllers\Admin\Student\StudentController;
@@ -73,6 +74,9 @@ Route::prefix('admin')->group(function () {
     Route::post('student-attendance/store', [StudentAttendanceController::class, 'storeStudentAttendance'])->name('student.attendance.store');
     Route::get('student-attendance/classroom/get',[StudentAttendanceController::class,'getClassroom']);
     Route::get('student-attendance/student/get',[StudentAttendanceController::class,'getStudent']);
+
+    Route::resource('exam',ExamController::class);
+    Route::get('exam/status/{id}',[ExamController::class,'statusToggle']);
 
 
 });

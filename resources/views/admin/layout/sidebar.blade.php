@@ -83,7 +83,8 @@
                     <li class=" " id="grading">
                         <a href="grading.php">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Marks Grading</span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Marks
+                                Grading</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
@@ -157,7 +158,8 @@
                     <li class=" " id="assignsubjects">
                         <a href="{{ route('assign-subject.list') }}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">View Assign Subjects</span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">View Assign
+                                Subjects</span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
@@ -677,15 +679,7 @@
 
                 </ul>
             </li>
-            <li class=" " id="whatsapp">
-                <a href="#" data-toggle="tooltip" title="This option is available in Desktop Version only.">
-                    <span class="pcoded-micon"><i class="fa-brands fa-square-whatsapp"></i></span>
-                    <span class="pcoded-mtext" data-i18n="nav.form-components.main" style="opacity:0.6;">
-                        WhatsApp</span>
-                    <i class="fa fa-lock m-orange f-right m-t-10" style="opacity:0.6;"></i>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
+
             <li class=" " id="messages">
                 <a href="MessageBox.php">
                     <span class="pcoded-micon"><i class="fa-solid fa-message"></i></span>
@@ -693,96 +687,9 @@
                     <span class="pcoded-mcaret"></span>
                 </a>
             </li>
-            <li class="pcoded-hasmenu" id="sms">
-                <a href="javascript:void(0)">
-                    <span class="pcoded-micon"><i class="fa-solid fa-envelope"></i> </span>
-                    <span class="pcoded-mtext" data-i18n="nav.basic-components.main">SMS Services</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-                <ul class="pcoded-submenu">
-                    <li class=" " id="smsgateway">
-                        <a href="smsSettings.php">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Free SMS Gateway</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                    <li class=" " id="brandedsms">
-                        <a href="#" data-toggle="tooltip"
-                            title="This option is available in Desktop Version only.">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"
-                                style="opacity:0.6;">Branded SMS <i class="fa fa-lock m-orange f-right"></i></span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                    <li class=" " id="smstemplates">
-                        <a href="#" data-toggle="tooltip"
-                            title="This option is available in Desktop Version only.">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"
-                                style="opacity:0.6;">SMS Templates <i class="fa fa-lock m-orange f-right"></i></span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-
-
-
-                </ul>
-            </li>
-
-            <li class=" " id="liveclass">
-                <a href="liveclass.php">
-                    <span class="pcoded-micon"><i class="fa-solid fa-video"></i></span>
-                    <span class="pcoded-mtext" data-i18n="nav.form-components.main">Live Class</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-            </li>
-
         </ul>
 
         <ul class="pcoded-item pcoded-left-item">
-            <li class="pcoded-hasmenu" id="questionpaper">
-                <a href="javascript:void(0)">
-                    <span class="pcoded-micon"><i class="fa-solid fa-copy"></i></span>
-                    <span class="pcoded-mtext" data-i18n="nav.basic-components.main">Question Paper</span>
-                    <span class="pcoded-mcaret"></span>
-                </a>
-                <ul class="pcoded-submenu">
-                    <li class=" " id="addchapters">
-                        <a href="#" data-toggle="tooltip"
-                            title="This option is available in Desktop Version only.">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"
-                                style="opacity:0.6;">Subject Chapters <i
-                                    class="fa fa-lock m-orange f-right"></i></span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                    <li class=" " id="questionbank">
-                        <a href="#" data-toggle="tooltip"
-                            title="This option is available in Desktop Version only.">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"
-                                style="opacity:0.6;">Question Bank <i class="fa fa-lock m-orange f-right"></i></span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                    <li class=" " id="createpaper">
-                        <a href="#" data-toggle="tooltip"
-                            title="This option is available in Desktop Version only.">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"
-                                style="opacity:0.6;">Create Question Paper <i
-                                    class="fa fa-lock m-orange f-right"></i></span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-
-
-
-                </ul>
-            </li>
             <li class="pcoded-hasmenu" id="exams">
                 <a href="javascript:void(0)">
                     <span class="pcoded-micon"><i class="fa-solid fa-file-pen"></i></span>
@@ -791,16 +698,9 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" " id="createexam">
-                        <a href="addexam.php">
+                        <a href="{{ route('exam.index') }}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Create New Exam</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                    <li class=" " id="editexamdetail">
-                        <a href="editexamdetail.php">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Edit or delete</span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Exam </span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
@@ -820,17 +720,6 @@
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
-                    <li class=" " id="awardlist">
-                        <a href="#" data-toggle="tooltip"
-                            title="This option is available in Desktop Version only.">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"
-                                style="opacity:0.6;">Blank Award List <i
-                                    class="fa fa-lock m-orange f-right"></i></span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-
 
                 </ul>
             </li>
@@ -892,69 +781,6 @@
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
-                    <li class=" " id="report3">
-                        <a href="#" data-toggle="tooltip"
-                            title="This option is available in Desktop Version only.">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"
-                                style="opacity:0.6;">Students Monthly Attendance Report <i
-                                    class="fa fa-lock m-orange f-right"></i></span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                    <li class=" " id="report4">
-                        <a href="#" data-toggle="tooltip"
-                            title="This option is available in Desktop Version only.">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"
-                                style="opacity:0.6;">Staff Monthly Attendance Report <i
-                                    class="fa fa-lock m-orange f-right"></i></span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                    <li class=" " id="report5">
-                        <a href="#" data-toggle="tooltip"
-                            title="This option is available in Desktop Version only.">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"
-                                style="opacity:0.6;">Fee Collection Report <i
-                                    class="fa fa-lock m-orange f-right"></i></span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                    <li class=" " id="report6">
-                        <a href="#" data-toggle="tooltip"
-                            title="This option is available in Desktop Version only.">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"
-                                style="opacity:0.6;">Student Progress Report <i
-                                    class="fa fa-lock m-orange f-right"></i></span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                    <li class=" " id="report7">
-                        <a href="#" data-toggle="tooltip"
-                            title="This option is available in Desktop Version only.">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"
-                                style="opacity:0.6;">Accounts Report <i
-                                    class="fa fa-lock m-orange f-right"></i></span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                    <li class=" " id="report8">
-                        <a href="#" data-toggle="tooltip"
-                            title="This option is available in Desktop Version only.">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"
-                                style="opacity:0.6;">Customised Reports <i
-                                    class="fa fa-lock m-orange f-right"></i></span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-
-
-
                 </ul>
             </li>
             <li class="pcoded-hasmenu" id="certificates">
@@ -977,16 +803,6 @@
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Character
                                 Certificate</span>
-                            <span class="pcoded-mcaret"></span>
-                        </a>
-                    </li>
-                    <li class=" " id="cltemplates">
-                        <a href="#" data-toggle="tooltip"
-                            title="This option is available in Desktop Version only.">
-                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                            <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"
-                                style="opacity:0.6;">Certificate Templates <i
-                                    class="fa fa-lock m-orange f-right"></i></span>
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
