@@ -15,11 +15,11 @@
                         <div class="col-lg-12 m-t-30"
                             style="background:#fff;border-radius:10px;padding:20px;box-shadow:0px 0px 1px 0px gray;">
 
-                            <h6 class="text-center"><span id="attendance_status"
+                            {{-- <h6 class="text-center"><span id="attendance_status"
                                     class="bg-gradient-success m-white f-10"
                                     style="border-radius:10px;padding:1px 5px 1px 5px;"><i
                                         class="fa-duotone fa-solid fa-check"></i> Already
-                                    taken</span> </h6>
+                                    taken</span> </h6> --}}
                             <h4 class="text-center m-t-20" style="line-height:20px;"> Update
                                 Attendance
                                 <br>

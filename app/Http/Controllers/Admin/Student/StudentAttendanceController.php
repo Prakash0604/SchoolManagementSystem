@@ -21,7 +21,7 @@ class StudentAttendanceController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $user = StudentAttendance::with('student')->orderBy('id', 'desc')->get();
+            // $user = StudentAttendance::with('student')->orderBy('id', 'desc')->get();
             $start = $request->filter_start_date;
             $end = $request->filter_end_date;
             $academic_year_id = $request->academic_year_id;
@@ -43,13 +43,13 @@ class StudentAttendanceController extends Controller
                 })
 
                 ->addColumn('username', function ($name) {
-                    return $name->user->username;
+                    return $name->student->username;
                 })
                 ->addColumn('name', function ($full_name) {
-                    return $full_name->user->name;
+                    return $full_name->student->student_name;
                 })
-                ->addColumn('role', function ($role) {
-                    return $role->user->role->title;
+                ->addColumn('level', function ($ed) {
+                    return $ed->year->academic_title . "/" . $ed->education->title . "/" . $ed->classroom->class_title;
                 })
                 ->addColumn('status', function ($status) {
                     if ($status->status == 'P') {
@@ -63,7 +63,7 @@ class StudentAttendanceController extends Controller
                 ->rawColumns(['action', 'status'])
                 ->make(true);
         }
-        $title = "All Employees Attendace";
+        $title = "All Student Attendace";
         $extraJs = array_merge(
             config('js-map.admin.datatable.script'),
         );
@@ -77,15 +77,16 @@ class StudentAttendanceController extends Controller
         // dd($date);
         $attendances = StudentAttendance::where('attendance_date', $date)->pluck('status', 'student_id');
 
-        return view('admin.student.attendance.list', compact('attendances','years','educationLevels', 'title', 'extraJs', 'extraCs'));
+        return view('admin.student.attendance.list', compact('attendances', 'years', 'educationLevels', 'title', 'extraJs', 'extraCs'));
     }
 
 
     public function getAttendanceRequest($start, $end, $academic_year_id, $education_level_id, $classroom_id, $filter_status)
     {
-        return StudentAttendance::with('student', 'education', 'year', 'classroom')->when($start && $start !== 'null' && $end && $end !== 'null', function ($q) use ($start, $end) {
-            $q->whereBetween('attendance_date', [$start, $end]);
-        })
+        return StudentAttendance::with('student', 'education', 'year', 'classroom')
+            ->when($start && $start !== 'null' && $end && $end !== 'null', function ($q) use ($start, $end) {
+                $q->whereBetween('attendance_date', [$start, $end]);
+            })
             ->when($start && $start !== 'null' && (!$end || $end === 'null'), function ($q) use ($start) {
                 $q->where('attendance_date', '>=', $start);
             })
@@ -93,19 +94,13 @@ class StudentAttendanceController extends Controller
                 $q->where('attendance_date', '<=', $end);
             })
             ->when($academic_year_id && $academic_year_id !== 'null', function ($q) use ($academic_year_id) {
-                $q->whereIn('year', function ($subq) use ($academic_year_id) {
-                    $subq('id', $academic_year_id);
-                });
+                $q->whereIn('academic_year_id', (array) $academic_year_id);
             })
             ->when($education_level_id && $education_level_id !== 'null', function ($q) use ($education_level_id) {
-                $q->whereIn('education', function ($subq) use ($education_level_id) {
-                    $subq('id', $education_level_id);
-                });
+                $q->whereIn('education_level_id', (array) $education_level_id);
             })
             ->when($classroom_id && $classroom_id !== 'null', function ($q) use ($classroom_id) {
-                $q->whereIn('classroom', function ($subq) use ($classroom_id) {
-                    $subq('id', $classroom_id);
-                });
+                $q->whereIn('classroom_id', (array) $classroom_id);
             })
             ->when($filter_status && $filter_status !== 'null', function ($q) use ($filter_status) {
                 $q->where('status', $filter_status);
@@ -113,28 +108,39 @@ class StudentAttendanceController extends Controller
             ->orderBy('id', 'desc')->get();
     }
 
-    public function getClassroom(Request $request){
-        try{
 
-            $academic_year_id=$request->academic_year_id;
-            $education_level_id=$request->education_level_id;
-            $classroom=Classroom::where('academic_year_id',$academic_year_id)->where('education_level_id',$education_level_id)->get();
-            return response()->json(['status'=>true,'message'=>$classroom]);
-        }catch(\Exception $e){
-            return response()->json(['status'=>false,'message'=>$e->getMessage()]);
+    public function getClassroom(Request $request)
+    {
+        try {
+
+            $academic_year_id = $request->academic_year_id;
+            $education_level_id = $request->education_level_id;
+            $classroom = Classroom::where('academic_year_id', $academic_year_id)->where('education_level_id', $education_level_id)->get();
+            return response()->json(['status' => true, 'message' => $classroom]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
         }
     }
 
-    public function getStudent(Request $request){
-        try{
+    public function getStudent(Request $request)
+    {
+        try {
+            $academic_year_id = $request->academic_year_id;
+            $education_level_id = $request->education_level_id;
+            $classroom_id = $request->classroom_id;
+            $attendance_date = $request->attendance_date;
 
-            $academic_year_id=$request->academic_year_id;
-            $education_level_id=$request->education_level_id;
-            $classroom_id=$request->classroom_id;
-            $student=StudentAcademic::with('student')->where('academic_year_id',$academic_year_id)->where('education_level_id',$education_level_id)->where('classroom_id',$classroom_id)->get();
-            return response()->json(['status'=>true,'message'=>$student]);
-        }catch(\Exception $e){
-            return response()->json(['status'=>false,'message'=>$e->getMessage()]);
+            $students = StudentAcademic::with(['student', 'attendance' => function ($query) use ($attendance_date) {
+                $query->where('attendance_date', $attendance_date);
+            }])
+                ->where('academic_year_id', $academic_year_id)
+                ->where('education_level_id', $education_level_id)
+                ->where('classroom_id', $classroom_id)
+                ->get();
+
+            return response()->json(['status' => true, 'message' => $students]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
         }
     }
 
@@ -146,10 +152,31 @@ class StudentAttendanceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function storeStudentAttendance(Request $request)
     {
-        //
+        try {
+            foreach ($request->attendance as $studentId => $status) {
+                // Store or update attendance
+                StudentAttendance::updateOrCreate(
+                    [
+                        'student_id' => $studentId,
+                        'attendance_date' => $request->attendance_date
+                    ],
+                    [
+                        'academic_year_id' => $request->academic_year_id,
+                        'education_level_id' => $request->education_level_id,
+                        'classroom_id' => $request->classroom_id,
+                        'status' => $status
+                    ]
+                );
+            }
+
+            return response()->json(['status' => true, 'message' => "Attendance Updated Successfully"]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
     }
+
 
     /**
      * Display the specified resource.

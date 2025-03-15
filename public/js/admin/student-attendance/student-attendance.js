@@ -46,7 +46,7 @@ function getData() {
                 data: "name",
             },
             {
-                data: "role",
+                data: "level",
             },
             {
                 data: "status",
@@ -60,7 +60,7 @@ function getData() {
 
 $(document).on(
     "change",
-    "#starting_date,#ending_date,#employee_id,#filter_status",
+    "#starting_date,#ending_date,#year_id,#level_id,#class_id,#filter_status",
     function () {
         getData();
     }
@@ -75,6 +75,36 @@ $(document)
         $("#storeAttendance").trigger("reset");
     });
 
+// For Filter
+$(document).on("change", "#year_id,#level_id", function () {
+    let academic_year_id = $("#year_id").val();
+    let education_level_id = $("#level_id").val();
+    $("#class_id").empty();
+    if (academic_year_id && education_level_id) {
+        $.ajax({
+            type: "Get",
+            url: "/admin/student-attendance/classroom/get",
+            data: {
+                academic_year_id,
+                education_level_id,
+            },
+            success: function (response) {
+                if (response.status == true) {
+                    console.log(response);
+                    let html = `<option value="">Select..</option>`;
+                    let rooms = response.message;
+                    $.each(rooms, function (index, data) {
+                        html += `<option value="${data.id}">${data.class_title}</option>`;
+                    });
+
+                    $("#class_id").html(html);
+                }
+            },
+        });
+    }
+});
+
+// For Storing attendance
 $(document).on("change", "#academic_year_id,#education_level_id", function () {
     let academic_year_id = $("#academic_year_id").val();
     let education_level_id = $("#education_level_id").val();
@@ -103,64 +133,87 @@ $(document).on("change", "#academic_year_id,#education_level_id", function () {
     }
 });
 
-$(document).on("change", "#academic_year_id,#education_level_id,#classroom_id", function () {
-    let academic_year_id = $("#academic_year_id").val();
-    let education_level_id = $("#education_level_id").val();
-    let classroom_id = $("#classroom_id").val();
-    $(".student-data").empty();
-    if (academic_year_id && education_level_id && classroom_id) {
-        $.ajax({
-            type: "Get",
-            url: "/admin/student-attendance/student/get",
-            data: {
-                academic_year_id,
-                education_level_id,
-                classroom_id
-            },
-            success: function (response) {
-                if (response.status == true) {
-                    console.log(response);
-                    let rooms = response.message;
-                    let html="";
-                    $.each(rooms, function (index, data) {
-
-                      html +=` <tr>
-                        <td>${index+1}</td>
-                        <td>${data.student.student_name}<input type="hidden" name="student_id" value="${data.student.id}"></td>
+$(document).on(
+    "change",
+    "#academic_year_id,#education_level_id,#classroom_id,#attendance_date",
+    function () {
+        let academic_year_id = $("#academic_year_id").val();
+        let education_level_id = $("#education_level_id").val();
+        let classroom_id = $("#classroom_id").val();
+        let attendance_date = $("#attendance_date").val();
+        $(".student-data").empty();
+        if (
+            academic_year_id &&
+            education_level_id &&
+            classroom_id &&
+            attendance_date
+        ) {
+            $.ajax({
+                type: "Get",
+                url: "/admin/student-attendance/student/get",
+                data: {
+                    academic_year_id,
+                    education_level_id,
+                    classroom_id,
+                    attendance_date,
+                },
+                success: function (response) {
+                    if (response.status == true) {
+                        console.log(response);
+                        let rooms = response.message;
+                        let html = "";
+                        $.each(rooms, function (index, data) {
+                            let attendance = data.attendance
+                                ? data.attendance.status
+                                : "";
+                            html += ` <tr>
+                        <td>${index + 1}</td>
+                        <td>${
+                            data.student.student_name
+                        }<input type="hidden" name="student_id" value="${
+                                data.student.id
+                            }"></td>
                         <td id="desktop1">${data.student.username}</td>
                         <td id="desktop1">${data.roll_number}</td>
                         <td style="width:100px;">
                             <input type="radio" id="present-${data.student.id}"
                                 name="attendance[${data.student.id}]" value="P"
-                                class="present" {{ $status == 'P' ? 'checked' : '' }}>
+                                class="present" ${
+                                    attendance == "P" ? "checked" : ""
+                                }>
                             <label for="present-${data.student.id}">P</label>
 
-                            <input type="radio" id="leave-{{ $employee->id }}"
+                            <input type="radio" id="leave-${data.student.id}"
                                 name="attendance[${data.student.id}]" value="L"
-                                class="leave" {{ $status == 'L' ? 'checked' : '' }}>
+                                class="leave" ${
+                                    attendance == "L" ? "checked" : ""
+                                }>
                             <label for="leave-${data.student.id}">L</label>
 
-                            <input type="radio" id="absent-{{ $employee->id }}"
+                            <input type="radio" id="absent-${data.student.id}"
                                 name="attendance[${data.student.id}]" value="A"
-                                class="absent" {{ $status == 'A' ? 'checked' : '' }}>
+                                class="absent" ${
+                                    attendance == "A" ? "checked" : ""
+                                }>
                             <label for="absent-${data.student.id}">A</label>
                         </td>
                     </tr>`;
-                    });
+                        });
 
-                    $(".student-data").html(html);
-                }
-            },
-        });
+                        $(".student-data").html(html);
+                    }
+                },
+            });
+        }
     }
-});
+);
 
 $(document)
     .off("submit", "#storeAttendance")
     .on("submit", "#storeAttendance", function (e) {
         e.preventDefault();
         let formdata = new FormData(this);
-        let dataUrl = "employee-attendance/store";
+        let dataUrl = "student-attendance/store";
         $.ajax({
             url: dataUrl,
             type: "post",

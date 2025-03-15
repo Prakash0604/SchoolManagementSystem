@@ -435,7 +435,7 @@
                 </a>
                 <ul class="pcoded-submenu">
                     <li class=" " id="studentsattandance">
-                        <a href="markatt.php">
+                        <a href="{{ route('student.attendance.index') }}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Students
                                 Attendance</span>

@@ -159,7 +159,7 @@
                     <div class="col-md-2">
                         <div class="m-div p-t-0 p-b-0">
                             <span class="m-label bg-gradient-blue m-white" style="margin-top:-9px;z-index:1001; padding-right:30px">Classroom*</span>
-                            <select name="teacher" class="form-control form-select-lg m-field" id="employee_id" required>
+                            <select name="teacher" class="form-control form-select-lg m-field" id="class_id" required>
                                 <option value="">Select*</option>
 
                                 {{-- @foreach ($employees as $employee)

@@ -70,7 +70,7 @@ Route::prefix('admin')->group(function () {
 
     Route::get('student-attendance',[StudentAttendanceController::class,'index'])->name('student.attendance.index');
     Route::get('student/attendance/check/{date}',[StudentAttendanceController::class,'checkStudentAttendance'])->name('student.attendance.check');
-    Route::post('student-attendance/store', [StudentAttendanceController::class, 'storeStudentAttendace'])->name('student.attendance.store');
+    Route::post('student-attendance/store', [StudentAttendanceController::class, 'storeStudentAttendance'])->name('student.attendance.store');
     Route::get('student-attendance/classroom/get',[StudentAttendanceController::class,'getClassroom']);
     Route::get('student-attendance/student/get',[StudentAttendanceController::class,'getStudent']);
 
