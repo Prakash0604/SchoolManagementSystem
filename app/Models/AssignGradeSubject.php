@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class AssignGradeSubject extends Model
 {
     use HasFactory;
-    protected $fillable = ['academic_year_id', 'education_level_id', 'subject_id', 'full_marks', 'pass_marks','status', 'created_by', 'updated_by'];
+    protected $fillable = ['academic_year_id', 'education_level_id', 'subject_id', 'full_marks', 'pass_marks','status', 'created_by', 'updated_by','start_at','end_at','date'];
 
     public function year()
     {

@@ -3,10 +3,16 @@
 namespace App\Http\Controllers\Admin\Exam;
 
 use App\Models\Exam;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ExamRequest;
 use App\Models\AcademicYear;
+use Illuminate\Http\Request;
+use App\Http\Requests\ExamRequest;
+use App\Models\AssignGradeSubject;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ExamSubjectRequest;
+use App\Models\AssignExam;
+use App\Models\AssignExamSubject;
+use App\Models\User;
 use Yajra\DataTables\Facades\DataTables;
 
 class ExamController extends Controller
@@ -138,6 +144,75 @@ class ExamController extends Controller
                 return response()->json(['status' => false, 'message' => "Something went wrong"]);
             }
         } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+    public function assignSubject()
+    {
+        // dd("test");
+        $title = "Assign Exam Subject";
+        $years = AcademicYear::where('status', 'Active')->get();
+        return view('admin.exam.assign-exam-subject.assign-exam-subject', compact('title', 'years'));
+    }
+
+    public function getExam($id)
+    {
+        try {
+            $exam = Exam::where('academic_year_id', $id)->get();
+            $gradeSubject = AssignGradeSubject::with('level')
+                ->where('academic_year_id', $id)
+                ->orderBy('education_level_id')
+                ->orderBy('id')
+                ->distinct('education_level_id')
+                ->get();
+            return response()->json(['status' => true, 'message' => $exam, 'grade' => $gradeSubject]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+    public function getSubject(Request $request)
+    {
+        try {
+            $academic_year_id = $request->academic_year_id;
+            $education_level_id = $request->education_level_id;
+            $gradeSubject = AssignGradeSubject::with('subject')->where('academic_year_id', $academic_year_id)->where('education_level_id', $education_level_id)->get();
+            return response()->json(['status' => true, 'message' => $gradeSubject]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+    public function storeSubject(ExamSubjectRequest $request)
+    {
+        try {
+            DB::beginTransaction();
+            // dd($request->all());
+            $user = User::first();
+            $assign_exam = AssignExam::create([
+                'academic_year_id' => $request->academic_year_id,
+                'exam_id' => $request->exam_id,
+                'education_level_id' => $request->education_level_id,
+                'created_by' => $user->id
+            ]);
+
+            foreach ($request->subject_id as $key => $subject) {
+                AssignExamSubject::create([
+                    'assign_exam_id' => $assign_exam->id,
+                    'subject_id' => $subject,
+                    'date' => $request->date[$key],
+                    'full_marks' => $request->full_marks[$key],
+                    'pass_marks' => $request->pass_marks[$key],
+                    'start_at' => $request->start_at[$key],
+                    'end_at' => $request->end_at[$key],
+                ]);
+            }
+
+            DB::commit();
+            return response()->json(['status' => true, 'message' => 'Created Successfully']);
+        } catch (\Exception $e) {
+            DB::rollBack();
             return response()->json(['status' => false, 'message' => $e->getMessage()]);
         }
     }

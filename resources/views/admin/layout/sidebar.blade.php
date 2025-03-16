@@ -705,7 +705,7 @@
                         </a>
                     </li>
                     <li class=" " id="addexammarks">
-                        <a href="selectexam.php">
+                        <a href="{{ route('assign-exam-subject') }}">
                             <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                             <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Add / update Exam
                                 Marks</span>
