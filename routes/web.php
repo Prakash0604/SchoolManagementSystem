@@ -76,6 +76,7 @@ Route::prefix('admin')->group(function () {
     Route::get('student-attendance/student/get',[StudentAttendanceController::class,'getStudent']);
 
     Route::resource('exam',ExamController::class);
+    Route::get('get-exam-data',[ExamController::class,'getExamDatas'])->name('exam.get-exam');
     Route::get('exam/status/{id}',[ExamController::class,'statusToggle']);
     Route::get('assign-exam-subject',[ExamController::class,'assignSubject'])->name('assign-exam-subject');
     Route::get('assign-exam-subject/get-exam/{id}',[ExamController::class,'getExam']);

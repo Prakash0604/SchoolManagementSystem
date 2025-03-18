@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers\Admin\Exam;
 
+use Carbon\Carbon;
 use App\Models\Exam;
+use App\Models\User;
+use App\Models\AssignExam;
 use App\Models\AcademicYear;
 use Illuminate\Http\Request;
+use App\Models\AssignExamSubject;
 use App\Http\Requests\ExamRequest;
 use App\Models\AssignGradeSubject;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ExamSubjectRequest;
-use App\Models\AssignExam;
-use App\Models\AssignExamSubject;
-use App\Models\User;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\ExamSubjectRequest;
 
 class ExamController extends Controller
 {
@@ -38,7 +40,7 @@ class ExamController extends Controller
                     <input class="form-check-input statusToggle mx-auto" type="checkbox" ' . $stat . ' data-id="' . $status->id . '" role="switch" id="flexSwitchCheckDefault">
                     </div>';
                 })
-                ->rawColumns(['action', 'status'])
+                ->rawColumns(['action', 'status', 'title'])
                 ->make(true);
         }
         $title = "All Exam List";
@@ -215,5 +217,79 @@ class ExamController extends Controller
             DB::rollBack();
             return response()->json(['status' => false, 'message' => $e->getMessage()]);
         }
+    }
+
+    public function getExamDatas(Request $request)
+    {
+        try {
+            if ($request->ajax()) {
+                $exam_id = $request->exam_id;
+                $academic_year_id = $request->academic_year_id;
+                $education_level_id = $request->education_level_id;
+
+                $exams = $this->getExamData($exam_id, $academic_year_id, $education_level_id);
+
+                $subjects = collect();
+                foreach ($exams as $exam) {
+                    foreach ($exam->examsubject as $subject) {
+                        $subjects->push([
+                            'DT_RowIndex'  => null,
+                            'subject'      => $subject->subject->title ?? 'N/A',
+                            'date'         => $subject->date ?? 'N/A',
+                            'full_marks'   => $subject->full_marks ?? 'N/A',
+                            'pass_marks'   => $subject->pass_marks ?? 'N/A',
+                            'start_time'   => $subject->start_at ? Carbon::parse($subject->start_at)->format('h:i A') : 'N/A',
+                            'end_time'     => $subject->end_at ? Carbon::parse($subject->end_at)->format('h:i A') : 'N/A',
+                            'action'       => view('admin.button.button', [
+                                'action'   => $subject,
+                                'route'    => '',
+                                'isedit'   => 'Y',
+                                'isDelete' => 'Y'
+                            ])->render(),
+                        ]);
+                    }
+                }
+
+                return DataTables::of($subjects)
+                    ->addIndexColumn()
+                    ->rawColumns(['action'])
+                    ->make(true);
+            }
+
+            $title = "Exam Detail";
+            $years = AcademicYear::where('status', 'Active')->get();
+            $extraJs = array_merge(config('js-map.admin.datatable.script'));
+            $extraCs = array_merge(config('js-map.admin.datatable.style'));
+
+            return view('admin.exam.exam-detail', compact('title', 'years', 'extraJs', 'extraCs'));
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return back();
+        }
+    }
+
+
+
+
+    public function getExamData($exam_id, $academic_year_id, $education_level_id)
+    {
+        return AssignExam::with(['examsubject.subject', 'exam', 'year', 'level'])
+            ->when(!empty($exam_id) && $exam_id !== 'null', function ($q) use ($exam_id) {
+                $q->whereHas('exam', function ($subq) use ($exam_id) {
+                    $subq->where('id', $exam_id);
+                });
+            })
+            ->when(!empty($academic_year_id) && $academic_year_id !== 'null', function ($q) use ($academic_year_id) {
+                $q->whereHas('year', function ($subq) use ($academic_year_id) {
+                    $subq->where('id', $academic_year_id);
+                });
+            })
+            ->when(!empty($education_level_id) && $education_level_id !== 'null', function ($q) use ($education_level_id) {
+                $q->whereHas('level', function ($subq) use ($education_level_id) {
+                    $subq->where('id', $education_level_id);
+                });
+            })
+            ->orderBy('id', 'desc')
+            ->get();
     }
 }

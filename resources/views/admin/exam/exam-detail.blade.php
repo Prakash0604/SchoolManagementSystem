@@ -12,16 +12,17 @@
                 </div>
 
                 <form id="storeExamSubject">
-
+                    <a class="btn btn-dark " href="{{ route('exam.index') }}" style="width:250px;padding:10px;border-radius:20px"
+                    type="button"><i class="fas fa-arrow-left"></i>View  Exam List</a>
                     <div class="row">
                         @csrf
                         <div class="col-lg-4">
                             <div class="m-div">
                                 <label for="" class="m-label bg-gradient-blue m-white">Academic Year</label>
                                 <select class="form-select m-field" name="academic_year_id" id="academic_year_id">
-                                    <option value="">Select one</option>
+                                    <option selected value="">Select one</option>
                                     @foreach ($years as $year)
-                                        <option value="{{ $year->id }}">{{ $year->academic_title }}</option>
+                                        <option  value="{{ $year->id }}">{{ $year->academic_title }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -38,7 +39,7 @@
                             <span id="exam_id-error" class="text-danger error-message"></span>
                         </div>
 
-                        <div class="col-lg-2">
+                        <div class="col-lg-4">
                             <div class="m-div">
                                 <label for="" class="m-label bg-gradient-blue m-white">Education Level</label>
                                 <select class="form-select m-field" name="education_level_id" id="education_level_id">
@@ -47,21 +48,15 @@
                             </div>
                             <span id="education_level_id-error" class="text-danger error-message"></span>
                         </div>
-                        <div class="col-lg-2 mt-3">
-                            <button class="btn btn-primary mt-1 " id="filterBtn"
-                                style="width:120px;padding:10px;border-radius:20px" type="button"><i
-                                    class="fas fa-plus"></i>
-                                Filter</button>
-
-                        </div>
 
                     </div>
 
                     <div class="container-fluid mt-4">
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered" id="get-exam-detail-data">
                                 <thead>
                                     <tr>
+                                        <th scope="col">S.N</th>
                                         <th scope="col">Subject</th>
                                         <th scope="col">Date</th>
                                         <th scope="col">Full Marks</th>
@@ -78,13 +73,6 @@
                         </div>
 
                     </div>
-
-                    <div class="container d-flex displayButton d-none">
-                    <button class="btn btn-primary mt-1 mx-auto" id="submitBtn"
-                    style="width:120px;padding:10px;border-radius:20px" type="submit"><i
-                        class="fas fa-plus"></i>
-                    Submit</button>
-                </div>
                 </form>
 
             </div>

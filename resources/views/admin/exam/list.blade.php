@@ -15,6 +15,9 @@
                 <button class="btn btn-primary " id="addExamBtn" style="width:120px;padding:10px;border-radius:20px"
                     type="button"><i class="fas fa-plus"></i> Add New</button>
 
+                    <a class="btn btn-warning " href="{{ route('exam.get-exam') }}" style="width:250px;padding:10px;border-radius:20px"
+                    type="button"><i class="fas fa-arrow-right"></i>View  Exam Subjects Detail</a>
+
                 <div class="row" style="margin-top:20px;">
 
                     @include('admin.exam.modal')
