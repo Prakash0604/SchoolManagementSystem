@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AcademicYear\AcademicYearController;
+use App\Http\Controllers\Admin\CustomGrade\CustomGradeController;
 use App\Http\Controllers\Admin\EducationLevel\AssignGradeSubject\AssignSubjectController;
 use App\Http\Controllers\Admin\EducationLevel\Classroom\ClassroomController;
 use App\Http\Controllers\Admin\EducationLevel\EducationLevelController;
@@ -77,11 +78,15 @@ Route::prefix('admin')->group(function () {
 
     Route::resource('exam',ExamController::class);
     Route::get('get-exam-data',[ExamController::class,'getExamDatas'])->name('exam.get-exam');
+    Route::get('get-exam-data/edit/{id}',[ExamController::class,'editExamDatas']);
+    Route::post('get-exam-data/update/{id}',[ExamController::class,'updateExamDatas']);
+    Route::delete('get-exam-data/delete/{id}',[ExamController::class,'deleteExamDatas']);
     Route::get('exam/status/{id}',[ExamController::class,'statusToggle']);
     Route::get('assign-exam-subject',[ExamController::class,'assignSubject'])->name('assign-exam-subject');
     Route::get('assign-exam-subject/get-exam/{id}',[ExamController::class,'getExam']);
     Route::get('assign-exam-subject/get-subject',[ExamController::class,'getSubject']);
     Route::post('assign-exam-subject',[ExamController::class,'storeSubject']);
 
+    Route::resource('custom-grade',CustomGradeController::class);
 
 });

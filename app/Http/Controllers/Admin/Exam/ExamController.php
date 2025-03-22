@@ -179,7 +179,21 @@ class ExamController extends Controller
         try {
             $academic_year_id = $request->academic_year_id;
             $education_level_id = $request->education_level_id;
-            $gradeSubject = AssignGradeSubject::with('subject')->where('academic_year_id', $academic_year_id)->where('education_level_id', $education_level_id)->get();
+            $examSubjects = AssignExam::with('exam_subject')
+                ->where('academic_year_id', $academic_year_id)
+                ->where('education_level_id', $education_level_id)
+                ->get();
+
+            $examSubjectIds = $examSubjects->flatMap(function ($exam) {
+                return $exam->exam_subject->pluck('subject_id');
+            })->toArray();
+
+            $gradeSubject = AssignGradeSubject::with('subject')
+                ->where('academic_year_id', $academic_year_id)
+                ->whereHas('subject', function ($q) use ($examSubjectIds) {
+                    $q->whereNotIn('id', $examSubjectIds);
+                })
+                ->where('education_level_id', $education_level_id)->get();
             return response()->json(['status' => true, 'message' => $gradeSubject]);
         } catch (\Exception $e) {
             return response()->json(['status' => false, 'message' => $e->getMessage()]);
@@ -291,5 +305,42 @@ class ExamController extends Controller
             })
             ->orderBy('id', 'desc')
             ->get();
+    }
+
+    public function editExamDatas($id)
+    {
+        try {
+            $exam = AssignExamSubject::with(['subject'])->find($id);
+            return response()->json(['status' => true, 'message' => $exam]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+    public function updateExamDatas(Request $request, $id)
+    {
+        try {
+            // dd($request->all());
+            $exam = AssignExamSubject::find($id);
+            $exam->update($request->all());
+            return response()->json(['status' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
+    }
+
+    public function deleteExamDatas($id)
+    {
+        try {
+            $exam = AssignExamSubject::find($id);
+            if ($exam != null) {
+                $exam->delete();
+                return response()->json(['status' => true, 'message' => "Exam Subject Deleted Successfully!"]);
+            } else {
+                return response()->json(['status' => false, 'message' => "Something went wrong"]);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['status' => false, 'message' => $e->getMessage()]);
+        }
     }
 }

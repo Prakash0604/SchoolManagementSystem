@@ -80,18 +80,14 @@
                     </div>
 
                     <div class="container d-flex displayButton d-none">
-                    <button class="btn btn-primary mt-1 mx-auto" id="submitBtn"
-                    style="width:120px;padding:10px;border-radius:20px" type="submit"><i
-                        class="fas fa-plus"></i>
-                    Submit</button>
-                </div>
+                        <button class="btn btn-primary mt-1 mx-auto" id="submitBtn"
+                            style="width:120px;padding:10px;border-radius:20px" type="submit"><i class="fas fa-plus"></i>
+                            Submit</button>
+                    </div>
                 </form>
 
             </div>
 
-
-
-            <!-- Page-body end -->
         </div>
     </div>
 @endsection

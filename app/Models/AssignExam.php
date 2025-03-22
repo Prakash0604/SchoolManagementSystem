@@ -25,4 +25,8 @@ class AssignExam extends Model
     public function level(){
         return $this->belongsTo(EducationLevel::class,'education_level_id','id');
     }
+
+    public function exam_subject(){
+        return $this->hasMany(AssignExamSubject::class,'assign_exam_id','id');
+    }
 }
