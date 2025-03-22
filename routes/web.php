@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\EducationLevel\EducationLevelController;
 use App\Http\Controllers\Admin\Employee\EmployeeAttendanceController;
 use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Employee\SalaryController;
+use App\Http\Controllers\Admin\Exam\AssignStudentMarkController;
 use App\Http\Controllers\Admin\Exam\ExamController;
 use App\Http\Controllers\Admin\Institute\InstituteController;
 use App\Http\Controllers\Admin\Student\StudentAttendanceController;
@@ -88,5 +89,8 @@ Route::prefix('admin')->group(function () {
     Route::post('assign-exam-subject',[ExamController::class,'storeSubject']);
 
     Route::resource('custom-grade',CustomGradeController::class);
+    Route::resource('assign-student-mark',AssignStudentMarkController::class);
+    Route::get('assign-student-mark/get-classroom/{year}/{level}',[AssignStudentMarkController::class,'getClassroom']);
+    Route::get('assign-mark/student',[AssignStudentMarkController::class,'getStudent']);
 
 });
