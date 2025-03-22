@@ -49,7 +49,9 @@ class AssignStudentMarkController extends Controller
             $exam = $request->exam_id;
             $subjects = AssignExamSubject::with('subject')->where('assign_exam_id', $exam)->get();
             // ->pluck('subject.title','subject.id');
-            $students = StudentAcademic::with('student')->where('academic_year_id', $year)->where('education_level_id', $level)->where('classroom_id', $classroom)->get();
+            $students = StudentAcademic::with('student')->where('academic_year_id', $year)->where('education_level_id', $level)->where('classroom_id', $classroom)->whereHas('student',function($q){
+                $q->where('status','Active');
+            })->get();
             $examResult = ExamRecord::where([
                 'academic_year_id' => $year,
                 'exam_id' => $exam,
