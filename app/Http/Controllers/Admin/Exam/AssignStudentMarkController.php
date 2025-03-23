@@ -12,6 +12,7 @@ use App\Models\StudentAcademic;
 use App\Models\AssignExamSubject;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\AssignExam;
 use Illuminate\Support\Facades\Validator;
 
 class AssignStudentMarkController extends Controller
@@ -47,7 +48,9 @@ class AssignStudentMarkController extends Controller
             $level = $request->education_level_id;
             $classroom = $request->classroom_id;
             $exam = $request->exam_id;
-            $subjects = AssignExamSubject::with('subject')->where('assign_exam_id', $exam)->get();
+            // $subjects = AssignExamSubject::with('subject')->where('assign_exam_id', $exam)->get();
+            $subjects=AssignExam::with('exam_subject.subject')->where('academic_year_id',$year)->where('exam_id',$exam)->where('education_level_id',$level)->get();
+            // dd($subjects);
             // ->pluck('subject.title','subject.id');
             $students = StudentAcademic::with('student')->where('academic_year_id', $year)->where('education_level_id', $level)->where('classroom_id', $classroom)->whereHas('student',function($q){
                 $q->where('status','Active');

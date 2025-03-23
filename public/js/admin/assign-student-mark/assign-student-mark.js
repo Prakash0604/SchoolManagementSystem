@@ -89,7 +89,7 @@ $(document).ready(function () {
                     $("table tbody").empty();
 
                     if (response.status == true) {
-                        let subjects = response.subject;
+                        let subjects = response.subject[0].exam_subject;
                         let students = response.message;
                         let studentMarks = response.existing_marks || {}; // Check if marks exist
 
