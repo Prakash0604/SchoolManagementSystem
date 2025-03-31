@@ -132,6 +132,7 @@ class EmployeeController extends Controller
                 'home_address' => $request->home_address,
                 'image' => $store,
                 'registration_id' => $registration_id,
+                'user_type'=>'employee',
                 'username' => $username,
                 'password' => $password,
             ]);

@@ -37,6 +37,7 @@ class User extends Authenticatable
         'home_address',
         'registration_id',
         'username',
+        'user_type',
         'status',
     ];
 

@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             ReligionSeeder::class,
             BloodGroupSeeder::class,
-            CustomGrading::class,
+            UserSeeder::class,
+            // CustomGrading::class,
         ]);
     }
 }

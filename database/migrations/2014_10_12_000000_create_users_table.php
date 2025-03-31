@@ -33,6 +33,8 @@ return new class extends Migration
             $table->unsignedBigInteger('blood_group_id')->nullable();
             $table->foreign('blood_group_id')->references('id')->on('blood_groups')->onUpdate('cascade');
 
+            $table->enum('user_type',['employee','student','guardians']);
+
             $table->string('education')->nullable();
             $table->string('home_address')->nullable();
             $table->string('email')->unique();

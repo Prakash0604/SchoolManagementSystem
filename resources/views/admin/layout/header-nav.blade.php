@@ -128,7 +128,7 @@
 
 
                         <li>
-                            <a href="logout.php">
+                            <a href="{{ route('logout') }}">
                              <i class="fa-solid fa-lock"></i>Logout
                         </a>
                         </li>
