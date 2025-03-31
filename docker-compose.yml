@@ -1,0 +1,62 @@
+services:
+  # PostgreSQL Service
+  schoolmanagement-db:
+    image: postgres:16
+    container_name: schoolmanagement-db
+    tty: true
+    environment:
+      POSTGRES_DB: schoolmanagement
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      SERVICE_TAGS: dev
+      SERVICE_NAME: postgresql
+    volumes:
+      - schoolmanagement-dbdata:/var/lib/postgresql/data
+    networks:
+      - schoolmanagement-app-network
+
+  # PHP Service (Laravel App)
+  schoolmanagement-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: schoolmanagement-app
+    user: www-schoolmanagement
+    container_name: schoolmanagement-app
+    tty: true
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - schoolmanagement-app-network
+
+  # Nginx Web Server
+  schoolmanagement-webserver:
+    image: nginx:alpine
+    container_name: schoolmanagement-webserver
+    tty: true
+    ports:
+      - "8008:8006"
+    volumes:
+      - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - schoolmanagement-app
+    networks:
+      - schoolmanagement-app-network
+
+# Define Networks
+networks:
+  schoolmanagement-app-network:
+    driver: bridge
+
+# Define Volumes
+volumes:
+  schoolmanagement-dbdata:
+    driver: local
+  schoolmanagement-redis-data:
+    driver: local
