@@ -19,7 +19,6 @@ class UserSeeder extends Seeder
             'password'=>'12345678',
             'contact'=>'98000000000',
             'role_id'=>1,
-            'image'=>'/default/avatar-5.webp',
             'join_date'=>'2002-01-01',
             'monthly_salary'=>'20000',
             'dob'=>'2002-01-01',

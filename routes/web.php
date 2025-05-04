@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Employee\EmployeeController;
 use App\Http\Controllers\Admin\Employee\SalaryController;
 use App\Http\Controllers\Admin\Exam\AssignStudentMarkController;
 use App\Http\Controllers\Admin\Exam\ExamController;
+use App\Http\Controllers\Admin\Exam\StudentLedgerController;
 use App\Http\Controllers\Admin\Institute\InstituteController;
 use App\Http\Controllers\Admin\Student\StudentAttendanceController;
 use App\Http\Controllers\Admin\Student\StudentController;
@@ -33,6 +34,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['user-access'])->group(function(){
     Route::get('/',[LoginController::class,'index'])->name('login');
     Route::post('/',[LoginController::class,'loginEmployee'])->name('login.store');
+    Route::post('/reset-password',[LoginController::class,'resetPassword']);
 });
 
 
@@ -97,5 +99,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('assign-student-mark', AssignStudentMarkController::class);
         Route::get('assign-student-mark/get-classroom/{year}/{level}', [AssignStudentMarkController::class, 'getClassroom']);
         Route::get('assign-mark/student', [AssignStudentMarkController::class, 'getStudent']);
+        Route::get('ledger/student', [StudentLedgerController::class, 'getLedger']);
+
     });
 });

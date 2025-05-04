@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\CustomGrading;
+use App\Models\InstituteInfo;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -26,6 +27,10 @@ class DatabaseSeeder extends Seeder
             ReligionSeeder::class,
             BloodGroupSeeder::class,
             UserSeeder::class,
+            InstituteSeeder::class,
+            AcademicSessionSeeder::class,
+            EducationLevelSeeder::class,
+
             // CustomGrading::class,
         ]);
     }

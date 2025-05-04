@@ -109,7 +109,7 @@
                     <label for="password">Password</label>
                     <div class="input-group">
                         <input type="password" class="form-control" name="password" id="password"
-                            placeholder="Password" >
+                            placeholder="Password">
                         <div class="input-group-append">
                             <span class="input-group-text" id="togglePassword">
                                 <i class="fas fa-eye"></i>
@@ -117,15 +117,78 @@
                         </div>
                     </div>
                     @error('password')
-                    <span class="text-danger mb-2">{{ $message }}</span>
-                @enderror
+                        <span class="text-danger mb-2">{{ $message }}</span>
+                    @enderror
                 </div>
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
             <div class="forgot-password">
-                <a href="#">Forgot password?</a>
+                <a href="#" id="resetPassword">Forgot password?</a>
             </div>
         </div>
+
+
+        {{-- Reset Password --}}
+
+        <!-- Button trigger modal -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="formModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <form id="addForm" class="addForm">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Reset Form</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="page-wrapper">
+                                    <!-- Page-body start -->
+                                    <div class="page-body">
+                                        <!-- Row start -->
+                                        <div class="row">
+
+                                            <h3 class="text-center w-100" id="sessionHeading" style="line-height:20px;">
+                                                Password Reset
+                                            </h3>
+                                        </div>
+
+                                        <div class="row" style="border:0px solid #9698d6;padding:5px 5px 5px 15px;">
+                                            <input type="hidden" name="id" id="subject_id">
+                                            @csrf
+
+                                            <div class="col-lg-12">
+                                                <div class="m-div">
+                                                    <label class="m-label bg-gradient-blue m-white">Email*</label>
+                                                    <input type="email" class="form-control m-field" placeholder="Enter your email"
+                                                        name="reset_email" id="reset_email">
+                                                </div>
+                                            </div>
+                                            <span id="reset_email-error" class="text-danger error-message"></span>
+                                        </div>
+                                    </div>
+                                    <!-- Page-body end -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                style="width:100px;padding:10px;border-radius:20px"
+                                data-bs-dismiss="modal">Close</button>
+
+                            <button type="submit" class="btn btn-warning"
+                                style="width:150px;padding:10px;border-radius:20px" id="createBtn">Change Request</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {{-- Reset Password --}}
     </div>
 
     <!-- Bootstrap JS and dependencies -->
@@ -149,6 +212,30 @@
             this.querySelector('i').classList.toggle('fa-eye');
             this.querySelector('i').classList.toggle('fa-eye-slash');
         });
+
+        $(document).on("click","#resetPassword",function(){
+            $("#formModal").modal("show");
+        })
+
+        $(document).off("submit","#addForm").on("submit","#addForm",function(e){
+            e.preventDefault();
+            let formdata=new FormData(this);
+            console.log(formdata);
+            $.ajax({
+                url:"reset-password",
+                type:"post",
+                data:formdata,
+                contentType:false,
+                processData:false,
+                success:function(response){
+                    console.log(response);
+                },
+                error:function(xhr){
+                    console.log(xhr);
+                }
+
+            })
+        })
     </script>
 </body>
 

@@ -14,6 +14,7 @@ use App\Models\StudentGuardian;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StudentRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
@@ -109,7 +110,7 @@ class StudentController extends Controller
             $data['username'] = Str::upper(Str::limit($institute->schoolname, 2, '')) . date('Y') . Str::upper(Str::limit($request->student_name, 2, '')) . Str::upper(Str::random(2)) . date('md');
             $data['password'] = $data['username'];
             $data['institute_id'] = $institute->id;
-            $data['created_by'] = 7;
+            $data['created_by'] = Auth::id();
 
             $student = Student::create($data);
 

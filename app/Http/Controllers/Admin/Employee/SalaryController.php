@@ -8,6 +8,7 @@ use App\Models\EmployeeSalary;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SalaryRequest;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class SalaryController extends Controller
@@ -93,7 +94,7 @@ class SalaryController extends Controller
                     'bonus' => $request->bonus,
                     'fine' => $request->fine,
                     'total_salary' => $total,
-                    'created_by' => $request->user_id,
+                    'created_by' => Auth::id(),
                 ]);
                 return response()->json(['status' => true, 'message' => 'Salary Saved Successfully!']);
             } else {

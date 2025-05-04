@@ -42,6 +42,8 @@ return new class extends Migration
             $table->string('registration_id');
             $table->string('username');
             $table->string('password');
+            $table->string('is_reset')->nullable();
+            $table->string('reset_times')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

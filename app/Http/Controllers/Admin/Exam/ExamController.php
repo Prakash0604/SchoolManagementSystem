@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\ExamSubjectRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ExamController extends Controller
 {
@@ -205,12 +206,12 @@ class ExamController extends Controller
         try {
             DB::beginTransaction();
             // dd($request->all());
-            $user = User::first();
+            // $user = User::first();
             $assign_exam = AssignExam::create([
                 'academic_year_id' => $request->academic_year_id,
                 'exam_id' => $request->exam_id,
                 'education_level_id' => $request->education_level_id,
-                'created_by' => $user->id
+                'created_by' =>Auth::id(),
             ]);
 
             foreach ($request->subject_id as $key => $subject) {

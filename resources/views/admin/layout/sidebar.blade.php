@@ -279,6 +279,14 @@
                             <span class="pcoded-mcaret"></span>
                         </a>
                     </li>
+
+                    <li class=" " id="jobletter">
+                        <a href="empregal.php">
+                            <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                            <span class="pcoded-mtext" data-i18n="nav.basic-components.alert">Reset Password Request</span>
+                            <span class="pcoded-mcaret"></span>
+                        </a>
+                    </li>
                 </ul>
             </li>
 

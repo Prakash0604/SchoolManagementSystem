@@ -47,7 +47,7 @@ $(document).ready(function () {
             let level = $(this).val();
             let year = $("#academic_year_id").val();
             let dataUrl =
-                "assign-student-mark/get-classroom/" + year + "/" + level;
+                "/admin/assign-student-mark/get-classroom/" + year + "/" + level;
             if (level && year) {
                 $.ajax({
                     type: "get",
@@ -76,7 +76,7 @@ $(document).ready(function () {
 
         if (academic_year_id && exam_id && education_level_id && classroom_id) {
             $.ajax({
-                url: "assign-mark/student",
+                url: "/admin/assign-mark/student",
                 type: "get",
                 data: {
                     academic_year_id,
@@ -127,13 +127,7 @@ $(document).ready(function () {
                                     ] || ""; // Load existing marks
 
                                 studentTable += `<td>
-                                    <input type="number" class="form-control text-center marks-input"
-                                        name="marks[${studentData.student_id}][${subject.subject.id}]"
-                                        data-subject-id="${subject.subject.id}"
-                                        data-full-marks="${subject.full_marks}"
-                                        value="${existingMarks}"
-                                        placeholder="Enter Marks">
-                                    <small class="text-danger error-msg" style="display:none;">Marks cannot exceed ${subject.full_marks}</small>
+                                    <span>${existingMarks}</span>
                                 </td>`;
                             });
 

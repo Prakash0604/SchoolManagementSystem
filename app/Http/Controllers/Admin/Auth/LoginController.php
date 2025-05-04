@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -41,5 +42,16 @@ class LoginController extends Controller
     public function logout(){
         Auth::logout();
         return redirect()->route('login');
+    }
+
+
+    public function resetPassword(Request $request){
+        dd($request->all());
+        $data=$request->validate([
+            'email'=>'required|email',
+        ]);
+
+
+        $user=User::where('email', $data['email'])->count();
     }
 }
